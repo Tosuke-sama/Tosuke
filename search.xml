@@ -4,16 +4,53 @@
     <title>我的第一篇博客</title>
     <url>/2021/10/26/hello-world/</url>
     <content><![CDATA[<p>你好，我的同志，这是我的第一篇博客，显而易见的是我正在学习中，所以页面会非常粗糙，还请见谅！</p>
-<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><h3 id="一开始"><a href="#一开始" class="headerlink" title="一开始"></a>一开始</h3><p>建立博客的缘由是因为几位朋友都有了属于他们自己的博客，这让我很感兴趣。</p>
+<h2 id="起源">起源</h2>
+<h3 id="一开始">一开始</h3>
+<p>建立博客的缘由是因为几位朋友都有了属于他们自己的博客，这让我很感兴趣。</p>
 <p>第一步</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="后来嘛"><a href="#后来嘛" class="headerlink" title="后来嘛"></a>后来嘛</h3><p>上网找教程，最后选择了hexo+gitee（码云）的方式部署博客，期间遇到了很多问题，后来大部分都慢慢解决了，但还是有一些现在还没<br>解决的问题。<br>比如说：</p>
+<h3 id="后来嘛">后来嘛</h3>
+<p>上网找教程，最后选择了hexo+gitee（码云）的方式部署博客，期间遇到了很多问题，后来大部分都慢慢解决了，但还是有一些现在还没<br>
+解决的问题。<br>
+比如说：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git@gitee.com: Permission denied (publickey)</span><br></pre></td></tr></table></figure>
 <p>配置的ssh明明完美无缺，可通讯还是不行，我猜测是因为我windows用户名是中文的原因，还得再试试。</p>
-<h3 id="而现在"><a href="#而现在" class="headerlink" title="而现在"></a>而现在</h3><p>我之前有一个团队网站，为了测试我把它放在这里。</p>
+<h3 id="而现在">而现在</h3>
+<p>我之前有一个团队网站，为了测试我把它放在这里。</p>
 <p>More info: <a href="http://tocode.e.cn.vc/2">Tocode团队</a></p>
-<h3 id="在未来"><a href="#在未来" class="headerlink" title="在未来"></a>在未来</h3><p>我会继续努力的，总之感谢大家了！</p>
+<h3 id="在未来">在未来</h3>
+<p>我会继续努力的，总之感谢大家了！</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>用logisim实现八位可控加减法器</title>
+    <url>/2021/12/03/%E7%AC%AC%E4%BA%8C/</url>
+    <content><![CDATA[<h1>计算机组成原理实验</h1>
+<p>你好，好久不见！吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼，作为第二篇博客，我决定先从一些简单的实验分享开始啦！（实际因为本人是小菜鸡一只的原因。。）</p>
+<h2 id="用logisim实现八位可控加减法器">用logisim实现八位可控加减法器</h2>
+<h3 id="思路解析：">思路解析：</h3>
+<p>要实现八位可控加减法器，采用并行思路，首先需要八个一位全加器，用分流器可以将八位二进制数分离，使得单独每一位用一位全加器来进行相关的运算，然后并行输出，最后用分流器进行还原。</p>
+<h3 id="实验过程：">实验过程：</h3>
+<p>1、首先进行一位全加器的设置，我们需要准备五个信号量，三个输入，两个输出，其中xi与yi为参加运算的对象，cin代表来自下一位的进位，si代表本位的输出结果，Cout代表向下一位的进位。</p>
+<p><img src="/.io//%E5%9B%BE%E7%89%871.png" alt></p>
+<p>2、设计思路为：先用一个异或门判断xi与yi的和的情况，若异或门为1，则xi+yi==1，此时与cin进位再次进行异或门判断，若异或门为仍1，则说明不产生进位，则si可置1。若第一个异或门与cin的与门为1，则说明产生了进位并且si位为0.当xi与yi的与门为1时，cin也应该置1。经过调试判断，最终如图所示。</p>
+<p><img src="/.io//%E5%9B%BE%E7%89%872.png" alt></p>
+<p>3、用logisim进行测试，检验是否制作成果，经检验得制作成功。</p>
+<img src="/.io//图片3.png" style="zoom: 33%;">
+<img src="/.io//图片4.png" style="zoom:50%;">
+<img src="/.io//图片5.png" style="zoom:50%;">
+<p>4、制作分流器，准备分流器，数据位宽为8的输入，8个数据位宽为1的隧道，将隧道与分流器相连，分流器与8位位宽的输入相连。</p>
+<img src="/.io//图片6.png" style="zoom:50%;">
+<img src="/.io//图片7.png" style="zoom:50%;">
+<p>5、同理，准备一个y输入与s输出。</p>
+<p><img src="/.io//%E5%9B%BE%E7%89%878.png" alt></p>
+<p><img src="/.io//%E5%9B%BE%E7%89%879.png" alt></p>
+<p>6、准备8个一位全加器，一个用于表示加减的输入sub，一个用于检测溢出的of（overflow），一个cout表示最高位的进位。<br>
+其基本思路是：利用sub与y输入形成异或门，用于执行加和减时y的不同形态，将异或门的结果与一起并入全加器的两个加位，输出位依次接上s的8个隧道。将8个全加器按照这样的方式链接，最后将一位全加器用进位位连接起来，sub链接至第一个全加器的进位位，这样做的目的是将原本的（x+y）变成（x+y的补码）即为（x+（1+y的反码））。结果连接如下。</p>
+<img src="/.io//图片10.png" style="zoom:80%;">
+]]></content>
+      <tags>
+        <tag>硬件相关</tag>
+      </tags>
   </entry>
 </search>
