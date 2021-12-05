@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>我的第一篇博客</title>
+    <url>/2021/10/26/hello-world/</url>
+    <content><![CDATA[<p>你好，我的同志，这是我的第一篇博客，显而易见的是我正在学习中，所以页面会非常粗糙，还请见谅！</p>
+<h2 id="起源">起源</h2>
+<h3 id="一开始">一开始</h3>
+<p>建立博客的缘由是因为几位朋友都有了属于他们自己的博客，这让我很感兴趣。</p>
+<p>第一步</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="后来嘛">后来嘛</h3>
+<p>上网找教程，最后选择了hexo+gitee（码云）的方式部署博客，期间遇到了很多问题，后来大部分都慢慢解决了，但还是有一些现在还没<br>
+解决的问题。<br>
+比如说：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git@gitee.com: Permission denied (publickey)</span><br></pre></td></tr></table></figure>
+<p>配置的ssh明明完美无缺，可通讯还是不行，我猜测是因为我windows用户名是中文的原因，还得再试试。</p>
+<h3 id="而现在">而现在</h3>
+<p>我之前有一个团队网站，为了测试我把它放在这里。</p>
+<p>More info: <a href="http://tocode.e.cn.vc/2">Tocode团队</a></p>
+<h3 id="在未来">在未来</h3>
+<p>我会继续努力的，总之感谢大家了！</p>
+]]></content>
+  </entry>
+  <entry>
     <title>用logisim实现八位可控加减法器</title>
     <url>/2021/12/03/%E7%AC%AC%E4%BA%8C/</url>
     <content><![CDATA[<h1>计算机组成原理实验</h1>
@@ -29,27 +51,5 @@
       <tags>
         <tag>硬件相关</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>我的第一篇博客</title>
-    <url>/2021/10/26/hello-world/</url>
-    <content><![CDATA[<p>你好，我的同志，这是我的第一篇博客，显而易见的是我正在学习中，所以页面会非常粗糙，还请见谅！</p>
-<h2 id="起源">起源</h2>
-<h3 id="一开始">一开始</h3>
-<p>建立博客的缘由是因为几位朋友都有了属于他们自己的博客，这让我很感兴趣。</p>
-<p>第一步</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<h3 id="后来嘛">后来嘛</h3>
-<p>上网找教程，最后选择了hexo+gitee（码云）的方式部署博客，期间遇到了很多问题，后来大部分都慢慢解决了，但还是有一些现在还没<br>
-解决的问题。<br>
-比如说：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git@gitee.com: Permission denied (publickey)</span><br></pre></td></tr></table></figure>
-<p>配置的ssh明明完美无缺，可通讯还是不行，我猜测是因为我windows用户名是中文的原因，还得再试试。</p>
-<h3 id="而现在">而现在</h3>
-<p>我之前有一个团队网站，为了测试我把它放在这里。</p>
-<p>More info: <a href="http://tocode.e.cn.vc/2">Tocode团队</a></p>
-<h3 id="在未来">在未来</h3>
-<p>我会继续努力的，总之感谢大家了！</p>
-]]></content>
   </entry>
 </search>
