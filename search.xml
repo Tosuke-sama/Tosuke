@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>用logisim实现4位先行进位</title>
+    <url>/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/</url>
+    <content><![CDATA[<h3 id="实验目的：">实验目的：</h3>
+<p>掌握快速加法器中先行进位的原理，能利用相关知识设计4位先行进位电路，并利用设计的4位先行进位电路构造4位快速加法器，能分析对应电路的时间延迟。</p>
+<h3 id="实验结果：">实验结果：</h3>
+<img src="/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/图片9.png" style="zoom:80%;">
+<h3 id="实验过程及结果分析：">实验过程及结果分析：</h3>
+<p>由于串行加法器在每一位的加法时需要等待下一位的进位后才能进行加减，这就导致了时间的大量浪费，如果我们能够提前知道进位（先行进位）的话，这样的话后位的加减不用等着前位的进位，时间将会大大缩短。</p>
+<p>所以，有规定为：</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/%E5%9B%BE%E7%89%876.png" alt></p>
+<p>所以，一位加法的所有进位形态分为进位取消、进位传播、进位产生，在这里我们只关心进位传播与进位产生，列出全加器的运算公式：</p>
+<p>$$<br>
+Si=ai⊕bi⊕ci;<br>
+Ci+1=ai*bi+（ai⊕bi）*ci<br>
+$$</p>
+<p>这是每一位的结果，根据我们刚才的分类pi（进位传播项）=ai⊕bi、gi（进位产生项）=ai*bi我们可以得到全加器的公式变形：</p>
+<p>$$<br>
+Si=pi⊕ci;<br>
+Ci+1=gi+pi*ci<br>
+$$</p>
+<p>这就是我们每一位求出来的值，pi、gi都只与ai与bi有关，故我们只需要求出ci即可，但是ci又与上一位ci有关系，我们将所有ci的运算公式列出：</p>
+<img src="/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/图片7.png" style="zoom:80%;">
+<p>而我们将ci依次带入后一位得：</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/%E5%9B%BE%E7%89%878.png" alt></p>
+<p>所以现在所有值都只与ai、bi、c0有关了，我们就可以通过ai、bi和c0直接算出每一位的值而不再需要等待进位了。</p>
+<p>将p1，g1，c0表示出来，用电路表示超前进位即为：</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/%E5%9B%BE%E7%89%879.png" alt></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>硬件设计</category>
+      </categories>
+      <tags>
+        <tag>logisim</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>我的第一篇博客</title>
     <url>/2021/10/26/hello-world/</url>
     <content><![CDATA[<p>你好，我的同志，这是我的第一篇博客，显而易见的是我正在学习中，所以页面会非常粗糙，还请见谅！</p>
@@ -21,6 +58,13 @@
 <h3 id="在未来">在未来</h3>
 <p>我会继续努力的，总之感谢大家了！</p>
 ]]></content>
+      <categories>
+        <category>日常</category>
+        <category>感想</category>
+      </categories>
+      <tags>
+        <tag>关于</tag>
+      </tags>
   </entry>
   <entry>
     <title>新泽没有夏天</title>
@@ -275,8 +319,12 @@
 其基本思路是：利用sub与y输入形成异或门，用于执行加和减时y的不同形态，将异或门的结果与一起并入全加器的两个加位，输出位依次接上s的8个隧道。将8个全加器按照这样的方式链接，最后将一位全加器用进位位连接起来，sub链接至第一个全加器的进位位，这样做的目的是将原本的（x+y）变成（x+y的补码）即为（x+（1+y的反码））。结果连接如下。</p>
 <img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片10.png" style="zoom:80%;">
 ]]></content>
+      <categories>
+        <category>学习</category>
+        <category>硬件设计</category>
+      </categories>
       <tags>
-        <tag>硬件相关</tag>
+        <tag>logisim</tag>
       </tags>
   </entry>
 </search>
