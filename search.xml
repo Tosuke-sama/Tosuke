@@ -26,8 +26,13 @@ $$</p>
 <p>而我们将ci依次带入后一位得：</p>
 <p><img src="/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/%E5%9B%BE%E7%89%878.png" alt></p>
 <p>所以现在所有值都只与ai、bi、c0有关了，我们就可以通过ai、bi和c0直接算出每一位的值而不再需要等待进位了。</p>
-<p>将p1，g1，c0表示出来，用电路表示超前进位即为：</p>
+<p>将p1，g1，c0表示出来:</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/%E5%9B%BE%E7%89%8710.png" alt></p>
+<p>用电路表示超前进位即为：</p>
 <p><img src="/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/%E5%9B%BE%E7%89%879.png" alt></p>
+<blockquote>
+<p>有问题请通过旁边的对话窗口联系京介喔。</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>学习</category>
