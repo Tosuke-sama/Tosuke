@@ -206,6 +206,43 @@ $$</p>
       </tags>
   </entry>
   <entry>
+    <title>Java的I/O流</title>
+    <url>/2021/12/15/Java%E7%9A%84I-O%E6%B5%81/</url>
+    <content><![CDATA[<h1>I/O框架</h1>
+<h2 id="流的概念">流的概念</h2>
+<p>流是内存与存储设备之间传输数据的通道，如果你学习过计算机组成原理或者是操作系统的话，那么你一定知道运行的程序是在内存中的，但程序需要的数据和程序想要写出的数据都保存在我们储存设备（比如磁盘）里的，所以这时候就需要一个进去和一个出来的通道，而这便是流的概念了。</p>
+<p><img src="/2021/12/15/Java%E7%9A%84I-O%E6%B5%81/image-20211215201600633.png" alt="image-20211215201600633"></p>
+<h2 id="流的分类">流的分类</h2>
+<p><strong>1、按方向分（主要）：</strong></p>
+<p>· 输入流：存储设备-&gt;内存（input）</p>
+<p>· 输出流：内存-&gt;存储设备（output）</p>
+<p><strong>2、按单位分：</strong></p>
+<p>· 字节流：以字节为单位，可以读写所有数据。</p>
+<p>· 字符流：以字符为单位，只能读写文本数据。</p>
+<p><strong>3、按功能分：</strong></p>
+<p>· 节点流：具有实际传输数据的读写功能。</p>
+<p>· 过滤流：在节点流的基础上增强功能。</p>
+<h1>字节流</h1>
+<p>字节流的父类（抽象类），我们来看看这些抽象类的一些方法：</p>
+<p><strong>inputStream（输入字节流）</strong>：</p>
+<p>1、public int read(){}</p>
+<p>2、public int read(byte[] b){}</p>
+<p>3、public int read(byte[] b,int off,int len){}</p>
+<p><strong>OutputStream(输出字节流)：</strong></p>
+<p>1、public void write(int n){}</p>
+<p>2、public void write(byte[] b){}</p>
+<p>3、public void write(byte[] b,int off,int len){}</p>
+<h2 id="文件字节流">文件字节流</h2>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>我的第一篇博客</title>
     <url>/2021/10/26/hello-world/</url>
     <content><![CDATA[<p>你好，我的同志，这是我的第一篇博客，显而易见的是我正在学习中，所以页面会非常粗糙，还请见谅！</p>
@@ -232,6 +269,505 @@ $$</p>
       </categories>
       <tags>
         <tag>关于</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>两日之恋人</title>
+    <url>/2021/12/19/%E4%B8%A4%E6%97%A5%E4%B9%8B%E6%81%8B%E4%BA%BA/</url>
+    <content><![CDATA[<p>筠池点了投降。</p>
+<p>并不是这局已经无力回天让人痛苦，而是筠池突然感到了厌烦。</p>
+<p>这几天筠池时不时的就会感觉到莫名心累，前几天还在嘲笑俞佑，没想到报应来的这么快。</p>
+<p>队友当然不会放过他，开始进行各种语言攻击。</p>
+<p>筠池瞟了一眼消息栏，然后直接退出游戏，关掉了显示器。</p>
+<p>在漆黑的屏幕里他看见了自己的脸，他惊讶于自己彷佛是在观察一个陌生人那样看着自己，里面的人自己好像并不熟悉。</p>
+<p>他打开手机，有二十三条未读消息的提醒占据了屏幕，是来自女友的。</p>
+<p>最新的一条是“你到底爱不爱我？”</p>
+<p>筠池没动，关掉了手机，熄掉了最后一丝光亮，疲惫地瘫在了沙发上。</p>
+<p>自己以前不是这样的。</p>
+<p>筠池记得以前的事，那时候自己喜欢打游戏是真的，经常做梦是真的，和同伴说骚话是真的，甚至。</p>
+<p>爱上葭凛也是真的。</p>
+<p>但是筠池忘了葭凛是怎么成为自己女朋友的了，就好像小时候偷偷在楼下租的影碟，播放到令人激动的剧情时，总是用“一夜之后”这样的字来搪塞，令小时候的筠池痛苦不已。</p>
+<p>现在也是这样，筠池已经忘记的影片的剧情了，但“一夜之后”却无奈印入了脑海。</p>
+<p>也许是自己勇敢表白，葭凛羞涩地回应了他？或者是葭凛提前发现了自己的心意，她的大胆表露？再不然是两个人不约而同的默契眼神？</p>
+<p>筠池没有察觉到自己轻轻地笑了笑。</p>
+<p>初长成的爱情总是这样的，总有人会觉得令人回味。</p>
+<p>后来呢，又发生了什么吗。</p>
+<p>筠池拼命回忆，他只想知道，这一切是自己的错吗。</p>
+<p>该轮到自己负责了吗。</p>
+<p>这也许毫无疑问，但筠池依然想找到点什么。</p>
+<p>忽然，他好像真的找到了什么。</p>
+<p>那是关于一个名字的，葭凛。</p>
+<p>葭凛是个不错的女孩，筠池和她是青梅竹马，两家人的关系一直不错。</p>
+<p>筠池是在高中后和她联系又多了起来的。</p>
+<p>一定有什么原因，一定发生了什么。</p>
+<p>他觉得自己陷入了一个迷宫，这迷宫如此之熟悉，筠池对它了如指掌。</p>
+<p>可是他迷路了，明记下个得转弯就是出口，可那里竟然凭空出现一堵墙，上面写着“一夜之后”立在中间，分割了他和出口。</p>
+<p>也分割了他与葭凛。</p>
+<p>他不想再想下去了，站到窗前拉开了窗帘，望着窗外伴随着蝉声的夜色，筠池平静了下来。</p>
+<p>“我觉得你还是太幼稚了吧”</p>
+<p>那是葭凛的声音，筠池非常肯定。</p>
+<p>他不再犹豫，做回桌前再次打开了电脑。</p>
+<p>并不是像甩掉包袱的感觉，更像是多添了一道代表历练的伤疤。</p>
+<p>重新连接发现队友还在坚守高地。</p>
+<p>并不是每个人都很成熟，但总有人正成长着。</p>
+<p>他久违地打开输入框，认真地敲下每一个字。</p>
+<p>并不是每次都可以轻松逃掉的，这次就不行。</p>
+<p>“不好意思，稳住我来C。”</p>
+<p>他想葭凛了。</p>
+]]></content>
+      <categories>
+        <category>日常</category>
+        <category>记录</category>
+      </categories>
+      <tags>
+        <tag>时间的恋人</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>十日之恋人</title>
+    <url>/2021/12/19/%E5%8D%81%E6%97%A5%E4%B9%8B%E6%81%8B%E4%BA%BA/</url>
+    <content><![CDATA[<p>俞佑回来了。</p>
+<p>“只要我去找他，无论什么时候，他还是会等我的。“</p>
+<p>“没有我，他根本活不下去。”</p>
+<p>婉夏真的这么有把握？</p>
+<p>她的确有把握，因为她知道俞佑爱她爱得要命。</p>
+<p>俞佑已经好几天没有回来了，现在终于有消息了。</p>
+<p>“他果然还会回到西南石油，因为那是‘我们的家’， 那里还有俞佑辛辛苦苦抽出来的装备，攒的各种各样的玩意儿。”</p>
+<p>”他一定还在等着我回去。&quot;</p>
+<p>想到这里，婉夏心里忽然觉得舒服多了。</p>
+<p>”这两天他一定什么事都不想做，一直忙着跟那些bug对线，甚至连作业和预习都没有弄完。&quot;</p>
+<p>想到这里，婉夏又不禁皱了皱眉。</p>
+<p>&quot;但是没关系，只要我一见他，无论什么事，他都会抢 着去做了，根本不用我动手。 <strong>”</strong></p>
+<p>婉夏满足地叹了口气，一个人已到了她这种时候，想 到还有个地方可以回去，还有人在苦苦地等着她，这 种感觉实在令人愉快。</p>
+<p>“以前我对他也许的确太狠了些，逼他逼得太紧，以后 我也要改变方针了。”</p>
+<p>”男人就像是孩子，你要他听话，多少也得给他点甜头 吃吃。”</p>
+<p>想到这里，她忽然觉得心里有点发热。</p>
+<p>”无论如何，他虽然不是个很强的男人，但毕竟不是个 很令人讨厌的人。”</p>
+<p>她忽然发觉自己还是有点爱他的。</p>
+<p>她这一生中，假如还有个人能真的令她动一点感情， 那人就是俞佑了，想得越多，她就越觉得俞佑的好处 比别人多。</p>
+<p>“我真该好好地对他才是，像他这样又氟金又暴肝的男 人，世上并不多，以后我也许再也找不到了。&quot; 越想她越觉得不能放弃他。</p>
+<p>也许她一直都在爱着他，只不过因为他爱得太深了， 所以才令她觉得无所谓。</p>
+<p>他舔她舔得若没有那么深，她说不定反而会更爱他。 这就是人性的弱点，人性的矛盾。</p>
+<p>所以聪明的男人就算爱极了一个女人，也只是藏在心 里，绝不要将他的爱全部在她面前表现出来。</p>
+<p>&quot;俞佑，你放心，以后我绝不会再令你伤心了，我一定 天天陪着你，以前的事全已过去，现在我们再重头做起。</p>
+<p>&quot;只要你还像以前那样对我，我什么事都可以依着你。</p>
+<p>但俞佑是不是还会像以前那样对她呢？</p>
+<p>婉夏忽然觉得并不十分有把握，对自己的信心已动摇。</p>
+<p>她以前从未有过这种感觉，那只因她以前从未觉得俞佑对她有如此重要，无论俞佑对她是好是坏，她都全不放在心上。</p>
+<p>一个人只有在很想“得到”的时候，才会怕&quot;失去”</p>
+<p>这种患得患失的感觉，也正是人类许多种弱点之一。</p>
+<p>可悲的是，你想&quot;得到”的人越急切，&quot;失去”的可能就越 大。</p>
+<p>婉夏抬起头，已看到西南石油。</p>
+<p>西南石油的俞佑室里居然有灯。</p>
+<p>她忽然停下来，换了身衣裳，洗了洗脸，擦了擦大腿 和手臂的痕迹，又喷了点香水来掩盖味道，又用手指做梳子，梳了梳头发。</p>
+<p>她不愿让俞佑看到她这种狼狈的样子。</p>
+<p>因为她绝不能再失去他。</p>
+<p>屋子里的灯还在亮着。</p>
+<p>西南石油里很安静，静的好像没有什么人。</p>
+<p>俞佑正坐在电脑旁，不知道在做什么。</p>
+<p>滴滴滴，鼠标点击的声音密密麻麻的。</p>
+<p>他看着很淡然，似乎在坐着再平常不过的日常活动，夜已深。</p>
+<p>一个人面对着电脑，慢慢地点击着。</p>
+<p>没有看到过这种景象的人，绝不会想到这景象是多么寂寞，多么凄凉。</p>
+<p>然后，门轻轻被推开了。</p>
+<p>婉夏忽然出现在门口，瞧着他。</p>
+<p>在看到俞佑的这一瞬间，她心里忽然觉得有一阵热血上涌，就好像流浪已久的游子骤然见到亲人一样。 就连她自己都不知道她怎会有这种感觉。</p>
+<p>她的血本是冷的。</p>
+<p>俞佑却似乎根本没有发觉有人进来，还是低着头，点击着鼠标。</p>
+<p>但他脸上的肌肉却似在逐渐僵硬。</p>
+<p>婉夏忍不住轻唤了一声：“俞佑……”</p>
+<p>这呼唤的声音还是那么温柔，那么甜蜜。</p>
+<p>俞佑终于慢慢地抬起头，面对着她。</p>
+<p>他的眼睛还是很亮，是不是因为有泪呢？</p>
+<p>婉夏的眼睛似也有些湿了，柔声道：&quot;俞佑，我回来了。”</p>
+<p>俞佑没有动，也没有说话。</p>
+<p>他似已僵硬得不能有任何动作了 。</p>
+<p>婉夏已慢慢地向他走了过来，轻轻道：“我知道你会等我的，因为我到现在才知道这世上只有你一个人是真的对我好。”</p>
+<p>这种话她说过多少次了？</p>
+<p>但每一次都管用，所以这次也会有用，她始终坚信着这件事。</p>
+<p>“别的人都只不过是利用我……我利用他们，他们利用我！这本没有什么吃亏的，只有你，无论我怎么样对你，你对我总是真心真意。”</p>
+<p>她没有注意俞佑脸上表情的变化。</p>
+<p>因为她距离俞佑已越来越近了，已近得看不清许多她应该看到的事。</p>
+<p>“我决心以后绝不再去穿兔女郎衣服了，绝不会再让你伤心了，无论你要怎么样，我都可以依着你，都可以 答应你……</p>
+<p>&quot;砰！”俞佑将鼠标击向木制的桌面，声音大的吓人。 婉夏拉起他的手，放在自己胸膛上。</p>
+<p>自己的胸有多勾人她是最清楚不过的，俞佑，还有那些人，都拜倒在她的石榴裙下。</p>
+<p>她的声音甜得像蜜。</p>
+<p>“以前我若有对不起你的地方，以后我一定会加倍补偿你，我会要你觉得无论你对我多好，都是值得的。” 她的胸膛温暖而柔软。</p>
+<p>无论任何人的手若放在她胸膛上，绝对再也舍不得移开。</p>
+<p>俞佑的手忽然自她胸膛上移开了</p>
+<p>婉夏瞟了一眼电脑，那是背包，里面空荡荡的，什么都不剩下了。</p>
+<p>婉夏眼睛里忽然露出丝恐惧之色道：&quot;你……你难道……</p>
+<p>难道不要我了？ ”</p>
+<p>俞佑静静地瞧着她，就好像第一次看到她这个人似 的。</p>
+<p>婉夏道：“我对你说的全都是真话，以前我虽然也和别 的男人有……有过，但我对他们那全都是假的……“她声音忽然停顿，因为她忽然看到了俞佑脸上的表情。</p>
+<p>俞佑的表情就像是想呕吐。</p>
+<p>婉夏不由自主后退了两步，道：“你……你难道不愿听真话？你难道喜欢我骗你？ ”</p>
+<p>俞佑盯着她，良久良久，忽然道：“我只奇怪一件</p>
+<p>事</p>
+<p>婉夏道：“你奇怪什么？&quot;</p>
+<p>俞佑慢慢地站了起来，一字字道：“我只奇怪，我以前怎么会爱上你这种女人的！”</p>
+<p>婉夏忽然觉得全身都凉了。</p>
+<p>俞佑没有再说别的。</p>
+<p>他用不着再说别的，这一句话就已足够。</p>
+<p>这一句话就已足够将婉夏推入万劫不复的深渊。</p>
+<p>俞佑慢慢地走了出去。</p>
+<p>一个人若已受过无数次打击和侮辱，绝不会不变的。</p>
+<p>一个人可以忍受谎言，却绝不能忍受那种最不能忍受 的侮辱–女人如此，男人也一样。</p>
+<p>做妻子的如此，做丈夫的也一样。</p>
+<p>婉夏只觉自己的心在往下沉，往下沉……</p>
+<p>俞佑已拉开了门。</p>
+<p>婉夏忽然转身扑过去，扑倒在他脚下，拉住他的衣服，嘶声道：“你怎么能就这样离开我……我现在已只 有你……“</p>
+<p>他只是慢慢地将衣服脱了下来。</p>
+<p>他赤着上身走了出去，走入雨中。</p>
+<p>他走了出去，走入雨中。</p>
+<p>雨很冷。</p>
+<p>可是雨很干净。</p>
+<p>他终于甩脱了婉夏，甩脱了他心灵上的枷锁，就好像甩脱了那件早已陈旧破烂的衣服，婉夏却还在紧紧抓着那件白色衣服，因为她知道除了这件衣服外，就再也抓不住别的。</p>
+<p>“到头来你总会发现你原来什么也没有得到，什么都是空的……”</p>
+<p>婉夏泪已流下。</p>
+<p>到这时她才发现她原来的确是一直爱着俞佑的。</p>
+<p>她折磨他，也许就因为她爱他，也知道他爱她。</p>
+<p>”女人为什么总喜欢折磨最爱她的男人呢？&quot;</p>
+<p>到现在，她才知道俞佑对她是多么重要。</p>
+<p>因为她已失去了他。</p>
+<p>“女人为什么总是对得到的东西加以轻蔑，为什么总要等到失去时才知道珍惜。”</p>
+<p>也许不只女人如此，男人也是一样的。</p>
+<p>婉夏突然狂笑起来，狂笑着将俞佑的衣服一片片撕碎。</p>
+<p>“我怕什么，我这么漂亮，又这么年轻-一只要我喜欢，要多少男人就有多少男人，我每天换十个都没有关系。</p>
+<p>她在笑，可是这笑却比哭更悲惨。</p>
+<p>因为她也知道男人虽容易得到，但&quot;真情&quot;却绝不是青春和美貌可以买得到的……</p>
+<p>雨很冷。</p>
+<p>冷雨洒在俞佑胸膛上，他觉得舒服得很，因为这雨令 他觉得自己并不是麻木的，十天来，这也许是他第一次有这种感觉。</p>
+<p>而且他觉得很轻松，就像是刚卸下了一个沉重的包袱。</p>
+<p>远处有人在呼唤：“你好……”</p>
+<p>呼声很轻，若在几天前，他也许根本听不见。</p>
+<p>但现在，他的眼睛已不再瞎，耳朵也不再聋了。</p>
+]]></content>
+      <categories>
+        <category>日常</category>
+        <category>记录</category>
+      </categories>
+      <tags>
+        <tag>时间的恋人</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java常用类</title>
+    <url>/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/</url>
+    <content><![CDATA[<h1>object类</h1>
+<p>java语言所有类的根类，object也就是所有类的父类（也就意味着所有类都可以使用object类的方法），位于lang包中，所以不需要导包便可使用。</p>
+<h2 id="getclass">getclass</h2>
+<p>getclass()方法是返回应引用中存储的实际对象类型（返回值为class类型）</p>
+<p>多用于判断两个对象是否是同一个类。</p>
+<h2 id="hashCode">hashCode</h2>
+<p>hashCode()方法返回的是一个int类型，是根据对象的地址或字符串或数字使用hash算法计算出的数值。</p>
+<h2 id="tostring">tostring</h2>
+<p>String tostring()   返回该对象的字符串表示。</p>
+<p>类如我们创建一个person类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">person</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用text测试一下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        person p1 = <span class="keyword">new</span> person(<span class="string">&quot;瑾介&quot;</span>,<span class="number">20</span>);</span><br><span class="line">        String s=p1.toString();</span><br><span class="line">        System.out.println(p1);</span><br><span class="line">        System.out.println(s);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211124624726.png" alt="image-20211211124624726"></p>
+<p>我们发现，直接打印对象的名字，其实就是调用了tostring方法。打印的都是堆内存中的十六进制地址值。</p>
+<p>如果想直接打印对象的属性的话，我们可以重写tostring方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;person&#123;name=&quot;</span>+<span class="keyword">this</span>.name+<span class="string">&quot;,age=&quot;</span>+<span class="keyword">this</span>.age+<span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在再来打印的话：</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211125454617.png" alt="image-20211211125454617"></p>
+<p>这样就实现了我们自定义的tostring输出了。</p>
+<h2 id="equals">equals</h2>
+<p>指示其他的某个对象是否与此对象”相等“。</p>
+<p>如果没有重写equals方法，那么它将会直接比较两个对象的地址值，我们依然用之前的person对象来做测试：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        person p1 = <span class="keyword">new</span> person(<span class="string">&quot;瑾介&quot;</span>,<span class="number">20</span>);</span><br><span class="line">        person p2 = <span class="keyword">new</span> person(<span class="string">&quot;瑾介&quot;</span>,<span class="number">20</span>);</span><br><span class="line">        System.out.println(p1.equals(p2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211130438858.png" alt="image-20211211130438858"></p>
+<p>比较两个两个对象的地址值几乎没有什么意义，那我们还是来重写一下equals海曙吧。</p>
+<p><em><strong>不过这里需要注意的是，这里隐含了一个多态的问题，即我们引入的参数obj是object类的，他无法访问到我们person类的name、age等参数，所以我们需要进行一个向下转型，也就是强制转换：</strong></em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">   person person = (person)obj;<span class="comment">//进行强制转换成我们的person类。</span></span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">this</span>.age==person.age&amp;&amp;<span class="keyword">this</span>.name==person.name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试结果：</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211143201551.png" alt="image-20211211143201551"></p>
+<p>当然为了防止类型转换异常，我们一般得写一个if条件来判断我们的参数是否是person的父类，完整的重写如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> person) &#123;</span><br><span class="line">        person person = (person) obj;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.age == person.age &amp;&amp; <span class="keyword">this</span>.name == person.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;<span class="comment">//不是person类型直接false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="finalize">finalize</h2>
+<p>当对象被判定为垃圾对象是，由jvm自动调用此方法，用于标记垃圾对象，进入回收队列。因为Java由自动回收垃圾机制，故平时一般不太会使用。</p>
+<h1>String类</h1>
+<h2 id="字符串池">字符串池</h2>
+<p>字符串是常量，创建后不可以改变，字符串字面值存储在字符串池中，可以共享。</p>
+<p>字符串池是位于堆的一个区，为了便于共享而创建的，当创建字符串的时候会先到字符串池里寻找，比如说：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String name=<span class="string">&quot;jinjie&quot;</span>;<span class="comment">//&quot;jinjie&quot;常量存储在字符串池中</span></span><br><span class="line">        name=<span class="string">&quot;jingjie&quot;</span>;<span class="comment">//新的字符串“jingjie”被创建赋值给了name（“jinjie”就成了废弃物。）</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们在多加两行代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String name=<span class="string">&quot;jinjie&quot;</span>;<span class="comment">//&quot;jinjie&quot;常量存储在字符串池中</span></span><br><span class="line">        name=<span class="string">&quot;jingjie&quot;</span>;<span class="comment">//新的字符串“jingjie”被创建赋值给了name（“jinjie”就成了废弃物。）</span></span><br><span class="line">         String name2=<span class="string">&quot;jingjie&quot;</span>;</span><br><span class="line">        System.out.println(name2==name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据共享的原则，这时候创建的name2先到字符串池中寻找有没有“jingjie”，在发现有之后，就把字符串池中“jingjie”的地址也赋值给了name2，所以name2和name的地址是相等的，所以结果为：</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211214144031671.png" alt="image-20211214144031671"></p>
+<p>另外，我们有两种方式来定义字符串：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String name=<span class="string">&quot;jinjie&quot;</span>;</span><br><span class="line">String name=<span class="keyword">new</span> String(<span class="string">&quot;jinjie&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>上面一种是我们常用的方法，它只创建了一个对象，但是下面一种方法我们却创造了两个对象，在堆里有一个对象，在字符串池里也有一个对象，但是真正的运行的时候只有一个对象，即堆里的对象也指向字符串池里的对象（所以比较浪费空间。</p>
+<p>所以字符串比较要用equals进行比较（String重写了equals方法）。</p>
+<h2 id="String的常用方法">String的常用方法</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">length</span><span class="params">()</span></span>;<span class="comment">//返回字符串的长度。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">char</span> <span class="title">charAt</span><span class="params">(<span class="keyword">int</span> index)</span></span>;<span class="comment">//根据下标获取字符。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(String str)</span></span>;<span class="comment">//判断当前字符串是否含有str。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">char</span>[] toCharArray();<span class="comment">//将字符串转化成数组。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(String str)</span></span>;<span class="comment">//返回str首次出现的下标，若不存在则返回-1.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> interestinglast <span class="title">IndexOf</span><span class="params">(String str)</span>:<span class="comment">//查找字符串在当前字符串中最后一次出现的下标。</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">trim</span><span class="params">()</span></span>;<span class="comment">//去掉字符串的前后空格。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toUpperCase</span><span class="params">()</span></span>;<span class="comment">//将小写转换成大写。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">endWith</span><span class="params">(String str)</span></span>;<span class="comment">//判断字符串是否即以str结尾。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">replace</span><span class="params">(<span class="keyword">char</span> oldchar,<span class="keyword">char</span> newChar)</span></span>;<span class="comment">//替换字符。</span></span><br><span class="line"><span class="keyword">public</span> String[] split(String str);<span class="comment">//根据str做拆分。</span></span><br></pre></td></tr></table></figure>
+<h2 id="可变字符串">可变字符串</h2>
+<p>StringBuilder:可变长字符串，效率快，线程不安全。</p>
+<p>StringBuffer:可变长字符串，效率慢，线程安全。</p>
+<blockquote>
+<p>现在一般使用StringBuilder.</p>
+</blockquote>
+<p>我们来看个例子：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">   StringBuffer n = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">   n.append(<span class="string">&quot;我叫京介！&quot;</span>);<span class="comment">//1.在最后面添加字符。</span></span><br><span class="line">   n.append(<span class="string">&quot;请多指教！&quot;</span>);</span><br><span class="line">   System.out.println(n.toString());</span><br><span class="line">   System.out.println(<span class="string">&quot;-----------------------------&quot;</span>);</span><br><span class="line">   n.insert(<span class="number">0</span>,<span class="string">&quot;你好！&quot;</span>);<span class="comment">//2.在指定位置添加内容。</span></span><br><span class="line">        System.out.println(n.toString());</span><br><span class="line">        System.out.println(<span class="string">&quot;-----------------------------&quot;</span>);</span><br><span class="line">n.replace(<span class="number">0</span>,<span class="number">2</span>,<span class="string">&quot;欢迎！&quot;</span>);<span class="comment">//替换字符串。</span></span><br><span class="line">System.out.println(n.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211215192541609.png" alt="image-20211215192541609"></p>
+<h1>BigDecimal类</h1>
+<p>float与double类型储存的数据都是近似值（比如1.0就是0.999999……），原因是因为它们采取的是二进制存储。需要精度存储时要使用BigDecimal类来精确计算浮点数。</p>
+<p>我们举例来说：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">double</span> a1=<span class="number">1.0</span>;</span><br><span class="line">        <span class="keyword">double</span> a2=<span class="number">0.9</span>;</span><br><span class="line">        System.out.println(a1-a2);</span><br><span class="line">        <span class="comment">//储存近似值。</span></span><br><span class="line">        System.out.println(<span class="string">&quot;=====================&quot;</span>);</span><br><span class="line">        BigDecimal b1=<span class="keyword">new</span> BigDecimal(<span class="string">&quot;1.0&quot;</span>);</span><br><span class="line">        BigDecimal b2=<span class="keyword">new</span> BigDecimal(<span class="string">&quot;0.9&quot;</span>);</span><br><span class="line">        BigDecimal r=b1.subtract(b2);<span class="comment">//减法</span></span><br><span class="line">        System.out.println(r);</span><br><span class="line">        System.out.println(<span class="string">&quot;=====================&quot;</span>);</span><br><span class="line">        BigDecimal r1=b1.add(b2);<span class="comment">//加法</span></span><br><span class="line">        System.out.println(r1);</span><br><span class="line">        System.out.println(<span class="string">&quot;=====================&quot;</span>);</span><br><span class="line">        BigDecimal r2=b1.multiply(b2);<span class="comment">//乘法</span></span><br><span class="line">        System.out.println(r2);</span><br><span class="line">        System.out.println(<span class="string">&quot;=====================&quot;</span>);</span><br><span class="line">        BigDecimal r3=b1.divide(b2,<span class="number">2</span>,BigDecimal.ROUND_HALF_UP);<span class="comment">//除法</span></span><br><span class="line">        System.out.println(r3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用BigDecimal进行运算时是调用BigDecimal的方法，值得注意的是，在使用BigDecimal的除法方法的时候，如果出现除不尽的现象的话，程序将会报错，所以这时3要使用到divide除法方法的重载方法，在参数的后面添加保留的小数位数以及保留的方法</p>
+<blockquote>
+<p>保留方法的参数是Bigdecimal的几个常量，BigDecimal.ROUND_HALF_UP的意义即为四舍五入。</p>
+</blockquote>
+<p>结果是：</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211215195425390.png" alt="image-20211215195425390"></p>
+<h1>System类</h1>
+<p>系统类是静态的，直接使用就可以，下面我列举几个方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>static void arraycopy(……)</td>
+<td>复制数组</td>
+</tr>
+<tr>
+<td>static void currentTimeMillis();</td>
+<td>获取系统当前时间（返回毫秒值）</td>
+</tr>
+<tr>
+<td>static void gc();</td>
+<td>建议JVM回收垃圾</td>
+</tr>
+<tr>
+<td>static void exit(int status);</td>
+<td>退出JVM</td>
+</tr>
+</tbody>
+</table>
+<h1>++包装类</h1>
+<p>对于基本数据类型所拓展的包装类型，这样基本数据类型就可以实现更多的方法和功能。</p>
+<blockquote>
+<p>实际上，更深层的原因是Java不在支持指针操作，因此创造出了内部类的功能使得数据能在堆和栈之间进行转换。</p>
+</blockquote>
+<p>其包装类对应如下：</p>
+<table>
+<thead>
+<tr>
+<th>基本数据类型</th>
+<th>包装类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>byte</td>
+<td>Byte</td>
+</tr>
+<tr>
+<td>short</td>
+<td>Short</td>
+</tr>
+<tr>
+<td>int</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>char</td>
+<td>Character</td>
+</tr>
+</tbody>
+</table>
+<p>每一种包装类型都由更多的方法与属性。</p>
+<h2 id="装箱、拆箱">装箱、拆箱</h2>
+<p>装箱：把栈里面的东西装到堆里面去（基本类型转换为引用类型）。</p>
+<p><em>一般通过引用类型的构造方法实现，比如：</em><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211212144744804.png" alt="image-20211212144744804"></p>
+<p>拆箱：把堆里面的东西装到栈里面去（引用类型转换为基本类型）。</p>
+<p><em>一般通过number类（包装类型的父类）的方法进行拆箱</em>*，比如：*</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211212172036602.png" alt="image-20211212172036602"></p>
+<blockquote>
+<p>JDK1.5之后，java开始提供自动装箱和拆箱……意思是直接用赋值符号就行了。但其背后的实质是一样的，只是Java在背后帮我们自动操作了。</p>
+</blockquote>
+<h2 id="类型转换">类型转换</h2>
+<h3 id="1、基本类型与字符串类型转换">1、基本类型与字符串类型转换</h3>
+<h4 id="1-1使用-号">1.1使用+号</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> ni=<span class="number">10</span>;</span><br><span class="line">String s1=n1+<span class="string">&quot;&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="1-2使用tostring方法">1.2使用tostring方法</h4>
+<p>使用Integer中的tostring()方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s2=Integer.toString(ni);</span><br><span class="line">String s2=Integer.toString(ni，<span class="number">16</span>);<span class="comment">//此方法可以重载，按十六进制进行转换。 </span></span><br></pre></td></tr></table></figure>
+<h3 id="2、字符串类型与基本类型转换">2、字符串类型与基本类型转换</h3>
+<h4 id="2-1使用Integer的parse方法">2.1使用Integer的parse方法</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String str=<span class="string">&quot;150&quot;</span>;</span><br><span class="line"><span class="keyword">int</span> n=Integer.parse(str);<span class="comment">//str里只能有数字。</span></span><br></pre></td></tr></table></figure>
+<h3 id="3、Boolean字符串转换为基本类型">3、Boolean字符串转换为基本类型</h3>
+<p>依旧使用parse进行格式化：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String str2=<span class="string">&quot;true&quot;</span>;</span><br><span class="line"><span class="keyword">boolean</span> b1=Boolean.parseBoolean(str2);<span class="comment">//只用true能被格式化为true,其它字符均为false。</span></span><br></pre></td></tr></table></figure>
+<h2 id="整数缓冲区">整数缓冲区</h2>
+<p>Java预先创建了256的常用的整数包装对象，在实际的应用当中，对已经创建的对象进行复用。</p>
+<p>我们来举个例子：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Integer integer1 = <span class="keyword">new</span> Integer(<span class="number">100</span>);</span><br><span class="line">        Integer integer2 = <span class="keyword">new</span> Integer(<span class="number">100</span>);</span><br><span class="line">        System.out.println(integer1==integer2);</span><br><span class="line">        System.out.println(<span class="string">&quot;=================&quot;</span>);</span><br><span class="line">        Integer integer3=<span class="number">100</span>;<span class="comment">//自动装箱</span></span><br><span class="line">        Integer integer4=<span class="number">100</span>;</span><br><span class="line">        System.out.println(integer4==integer3);</span><br><span class="line">      	Integer integer5=<span class="number">200</span>;</span><br><span class="line">        Integer integer6=<span class="number">200</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>猜猜看会输出什么？</p>
+<p>表面上都是生成代表int值100的Integer类型，但结果是：</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211212180010477.png" alt="image-20211212180010477"></p>
+<p>为什么会出现这种情况呢？这是因为integer1与integer2是new出来的，属于不同的地址，“==”比较的是地址值，第一个当然不同。</p>
+<p>第二个为自动装箱，调用的都是Integer的valueof方法。那我们来看一下valueof方法：</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211212180440932.png" alt="image-20211212180440932"></p>
+<p>是不是发现只要参数是在一定范围里的int，那么就返回了一个cache数组里的元素？</p>
+<p>我们再来具体的看一看具体的数和cache数组：</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211212180855001.png" alt="静态中间那坨可以忽略"></p>
+<p><em>静态中间那坨可以忽略，为的是最后的high=h</em></p>
+<p>这，就是我们的整数缓冲区，一个名为cache的数组，最高high为127，low为-128，所以我们的integer3与integer4是同一个，已经被实例好的对象，所以就是相等的咯。</p>
+<p>当然，相信大家都发现了，integer5与integer6的int数字是大于了127的，所以执行相应语句，也就是：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br></pre></td></tr></table></figure>
+<p>那这自然就跟1、2的结果是一样的了。</p>
+<h1>日期时间类</h1>
+<h2 id="Date类">Date类</h2>
+<p>类Date表示特定的瞬间，精确到毫秒。</p>
+<blockquote>
+<p>毫秒，即为千分之一秒。</p>
+</blockquote>
+<p>毫秒值一般用于计算日期的间隔，即将日期都转换成毫秒值进行加减，比如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.currentTimeMillis()<span class="comment">//可以输出当前系统时间距离时间原点1970年1月1日凌晨经历了多少毫秒</span></span><br></pre></td></tr></table></figure>
+<h3 id="无参构造">无参构造</h3>
+<p>直接实例化一个无参构造的Date类，打印出来将是我们系统的标准时间。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">date</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">			text();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">text</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Date date = <span class="keyword">new</span> Date();</span><br><span class="line">        System.out.println(date);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出为：</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211150504218.png" alt="image-20211211150504218"></p>
+<p>这里的CST指的是中国标准时间。</p>
+<h3 id="带参的构造方法">带参的构造方法</h3>
+<p>Date类还可以使用带参的构造方法，此时参数为从时间原点开始的毫秒值，列如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Date date = <span class="keyword">new</span> Date(<span class="number">0</span>);<span class="comment">//将上面的代码块的构造方法添加为0的参数。</span></span><br></pre></td></tr></table></figure>
+<p>此时它就会打印：</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211151139834.png" alt="image-20211211151139834"></p>
+<p>即为打印时间原点。</p>
+<h3 id="gettime-方法">gettime()方法</h3>
+<p>将日期转换成毫秒值，返回的是一个long类型的结果。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Date date = <span class="keyword">new</span> Date();</span><br><span class="line">      <span class="keyword">long</span> s=date.getTime();</span><br><span class="line">      System.out.println(s);</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211151520479.png" alt="image-20211211151520479"></p>
+<h2 id="DateFormat类">DateFormat类</h2>
+<p>是对时间与日期进行一个格式化的抽象类，属于Java.text包中，有两个作用：</p>
+<p>格式化：从日期转到文本[String format(Date date)]</p>
+<p>解析：从文本转到日期[Date parse(String source)]</p>
+<p>由于DateFormat是一个抽象类，所以我们要用到他的子类SimpleDateFormat进行对日期格式的约束。</p>
+<blockquote>
+<p><code>SimpleDateFormat</code> 是一个以与语言环境有关的方式来格式化和解析日期的具体类。它允许进行格式化（日期 -&gt;  文本）、解析（文本 -&gt; 日期）和规范化。</p>
+</blockquote>
+<h3 id="格式化">格式化</h3>
+<p>要相对时间进行一个格式化的输出，需要用到SimpleDateFormat里的format方法，那我们首先的得创建一个**”模式“**，通过这个模式来告诉我们的类应该怎样输出时间，在SimpleDateFormat类中，模式通过字母来代表创建，下面我们列举一些常用的代表：</p>
+<table>
+<thead>
+<tr>
+<th>字母代表</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>y</td>
+<td>年</td>
+</tr>
+<tr>
+<td>M</td>
+<td>月</td>
+</tr>
+<tr>
+<td>d</td>
+<td>日</td>
+</tr>
+<tr>
+<td>H</td>
+<td>时</td>
+</tr>
+<tr>
+<td>m</td>
+<td>分</td>
+</tr>
+<tr>
+<td>s</td>
+<td>秒</td>
+</tr>
+</tbody>
+</table>
+<p>所以我们可以写出类似于： <strong>”yyyy-MM-dd  HH:mm:ss“</strong>   这样的时间格式。</p>
+<p>来创建一个SimpleDateFormat类试试吧：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">demo();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        SimpleDateFormat t1 = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年MM月dd日HH:mm:ss&quot;</span>);<span class="comment">//模式作为参数传入SimpleDateFormat类。</span></span><br><span class="line">        Date date = <span class="keyword">new</span> Date();<span class="comment">//创建一个时期类</span></span><br><span class="line">        String time;</span><br><span class="line">        time=t1.format(date);<span class="comment">//用方法来格式化我们的日期类.</span></span><br><span class="line">        System.out.println(time);</span><br><span class="line">        System.out.println(date);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211155207944.png" alt="image-20211211155207944"></p>
+<h3 id="解析">解析</h3>
+<p>使用SimpleDateFormat里的parse方法，可以将一段字符串日期转换为Date类日期。</p>
+<p>这里值得注意的是，如果字符串日期的模式与设定的模式不相符合的话，parse方法会抛出一个异常，这时我们要么使用throw继续向上抛出异常，要么使用try  catch自己进行处理。</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">demo();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        SimpleDateFormat t1 = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年MM月dd日HH:mm:ss&quot;</span>);<span class="comment">//模式作为参数传入。</span></span><br><span class="line">        Date date = <span class="keyword">new</span> Date();</span><br><span class="line">        String time;</span><br><span class="line">        time=t1.format(date);</span><br><span class="line">        Date d1 = <span class="keyword">new</span> Date();</span><br><span class="line">        <span class="keyword">try</span> &#123;<span class="comment">//使用try catch来监控</span></span><br><span class="line">            d1=t1.parse(time);</span><br><span class="line">            System.out.println(d1);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">           System.out.println(<span class="string">&quot;格式出错&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211163615731.png" alt="image-20211211163615731"></p>
+<p>如果我们使用不一样的时间的话：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">SimpleDateFormat t2 = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年dd日MM月HH:mm:ss&quot;</span>);<span class="comment">//模式作为参数传入。</span></span><br><span class="line">d1=t2.parse(time);<span class="comment">//修改要捕获异常的语句</span></span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211164157365.png" alt="image-20211211164157365"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用logisim实现八位可控加减法器</title>
+    <url>/2021/12/03/%E7%AC%AC%E4%BA%8C/</url>
+    <content><![CDATA[<h1>计算机组成原理实验</h1>
+<p>你好，好久不见！吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼，作为第二篇博客，我决定先从一些简单的实验分享开始啦！（实际因为本人是小菜鸡一只的原因。。）</p>
+<h2 id="用logisim实现八位可控加减法器">用logisim实现八位可控加减法器</h2>
+<h3 id="思路解析：">思路解析：</h3>
+<p>要实现八位可控加减法器，采用并行思路，首先需要八个一位全加器，用分流器可以将八位二进制数分离，使得单独每一位用一位全加器来进行相关的运算，然后并行输出，最后用分流器进行还原。</p>
+<h3 id="实验过程：">实验过程：</h3>
+<p>1、首先进行一位全加器的设置，我们需要准备五个信号量，三个输入，两个输出，其中xi与yi为参加运算的对象，cin代表来自下一位的进位，si代表本位的输出结果，Cout代表向下一位的进位。</p>
+<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%871.png" alt="11"></p>
+<p>2、设计思路为：先用一个异或门判断xi与yi的和的情况，若异或门为1，则xi+yi==1，此时与cin进位再次进行异或门判断，若异或门为仍1，则说明不产生进位，则si可置1。若第一个异或门与cin的与门为1，则说明产生了进位并且si位为0.当xi与yi的与门为1时，cin也应该置1。经过调试判断，最终如图所示。</p>
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片2.png" style="zoom:50%;">
+<p>3、用logisim进行测试，检验是否制作成果，经检验得制作成功。</p>
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片3.png" style="zoom:33%;">
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片4.png" style="zoom:50%;">
+<p>4、制作分流器，准备分流器，数据位宽为8的输入，8个数据位宽为1的隧道，将隧道与分流器相连，分流器与8位位宽的输入相连。</p>
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片6.png" style="zoom:50%;">
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片7.png" style="zoom:50%;">
+<p>5、同理，准备一个y输入与s输出。</p>
+<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%878.png" alt></p>
+<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%879.png" alt></p>
+<p>6、准备8个一位全加器，一个用于表示加减的输入sub，一个用于检测溢出的of（overflow），一个cout表示最高位的进位。<br>
+其基本思路是：利用sub与y输入形成异或门，用于执行加和减时y的不同形态，将异或门的结果与一起并入全加器的两个加位，输出位依次接上s的8个隧道。将8个全加器按照这样的方式链接，最后将一位全加器用进位位连接起来，sub链接至第一个全加器的进位位，这样做的目的是将原本的（x+y）变成（x+y的补码）即为（x+（1+y的反码））。结果连接如下。</p>
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片10.png" style="zoom:80%;">
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>硬件设计</category>
+      </categories>
+      <tags>
+        <tag>logisim</tag>
       </tags>
   </entry>
   <entry>
@@ -462,281 +998,49 @@ $$</p>
       </tags>
   </entry>
   <entry>
-    <title>常用类、集合与IO</title>
-    <url>/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/</url>
-    <content><![CDATA[<h1>object类</h1>
-<p>java语言所有类的根类，object也就是所有类的父类（也就意味着所有类都可以使用object类的方法），位于lang包中，所以不需要导包便可使用。</p>
-<h2 id="getclass">getclass</h2>
-<p>getclass()方法是返回应引用中存储的实际对象类型（返回值为class类型）</p>
-<p>多用于判断两个对象是否是同一个类。</p>
-<h2 id="hashCode">hashCode</h2>
-<p>hashCode()方法返回的是一个int类型，是根据对象的地址或字符串或数字使用hash算法计算出的数值。</p>
-<h2 id="tostring">tostring</h2>
-<p>String tostring()   返回该对象的字符串表示。</p>
-<p>类如我们创建一个person类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">person</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>用text测试一下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        person p1 = <span class="keyword">new</span> person(<span class="string">&quot;瑾介&quot;</span>,<span class="number">20</span>);</span><br><span class="line">        String s=p1.toString();</span><br><span class="line">        System.out.println(p1);</span><br><span class="line">        System.out.println(s);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211124624726.png" alt="image-20211211124624726"></p>
-<p>我们发现，直接打印对象的名字，其实就是调用了tostring方法。打印的都是堆内存中的十六进制地址值。</p>
-<p>如果想直接打印对象的属性的话，我们可以重写tostring方法：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;person&#123;name=&quot;</span>+<span class="keyword">this</span>.name+<span class="string">&quot;,age=&quot;</span>+<span class="keyword">this</span>.age+<span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在再来打印的话：</p>
-<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211125454617.png" alt="image-20211211125454617"></p>
-<p>这样就实现了我们自定义的tostring输出了。</p>
-<h2 id="equals">equals</h2>
-<p>指示其他的某个对象是否与此对象”相等“。</p>
-<p>如果没有重写equals方法，那么它将会直接比较两个对象的地址值，我们依然用之前的person对象来做测试：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        person p1 = <span class="keyword">new</span> person(<span class="string">&quot;瑾介&quot;</span>,<span class="number">20</span>);</span><br><span class="line">        person p2 = <span class="keyword">new</span> person(<span class="string">&quot;瑾介&quot;</span>,<span class="number">20</span>);</span><br><span class="line">        System.out.println(p1.equals(p2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结果为：</p>
-<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211130438858.png" alt="image-20211211130438858"></p>
-<p>比较两个两个对象的地址值几乎没有什么意义，那我们还是来重写一下equals海曙吧。</p>
-<p><em><strong>不过这里需要注意的是，这里隐含了一个多态的问题，即我们引入的参数obj是object类的，他无法访问到我们person类的name、age等参数，所以我们需要进行一个向下转型，也就是强制转换：</strong></em></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">   person person = (person)obj;<span class="comment">//进行强制转换成我们的person类。</span></span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">this</span>.age==person.age&amp;&amp;<span class="keyword">this</span>.name==person.name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试结果：</p>
-<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211143201551.png" alt="image-20211211143201551"></p>
-<p>当然为了防止类型转换异常，我们一般得写一个if条件来判断我们的参数是否是person的父类，完整的重写如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> person) &#123;</span><br><span class="line">        person person = (person) obj;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.age == person.age &amp;&amp; <span class="keyword">this</span>.name == person.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;<span class="comment">//不是person类型直接false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="finalize">finalize</h2>
-<p>当对象被判定为垃圾对象是，由jvm自动调用此方法，用于标记垃圾对象，进入回收队列。因为Java由自动回收垃圾机制，故平时一般不太会使用。</p>
-<h1>String类</h1>
-<h2 id="字符串池">字符串池</h2>
-<p>字符串是常量，创建后不可以改变，字符串字面值存储在字符串池中，可以共享。</p>
-<p>字符串池是位于堆的一个区，为了便于共享而创建的，当创建字符串的时候会先到字符串池里寻找，比如说：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String name=<span class="string">&quot;jinjie&quot;</span>;<span class="comment">//&quot;jinjie&quot;常量存储在字符串池中</span></span><br><span class="line">        name=<span class="string">&quot;jingjie&quot;</span>;<span class="comment">//新的字符串“jingjie”被创建赋值给了name（“jinjie”就成了废弃物。）</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们在多加两行代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String name=<span class="string">&quot;jinjie&quot;</span>;<span class="comment">//&quot;jinjie&quot;常量存储在字符串池中</span></span><br><span class="line">        name=<span class="string">&quot;jingjie&quot;</span>;<span class="comment">//新的字符串“jingjie”被创建赋值给了name（“jinjie”就成了废弃物。）</span></span><br><span class="line">         String name2=<span class="string">&quot;jingjie&quot;</span>;</span><br><span class="line">        System.out.println(name2==name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>根据共享的原则，这时候创建的name2先到字符串池中寻找有没有“jingjie”，在发现有之后，就把字符串池中“jingjie”的地址也赋值给了name2，所以name2和name的地址是相等的，所以结果为：</p>
-<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211214144031671.png" alt="image-20211214144031671"></p>
-<p>另外，我们有两种方式来定义字符串：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String name=<span class="string">&quot;jinjie&quot;</span>;</span><br><span class="line">String name=<span class="keyword">new</span> String(<span class="string">&quot;jinjie&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>上面一种是我们常用的方法，它只创建了一个对象，但是下面一种方法我们却创造了两个对象，在堆里有一个对象，在字符串池里也有一个对象，但是真正的运行的时候只有一个对象，即堆里的对象也指向字符串池里的对象（所以比较浪费空间。</p>
-<p>所以字符串比较要用equals进行比较（String重写了equals方法）。</p>
-<h2 id="String的常用方法">String的常用方法</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">length</span><span class="params">()</span></span>;<span class="comment">//返回字符串的长度。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">char</span> <span class="title">charAt</span><span class="params">(<span class="keyword">int</span> index)</span></span>;<span class="comment">//根据下标获取字符。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(String str)</span></span>;<span class="comment">//判断当前字符串是否含有str。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">char</span>[] toCharArray();<span class="comment">//将字符串转化成数组。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(String str)</span></span>;<span class="comment">//返回str首次出现的下标，若不存在则返回-1.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> interestinglast <span class="title">IndexOf</span><span class="params">(String str)</span>:<span class="comment">//查找字符串在当前字符串中最后一次出现的下标。</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">trim</span><span class="params">()</span></span>;<span class="comment">//去掉字符串的前后空格。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toUpperCase</span><span class="params">()</span></span>;<span class="comment">//将小写转换成大写。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">endWith</span><span class="params">(String str)</span></span>;<span class="comment">//判断字符串是否即以str结尾。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">replace</span><span class="params">(<span class="keyword">char</span> oldchar,<span class="keyword">char</span> newChar)</span></span>;<span class="comment">//替换字符。</span></span><br><span class="line"><span class="keyword">public</span> String[] split(String str);<span class="comment">//根据str做拆分。</span></span><br></pre></td></tr></table></figure>
-<h2 id="可变字符串">可变字符串</h2>
-<p>StringBuilder:可变长字符串，效率快，线程不安全。</p>
-<p>StringBuffer:可变长字符串，效率慢，线程安全。</p>
-<blockquote>
-<p>现在一般使用StringBuilder.</p>
-</blockquote>
-<p>我们来看个例子：</p>
-<h1>包装类</h1>
-<p>对于基本数据类型所拓展的包装类型，这样基本数据类型就可以实现更多的方法和功能。</p>
-<blockquote>
-<p>实际上，更深层的原因是Java不在支持指针操作，因此创造出了内部类的功能使得数据能在堆和栈之间进行转换。</p>
-</blockquote>
-<p>其包装类对应如下：</p>
-<table>
-<thead>
-<tr>
-<th>基本数据类型</th>
-<th>包装类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>byte</td>
-<td>Byte</td>
-</tr>
-<tr>
-<td>short</td>
-<td>Short</td>
-</tr>
-<tr>
-<td>int</td>
-<td>Integer</td>
-</tr>
-<tr>
-<td>long</td>
-<td>Long</td>
-</tr>
-<tr>
-<td>float</td>
-<td>Float</td>
-</tr>
-<tr>
-<td>double</td>
-<td>Double</td>
-</tr>
-<tr>
-<td>boolean</td>
-<td>Boolean</td>
-</tr>
-<tr>
-<td>char</td>
-<td>Character</td>
-</tr>
-</tbody>
-</table>
-<p>每一种包装类型都由更多的方法与属性。</p>
-<h2 id="装箱、拆箱">装箱、拆箱</h2>
-<p>装箱：把栈里面的东西装到堆里面去（基本类型转换为引用类型）。</p>
-<p><em>一般通过引用类型的构造方法实现，比如：</em><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211212144744804.png" alt="image-20211212144744804"></p>
-<p>拆箱：把堆里面的东西装到栈里面去（引用类型转换为基本类型）。</p>
-<p><em>一般通过number类（包装类型的父类）的方法进行拆箱</em>*，比如：*</p>
-<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211212172036602.png" alt="image-20211212172036602"></p>
-<blockquote>
-<p>JDK1.5之后，java开始提供自动装箱和拆箱……意思是直接用赋值符号就行了。但其背后的实质是一样的，只是Java在背后帮我们自动操作了。</p>
-</blockquote>
-<h2 id="类型转换">类型转换</h2>
-<h3 id="1、基本类型与字符串类型转换">1、基本类型与字符串类型转换</h3>
-<h4 id="1-1使用-号">1.1使用+号</h4>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> ni=<span class="number">10</span>;</span><br><span class="line">String s1=n1+<span class="string">&quot;&quot;</span>;</span><br></pre></td></tr></table></figure>
-<h4 id="1-2使用tostring方法">1.2使用tostring方法</h4>
-<p>使用Integer中的tostring()方法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s2=Integer.toString(ni);</span><br><span class="line">String s2=Integer.toString(ni，<span class="number">16</span>);<span class="comment">//此方法可以重载，按十六进制进行转换。 </span></span><br></pre></td></tr></table></figure>
-<h3 id="2、字符串类型与基本类型转换">2、字符串类型与基本类型转换</h3>
-<h4 id="2-1使用Integer的parse方法">2.1使用Integer的parse方法</h4>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String str=<span class="string">&quot;150&quot;</span>;</span><br><span class="line"><span class="keyword">int</span> n=Integer.parse(str);<span class="comment">//str里只能有数字。</span></span><br></pre></td></tr></table></figure>
-<h3 id="3、Boolean字符串转换为基本类型">3、Boolean字符串转换为基本类型</h3>
-<p>依旧使用parse进行格式化：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String str2=<span class="string">&quot;true&quot;</span>;</span><br><span class="line"><span class="keyword">boolean</span> b1=Boolean.parseBoolean(str2);<span class="comment">//只用true能被格式化为true,其它字符均为false。</span></span><br></pre></td></tr></table></figure>
-<h2 id="整数缓冲区">整数缓冲区</h2>
-<p>Java预先创建了256的常用的整数包装对象，在实际的应用当中，对已经创建的对象进行复用。</p>
-<p>我们来举个例子：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Integer integer1 = <span class="keyword">new</span> Integer(<span class="number">100</span>);</span><br><span class="line">        Integer integer2 = <span class="keyword">new</span> Integer(<span class="number">100</span>);</span><br><span class="line">        System.out.println(integer1==integer2);</span><br><span class="line">        System.out.println(<span class="string">&quot;=================&quot;</span>);</span><br><span class="line">        Integer integer3=<span class="number">100</span>;<span class="comment">//自动装箱</span></span><br><span class="line">        Integer integer4=<span class="number">100</span>;</span><br><span class="line">        System.out.println(integer4==integer3);</span><br><span class="line">      	Integer integer5=<span class="number">200</span>;</span><br><span class="line">        Integer integer6=<span class="number">200</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>猜猜看会输出什么？</p>
-<p>表面上都是生成代表int值100的Integer类型，但结果是：</p>
-<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211212180010477.png" alt="image-20211212180010477"></p>
-<p>为什么会出现这种情况呢？这是因为integer1与integer2是new出来的，属于不同的地址，“==”比较的是地址值，第一个当然不同。</p>
-<p>第二个为自动装箱，调用的都是Integer的valueof方法。那我们来看一下valueof方法：</p>
-<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211212180440932.png" alt="image-20211212180440932"></p>
-<p>是不是发现只要参数是在一定范围里的int，那么就返回了一个cache数组里的元素？</p>
-<p>我们再来具体的看一看具体的数和cache数组：</p>
-<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211212180855001.png" alt="静态中间那坨可以忽略"></p>
-<p><em>静态中间那坨可以忽略，为的是最后的high=h</em></p>
-<p>这，就是我们的整数缓冲区，一个名为cache的数组，最高high为127，low为-128，所以我们的integer3与integer4是同一个，已经被实例好的对象，所以就是相等的咯。</p>
-<p>当然，相信大家都发现了，integer5与integer6的int数字是大于了127的，所以执行相应语句，也就是：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br></pre></td></tr></table></figure>
-<p>那这自然就跟1、2的结果是一样的了。</p>
-<h1>日期时间类</h1>
-<h2 id="Date类">Date类</h2>
-<p>类Date表示特定的瞬间，精确到毫秒。</p>
-<blockquote>
-<p>毫秒，即为千分之一秒。</p>
-</blockquote>
-<p>毫秒值一般用于计算日期的间隔，即将日期都转换成毫秒值进行加减，比如：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.currentTimeMillis()<span class="comment">//可以输出当前系统时间距离时间原点1970年1月1日凌晨经历了多少毫秒</span></span><br></pre></td></tr></table></figure>
-<h3 id="无参构造">无参构造</h3>
-<p>直接实例化一个无参构造的Date类，打印出来将是我们系统的标准时间。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">date</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">			text();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">text</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Date date = <span class="keyword">new</span> Date();</span><br><span class="line">        System.out.println(date);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出为：</p>
-<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211150504218.png" alt="image-20211211150504218"></p>
-<p>这里的CST指的是中国标准时间。</p>
-<h3 id="带参的构造方法">带参的构造方法</h3>
-<p>Date类还可以使用带参的构造方法，此时参数为从时间原点开始的毫秒值，列如：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Date date = <span class="keyword">new</span> Date(<span class="number">0</span>);<span class="comment">//将上面的代码块的构造方法添加为0的参数。</span></span><br></pre></td></tr></table></figure>
-<p>此时它就会打印：</p>
-<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211151139834.png" alt="image-20211211151139834"></p>
-<p>即为打印时间原点。</p>
-<h3 id="gettime-方法">gettime()方法</h3>
-<p>将日期转换成毫秒值，返回的是一个long类型的结果。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Date date = <span class="keyword">new</span> Date();</span><br><span class="line">      <span class="keyword">long</span> s=date.getTime();</span><br><span class="line">      System.out.println(s);</span><br></pre></td></tr></table></figure>
-<p>结果为：</p>
-<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211151520479.png" alt="image-20211211151520479"></p>
-<h2 id="DateFormat类">DateFormat类</h2>
-<p>是对时间与日期进行一个格式化的抽象类，属于Java.text包中，有两个作用：</p>
-<p>格式化：从日期转到文本[String format(Date date)]</p>
-<p>解析：从文本转到日期[Date parse(String source)]</p>
-<p>由于DateFormat是一个抽象类，所以我们要用到他的子类SimpleDateFormat进行对日期格式的约束。</p>
-<blockquote>
-<p><code>SimpleDateFormat</code> 是一个以与语言环境有关的方式来格式化和解析日期的具体类。它允许进行格式化（日期 -&gt;  文本）、解析（文本 -&gt; 日期）和规范化。</p>
-</blockquote>
-<h3 id="格式化">格式化</h3>
-<p>要相对时间进行一个格式化的输出，需要用到SimpleDateFormat里的format方法，那我们首先的得创建一个**”模式“**，通过这个模式来告诉我们的类应该怎样输出时间，在SimpleDateFormat类中，模式通过字母来代表创建，下面我们列举一些常用的代表：</p>
-<table>
-<thead>
-<tr>
-<th>字母代表</th>
-<th>意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>y</td>
-<td>年</td>
-</tr>
-<tr>
-<td>M</td>
-<td>月</td>
-</tr>
-<tr>
-<td>d</td>
-<td>日</td>
-</tr>
-<tr>
-<td>H</td>
-<td>时</td>
-</tr>
-<tr>
-<td>m</td>
-<td>分</td>
-</tr>
-<tr>
-<td>s</td>
-<td>秒</td>
-</tr>
-</tbody>
-</table>
-<p>所以我们可以写出类似于： <strong>”yyyy-MM-dd  HH:mm:ss“</strong>   这样的时间格式。</p>
-<p>来创建一个SimpleDateFormat类试试吧：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">demo();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        SimpleDateFormat t1 = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年MM月dd日HH:mm:ss&quot;</span>);<span class="comment">//模式作为参数传入SimpleDateFormat类。</span></span><br><span class="line">        Date date = <span class="keyword">new</span> Date();<span class="comment">//创建一个时期类</span></span><br><span class="line">        String time;</span><br><span class="line">        time=t1.format(date);<span class="comment">//用方法来格式化我们的日期类.</span></span><br><span class="line">        System.out.println(time);</span><br><span class="line">        System.out.println(date);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结果为：</p>
-<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211155207944.png" alt="image-20211211155207944"></p>
-<h3 id="解析">解析</h3>
-<p>使用SimpleDateFormat里的parse方法，可以将一段字符串日期转换为Date类日期。</p>
-<p>这里值得注意的是，如果字符串日期的模式与设定的模式不相符合的话，parse方法会抛出一个异常，这时我们要么使用throw继续向上抛出异常，要么使用try  catch自己进行处理。</p>
-<p>例如：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">demo();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        SimpleDateFormat t1 = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年MM月dd日HH:mm:ss&quot;</span>);<span class="comment">//模式作为参数传入。</span></span><br><span class="line">        Date date = <span class="keyword">new</span> Date();</span><br><span class="line">        String time;</span><br><span class="line">        time=t1.format(date);</span><br><span class="line">        Date d1 = <span class="keyword">new</span> Date();</span><br><span class="line">        <span class="keyword">try</span> &#123;<span class="comment">//使用try catch来监控</span></span><br><span class="line">            d1=t1.parse(time);</span><br><span class="line">            System.out.println(d1);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">           System.out.println(<span class="string">&quot;格式出错&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结果为：</p>
-<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211163615731.png" alt="image-20211211163615731"></p>
-<p>如果我们使用不一样的时间的话：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">SimpleDateFormat t2 = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年dd日MM月HH:mm:ss&quot;</span>);<span class="comment">//模式作为参数传入。</span></span><br><span class="line">d1=t2.parse(time);<span class="comment">//修改要捕获异常的语句</span></span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<p><img src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211164157365.png" alt="image-20211211164157365"></p>
+    <title>零日之恋人</title>
+    <url>/2021/12/19/%E9%9B%B6%E6%97%A5%E4%B9%8B%E6%81%8B%E4%BA%BA/</url>
+    <content><![CDATA[<p>瑾介不知道葭玟是什么时候计划好的。</p>
+<p>他依然活在过去，像个永远长不大的孩子，对爱恨没有那么深刻的认识。</p>
+<p>“就算与亥氧分手分手以后……”</p>
+<p>葭玟在网络上对着瑾介说。</p>
+<p>瑾介不敢想象葭玟是怀着什么样的心情说下去的，他只知道自己的大脑一片空白，有许多的回忆喷涌而出，瑾介闭着眼拼命地想束缚住它们。</p>
+<p>“我可能都……”</p>
+<p>喷涌到达了极点，瑾介想起他在修脚店切除嵌甲时把甲根连根拔起的最后一刻，旁人都焦急地注视着状况，修脚师傅一头大汗，瑾介痛得呲牙咧嘴也感觉武士拔刀的最后时机已经到来。</p>
+<p>“不会吃回头草。”</p>
+<p>断了，不过，是嵌甲永远地断在里面了。准备折磨瑾介一辈子。</p>
+<p>记忆安分了下来，静静地盘旋在他们主人的周围，希望能够给瑾介些许安慰。</p>
+<p>瑾介开始想。</p>
+<p>他拼命地想，他撕扯着周围的回忆，想要找到答案。</p>
+<p>这些天是为了什么？</p>
+<p>为了报复？为了利益？还是说，为了结束？</p>
+<p>瑾介又开始怀疑起了自己，又是一次错过或是自作多情？自我意识过剩？还有值得分析下去的必要吗？</p>
+<p>这些天的快乐是毋庸置疑的，即使是瑾介自己也无法否认，瑾介感觉自己获得了新生，更像高中那个时候的自己了。</p>
+<p>但是瑾介看到的葭玟也是一样的，确实是高中时期的她。</p>
+<p>是后来的所有还没发生的她。</p>
+<p>瑾介又尝到的那种类似与考试快要结束试卷还没翻页的惊慌无措之感。</p>
+<p>时间已经过去了五分钟，瑾介知道必须要说点什么。</p>
+<p>他选择了半天，还是选择自己性格导致的必然结果。</p>
+<p>“我还是会一直支持你的。”</p>
+<p>瑾介本以为自己永远不会再说出这句话，瑾介这是第一次尝试对她给与自己最大的陪伴和交流，瑾介看着葭玟不断的笑容感到满意。</p>
+<p>“快去睡觉吧，笨蛋”</p>
+<p>瑾介毫无反应，甚至开始感受到丝丝尴尬。</p>
+<p>他敢再想吗？他不能再想了，错的，全是错的，谁才是真正的小丑，瑾介想到了什么。总之，不能再想了。</p>
+<p>他睁开了眼，看到了自己最不愿意看到的画面。</p>
+<p>葭玟在漆黑的屋子里，躺在床上，抱着枕头上，无声地抽泣着。</p>
+<p>瑾介看着这幅画面，身体一时动弹不得，他自己也不知道自己在等待着什么。</p>
+<p>葭玟坐了起来，背对着瑾介，看起来是那样孤独弱小，然后她的手伸向了手机。</p>
+<p>这时瑾介像是被诅咒一般发疯地把这副画面撕得粉碎，直到最后一片碎片落向地面消失不见。然后呆呆地坐在地上，掩面流泪。</p>
+<p>旁边的手机显示送达了最新的消息。</p>
+<p>“所以……”</p>
+<p>“哥哥？”</p>
 ]]></content>
       <categories>
-        <category>学习</category>
-        <category>软件设计</category>
+        <category>日常</category>
+        <category>记录</category>
       </categories>
       <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>用logisim实现八位可控加减法器</title>
-    <url>/2021/12/03/%E7%AC%AC%E4%BA%8C/</url>
-    <content><![CDATA[<h1>计算机组成原理实验</h1>
-<p>你好，好久不见！吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼，作为第二篇博客，我决定先从一些简单的实验分享开始啦！（实际因为本人是小菜鸡一只的原因。。）</p>
-<h2 id="用logisim实现八位可控加减法器">用logisim实现八位可控加减法器</h2>
-<h3 id="思路解析：">思路解析：</h3>
-<p>要实现八位可控加减法器，采用并行思路，首先需要八个一位全加器，用分流器可以将八位二进制数分离，使得单独每一位用一位全加器来进行相关的运算，然后并行输出，最后用分流器进行还原。</p>
-<h3 id="实验过程：">实验过程：</h3>
-<p>1、首先进行一位全加器的设置，我们需要准备五个信号量，三个输入，两个输出，其中xi与yi为参加运算的对象，cin代表来自下一位的进位，si代表本位的输出结果，Cout代表向下一位的进位。</p>
-<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%871.png" alt="11"></p>
-<p>2、设计思路为：先用一个异或门判断xi与yi的和的情况，若异或门为1，则xi+yi==1，此时与cin进位再次进行异或门判断，若异或门为仍1，则说明不产生进位，则si可置1。若第一个异或门与cin的与门为1，则说明产生了进位并且si位为0.当xi与yi的与门为1时，cin也应该置1。经过调试判断，最终如图所示。</p>
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片2.png" style="zoom:50%;">
-<p>3、用logisim进行测试，检验是否制作成果，经检验得制作成功。</p>
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片3.png" style="zoom:33%;">
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片4.png" style="zoom:50%;">
-<p>4、制作分流器，准备分流器，数据位宽为8的输入，8个数据位宽为1的隧道，将隧道与分流器相连，分流器与8位位宽的输入相连。</p>
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片6.png" style="zoom:50%;">
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片7.png" style="zoom:50%;">
-<p>5、同理，准备一个y输入与s输出。</p>
-<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%878.png" alt></p>
-<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%879.png" alt></p>
-<p>6、准备8个一位全加器，一个用于表示加减的输入sub，一个用于检测溢出的of（overflow），一个cout表示最高位的进位。<br>
-其基本思路是：利用sub与y输入形成异或门，用于执行加和减时y的不同形态，将异或门的结果与一起并入全加器的两个加位，输出位依次接上s的8个隧道。将8个全加器按照这样的方式链接，最后将一位全加器用进位位连接起来，sub链接至第一个全加器的进位位，这样做的目的是将原本的（x+y）变成（x+y的补码）即为（x+（1+y的反码））。结果连接如下。</p>
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片10.png" style="zoom:80%;">
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>硬件设计</category>
-      </categories>
-      <tags>
-        <tag>logisim</tag>
+        <tag>时间的恋人</tag>
       </tags>
   </entry>
 </search>
