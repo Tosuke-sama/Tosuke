@@ -534,6 +534,158 @@ W3C标准包括<br>
       </tags>
   </entry>
   <entry>
+    <title>JavaScript-Dom</title>
+    <url>/2022/01/27/JavaScript-Dom/</url>
+    <content><![CDATA[<h1>HTML DOM (文档对象模型)</h1>
+<p>当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model）通过 HTML DOM，可访问 JavaScript HTML 文档的所有元素。</p>
+<p>HTML DOM 树的结构示意图（图片来自菜鸟编程）：</p>
+<p><img src="/2022/01/27/JavaScript-Dom/image-20220127233523498.png" alt="image-20220127233523498"></p>
+<p>通过js对dom的掌控，使得这些对象模型可以被动态的展示出来（类似于商品列表，一刷新一换）。</p>
+<h1>查找 HTML 元素</h1>
+<p>通过 JavaScript操作 HTML 元素需要先通过某种方式进行查找从而进行选择。</p>
+<p>有三种方法来做这件事：</p>
+<ul>
+<li>通过 id 找到 HTML 元素</li>
+<li>通过标签名找到 HTML 元素</li>
+<li>通过类名找到 HTML 元素</li>
+</ul>
+<h2 id="通过-id-找到-HTML-元素">通过 id 找到 HTML 元素</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x=<span class="built_in">document</span>.getElementById(<span class="string">&quot;id名&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="通过标签名找到-HTML-元素">通过标签名找到 HTML 元素</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x=<span class="built_in">document</span>.getElementById(<span class="string">&quot;main&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> y=x.getElementsByTagName(<span class="string">&quot;p&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>本例查找 id=“main” 的元素，然后查找 id=“main” 元素中的所有 <code>&lt;p&gt;</code> 元素</p>
+<h2 id="通过类名找到-HTML-元素">通过类名找到 HTML 元素</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x=<span class="built_in">document</span>.getElementsByClassName(<span class="string">&quot;intro&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h1>改变 HTML 输出流</h1>
+<p>document.write() 可用于直接向 HTML 输出流写内容。</p>
+<p>例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.write(<span class="built_in">Date</span>());<span class="comment">//该语句会直接向HTML输出流xie</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：绝对不要在文档(DOM)加载完成之后使用 document.write()。这会覆盖该文档。</strong></p>
+</blockquote>
+<h1>改变 HTML 内容</h1>
+<p>document.getElementById(<em>id</em>).innerHTML=<em>新的改变</em></p>
+<p>使用这个函数可以使得HTML元素的内容发生改变</p>
+<p>例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;p1&quot;</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.getElementById(<span class="string">&quot;p1&quot;</span>).innerHTML=<span class="string">&quot;新文本!&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>这里改变了<code>&lt;p1&gt;</code>的内容。</p>
+<h1>改变 HTML 属性</h1>
+<p>document.getElementById(<em>id</em>).<em>attribute=新属性值</em></p>
+<p>使用此函数改变HTML标签的属性。</p>
+<p>例如改变图片的路径：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;image&quot;</span> <span class="attr">src</span>=<span class="string">&quot;smiley.gif&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.getElementById(<span class="string">&quot;image&quot;</span>).src=<span class="string">&quot;landscape.jpg&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h1>改变 HTML 样式</h1>
+<p>document.getElementById(<em>id</em>).style.<em>property</em>=<em>新样式</em></p>
+<p>使用此函数改变HTML标签的样式。</p>
+<p>例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"> </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;p1&quot;</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;p2&quot;</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.getElementById(<span class="string">&quot;p2&quot;</span>).style.color=<span class="string">&quot;blue&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.getElementById(<span class="string">&quot;p2&quot;</span>).style.fontFamily=<span class="string">&quot;Arial&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.getElementById(<span class="string">&quot;p2&quot;</span>).style.fontSize=<span class="string">&quot;larger&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>666<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"> </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h1>使用事件</h1>
+<p>HTML DOM 允许我们通过触发事件来执行代码，使 JavaScript 有能力对 HTML 事件做出反应。</p>
+<p>比如以下事件：</p>
+<ul>
+<li>元素被点击。</li>
+<li>页面加载完成。</li>
+<li>输入框被修改。</li>
+<li>当网页已加载时</li>
+<li>当图像已加载时</li>
+<li>当鼠标移动到元素上时</li>
+<li>当输入字段被改变时</li>
+<li>当提交 HTML 表单时</li>
+<li>当用户触发按键时</li>
+<li>……</li>
+</ul>
+<p>例如点击事件（onclick）调用一个js函数：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="function"><span class="keyword">function</span> <span class="title">changetext</span>(<span class="params">id</span>)</span></span></span></span><br><span class="line"><span class="function"><span class="javascript"><span class="xml"></span>&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    id.innerHTML=<span class="string">&quot;Ooops!&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">onclick</span>=<span class="string">&quot;changetext(this)&quot;</span>&gt;</span>点击我!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>changetext将会在标题被点击时运行。</p>
+<p><strong>onload 和 onunload 事件</strong></p>
+<p>onload 和 onunload 事件会在用户进入或离开页面时被触发。</p>
+<p>onload 事件可用于检测访问者的浏览器类型和浏览器版本，并基于这些信息来加载网页的正确版本。</p>
+<p>onload 和 onunload 事件可用于处理 cookie。</p>
+<p><strong>onchange 事件</strong></p>
+<p>onchange 事件常结合对输入字段的验证来使用，在字段被改变时调用。</p>
+<p><strong>onmouseover 和 onmouseout 事件</strong></p>
+<p>onmouseover 和 onmouseout 事件可用于在用户的鼠标移至 HTML 元素上方或移出元素时触发函数。</p>
+<p><strong>onmousedown、onmouseup 以及 onclick 事件</strong></p>
+<p>onmousedown, onmouseup 以及 onclick 构成了鼠标点击事件的所有部分。首先当点击鼠标按钮时，会触发 onmousedown 事件，当释放鼠标按钮时，会触发 onmouseup 事件，最后，当完成鼠标点击时，会触发 onclick 事件。</p>
+<h1>EventListener（事件监听）</h1>
+<p>用于捕获事件，当某事件触发后执行某函数。</p>
+<p><em>element</em>.addEventListener(<em>event, function, useCapture</em>);</p>
+<p>第一个参数是事件的类型 (如 “click” 或 “mousedown”).</p>
+<p>第二个参数是事件触发后调用的函数。</p>
+<p>第三个参数是个布尔值用于描述事件是冒泡还是捕获。该参数是可选的。</p>
+<blockquote>
+<p>注意:不要使用 “on” 前缀。 例如，使用 “click” ,而不是使用 “onclick”。</p>
+</blockquote>
+<p>addEventListener() 方法允许向同一个元素添加多个事件，且不会覆盖已存在的事件</p>
+<h2 id="关于传递参数">关于传递参数</h2>
+<p>当传递参数值时，使用&quot;匿名函数&quot;调用带参数的函数，例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">element.addEventListener(<span class="string">&quot;click&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; myFunction(p1, p2); &#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="事件冒泡与事件捕获">事件冒泡与事件捕获</h2>
+<p>事件传递有两种方式：冒泡与捕获。</p>
+<p>事件传递定义了元素事件触发的顺序。 如果你将 </p><p> 元素插入到 <div> 元素中，用户点击 <p> 元素, 哪个元素的 “click” 事件先被触发呢？</p>
+<p>在 <em>冒泡</em> 中，内部元素的事件会先被触发，然后再触发外部元素，即： </p><p> 元素的点击事件先触发，然后会触发 <div> 元素的点击事件。</div></p>
+<p>在 <em>捕获</em> 中，外部元素的事件会先被触发，然后才会触发内部元素的事件，即： <div> 元素的点击事件先触发 ，然后再触发 <p> 元素的点击事件。</p>
+<p>addEventListener() 方法可以指定 “useCapture” 参数来设置传递类型：</p>
+<h2 id="removeEventListener-方法">removeEventListener() 方法</h2>
+<p>removeEventListener() 方法移除由 addEventListener() 方法添加的事件句柄。</p>
+<h1>DOM 元素 (节点)</h1>
+<p><strong>要创建新的 HTML 元素 (节点)需要先创建一个元素，然后在已存在的元素中添加它。</strong></p>
+<p>以下代码是用于创建 </p><p> 元素:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> para = <span class="built_in">document</span>.createElement(<span class="string">&quot;p&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>为 </p><p> 元素创建一个新的文本节点：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> node = <span class="built_in">document</span>.createTextNode(<span class="string">&quot;这是一个新的段落。&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>将文本节点添加到 </p><p> 元素中：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">para.appendChild(node);<span class="comment">//insertBefore() 方法可以将新元素添加到开始位置。</span></span><br></pre></td></tr></table></figure>
+<p>最后，在一个已存在的元素中添加 p 元素。</p>
+<p>查找已存在的元素：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> element = <span class="built_in">document</span>.getElementById(<span class="string">&quot;div1&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>添加到已存在的元素中:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">element.appendChild(para);<span class="comment">////insertBefore() 方法可以将新元素添加到开始位置。</span></span><br></pre></td></tr></table></figure>
+<h2 id="移除已存在的元素">移除已存在的元素</h2>
+<p>在父元素中使用node.remove() 方法，parent.removeChild(child);。</p>
+<h2 id="替换-HTML-元素">替换 HTML 元素</h2>
+<p>我们可以使用 replaceChild() 方法来替换 HTML DOM 中的元素。</p>
+<h1>HTMLCollection 对象</h1>
+<p>getElementsByTagName() 方法返回 <code>HTMLCollection</code> 对象。</p>
+<p>HTMLCollection 对象类似包含 HTML 元素的一个数组。</p>
+<p>例如访问所以p元素</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;p&quot;</span>);</span><br><span class="line">y = x[<span class="number">1</span>];<span class="comment">//用类似与数组的方式访问</span></span><br></pre></td></tr></table></figure>
+<p>HTMLCollection 对象的 length 属性定义了集合中元素的数量。</p>
+<h1>DOM 节点列表</h1>
+<p><strong>NodeList</strong> 对象是一个从文档中获取的节点列表 (集合) 。</p>
+<p>NodeList 对象类似HTMLCollection 对象。</p>
+<p>一些旧版本浏览器中的方法（如：<strong>getElementsByClassName()</strong>）返回的是 NodeList 对象，而不是 HTMLCollection 对象。</p>
+<p>所有浏览器的 <strong>childNodes</strong> 属性返回的是 NodeList 对象。</p>
+<p>大部分浏览器的 <strong>querySelectorAll()</strong> 返回 NodeList 对象。</p>
+<p>同样是访问所有p元素：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> myNodeList = <span class="built_in">document</span>.querySelectorAll(<span class="string">&quot;p&quot;</span>);</span><br><span class="line">y = myNodeList[<span class="number">1</span>];<span class="comment">//同样通过下标访问</span></span><br></pre></td></tr></table></figure>
+<h2 id="NodeList-对象-length-属性">NodeList 对象 length 属性</h2>
+<p>NodeList 对象 length 属性定义了节点列表中元素的数量。</p>
+<h2 id="HTMLCollection-与-NodeList-的区别">HTMLCollection 与 NodeList 的区别</h2>
+<p>HTMLCollection是 HTML 元素的集合。</p>
+<p>NodeList 是一个文档节点的集合。</p>
+<p>NodeList 与 HTMLCollection 有很多类似的地方。</p>
+<p>NodeList 与 HTMLCollection 都与数组对象有点类似，可以使用索引 (0, 1, 2, 3, 4, …) 来获取元素。</p>
+<p>NodeList 与 HTMLCollection 都有 length 属性。</p>
+<p>HTMLCollection 元素可以通过 name，id 或索引来获取。</p>
+<p>NodeList 只能通过索引来获取。</p>
+<p>只有 NodeList 对象有包含属性节点和文本节点。</p>
+<blockquote>
+<p><strong>节点列表不是一个数组！</strong></p>
+<p>节点列表看起来可能是一个数组，但其实不是。</p>
+<p>你可以像数组一样，使用索引来获取元素。</p>
+<p>节点列表无法使用数组的方法： valueOf(), pop(), push(), 或 join() 。</p>
+</blockquote>
+</div></p></div></p>]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>前端入门</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaScript入门小识</title>
     <url>/2022/01/20/JavaScript%E5%85%A5%E9%97%A8%E5%B0%8F%E8%AF%86/</url>
     <content><![CDATA[<h1>什么是JavaScript？</h1>
@@ -883,6 +1035,35 @@ W3C标准包括<br>
       </tags>
   </entry>
   <entry>
+    <title>我的第一篇博客</title>
+    <url>/2021/10/26/hello-world/</url>
+    <content><![CDATA[<p>你好，我的同志，这是我的第一篇博客，显而易见的是我正在学习中，所以页面会非常粗糙，还请见谅！</p>
+<h2 id="起源">起源</h2>
+<h3 id="一开始">一开始</h3>
+<p>建立博客的缘由是因为几位朋友都有了属于他们自己的博客，这让我很感兴趣。</p>
+<p>第一步</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="后来嘛">后来嘛</h3>
+<p>上网找教程，最后选择了hexo+gitee（码云）的方式部署博客，期间遇到了很多问题，后来大部分都慢慢解决了，但还是有一些现在还没<br>
+解决的问题。<br>
+比如说：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git@gitee.com: Permission denied (publickey)</span><br></pre></td></tr></table></figure>
+<p>配置的ssh明明完美无缺，可通讯还是不行，我猜测是因为我windows用户名是中文的原因，还得再试试。</p>
+<h3 id="而现在">而现在</h3>
+<p>我之前有一个团队网站，为了测试我把它放在这里。</p>
+<p>More info: <a href="http://tocode.e.cn.vc/2">Tocode团队</a></p>
+<h3 id="在未来">在未来</h3>
+<p>我会继续努力的，总之感谢大家了！</p>
+]]></content>
+      <categories>
+        <category>日常</category>
+        <category>感想</category>
+      </categories>
+      <tags>
+        <tag>关于</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java的I/O流</title>
     <url>/2021/12/15/Java%E7%9A%84I-O%E6%B5%81/</url>
     <content><![CDATA[<h1>I/O框架</h1>
@@ -975,35 +1156,6 @@ W3C标准包括<br>
       </categories>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的第一篇博客</title>
-    <url>/2021/10/26/hello-world/</url>
-    <content><![CDATA[<p>你好，我的同志，这是我的第一篇博客，显而易见的是我正在学习中，所以页面会非常粗糙，还请见谅！</p>
-<h2 id="起源">起源</h2>
-<h3 id="一开始">一开始</h3>
-<p>建立博客的缘由是因为几位朋友都有了属于他们自己的博客，这让我很感兴趣。</p>
-<p>第一步</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<h3 id="后来嘛">后来嘛</h3>
-<p>上网找教程，最后选择了hexo+gitee（码云）的方式部署博客，期间遇到了很多问题，后来大部分都慢慢解决了，但还是有一些现在还没<br>
-解决的问题。<br>
-比如说：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git@gitee.com: Permission denied (publickey)</span><br></pre></td></tr></table></figure>
-<p>配置的ssh明明完美无缺，可通讯还是不行，我猜测是因为我windows用户名是中文的原因，还得再试试。</p>
-<h3 id="而现在">而现在</h3>
-<p>我之前有一个团队网站，为了测试我把它放在这里。</p>
-<p>More info: <a href="http://tocode.e.cn.vc/2">Tocode团队</a></p>
-<h3 id="在未来">在未来</h3>
-<p>我会继续努力的，总之感谢大家了！</p>
-]]></content>
-      <categories>
-        <category>日常</category>
-        <category>感想</category>
-      </categories>
-      <tags>
-        <tag>关于</tag>
       </tags>
   </entry>
   <entry>
@@ -1472,40 +1624,6 @@ W3C标准包括<br>
       </tags>
   </entry>
   <entry>
-    <title>用logisim实现八位可控加减法器</title>
-    <url>/2021/12/03/%E7%AC%AC%E4%BA%8C/</url>
-    <content><![CDATA[<h1>计算机组成原理实验</h1>
-<p>你好，好久不见！吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼，作为第二篇博客，我决定先从一些简单的实验分享开始啦！（实际因为本人是小菜鸡一只的原因。。）</p>
-<h2 id="用logisim实现八位可控加减法器">用logisim实现八位可控加减法器</h2>
-<h3 id="思路解析：">思路解析：</h3>
-<p>要实现八位可控加减法器，采用并行思路，首先需要八个一位全加器，用分流器可以将八位二进制数分离，使得单独每一位用一位全加器来进行相关的运算，然后并行输出，最后用分流器进行还原。</p>
-<h3 id="实验过程：">实验过程：</h3>
-<p>1、首先进行一位全加器的设置，我们需要准备五个信号量，三个输入，两个输出，其中xi与yi为参加运算的对象，cin代表来自下一位的进位，si代表本位的输出结果，Cout代表向下一位的进位。</p>
-<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%871.png" alt="11"></p>
-<p>2、设计思路为：先用一个异或门判断xi与yi的和的情况，若异或门为1，则xi+yi==1，此时与cin进位再次进行异或门判断，若异或门为仍1，则说明不产生进位，则si可置1。若第一个异或门与cin的与门为1，则说明产生了进位并且si位为0.当xi与yi的与门为1时，cin也应该置1。经过调试判断，最终如图所示。</p>
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片2.png" style="zoom:50%;">
-<p>3、用logisim进行测试，检验是否制作成果，经检验得制作成功。</p>
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片3.png" style="zoom:33%;">
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片4.png" style="zoom:50%;">
-<p>4、制作分流器，准备分流器，数据位宽为8的输入，8个数据位宽为1的隧道，将隧道与分流器相连，分流器与8位位宽的输入相连。</p>
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片6.png" style="zoom:50%;">
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片7.png" style="zoom:50%;">
-<p>5、同理，准备一个y输入与s输出。</p>
-<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%878.png" alt></p>
-<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%879.png" alt></p>
-<p>6、准备8个一位全加器，一个用于表示加减的输入sub，一个用于检测溢出的of（overflow），一个cout表示最高位的进位。<br>
-其基本思路是：利用sub与y输入形成异或门，用于执行加和减时y的不同形态，将异或门的结果与一起并入全加器的两个加位，输出位依次接上s的8个隧道。将8个全加器按照这样的方式链接，最后将一位全加器用进位位连接起来，sub链接至第一个全加器的进位位，这样做的目的是将原本的（x+y）变成（x+y的补码）即为（x+（1+y的反码））。结果连接如下。</p>
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片10.png" style="zoom:80%;">
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>硬件设计</category>
-      </categories>
-      <tags>
-        <tag>logisim</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>新泽没有夏天</title>
     <url>/2021/12/05/%E6%96%B0%E6%B3%BD%E6%B2%A1%E6%9C%89%E5%A4%8F%E5%A4%A9/</url>
     <content><![CDATA[<h1>新泽没有夏天</h1>
@@ -1730,6 +1848,40 @@ W3C标准包括<br>
       </categories>
       <tags>
         <tag>新泽没有夏天</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用logisim实现八位可控加减法器</title>
+    <url>/2021/12/03/%E7%AC%AC%E4%BA%8C/</url>
+    <content><![CDATA[<h1>计算机组成原理实验</h1>
+<p>你好，好久不见！吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼，作为第二篇博客，我决定先从一些简单的实验分享开始啦！（实际因为本人是小菜鸡一只的原因。。）</p>
+<h2 id="用logisim实现八位可控加减法器">用logisim实现八位可控加减法器</h2>
+<h3 id="思路解析：">思路解析：</h3>
+<p>要实现八位可控加减法器，采用并行思路，首先需要八个一位全加器，用分流器可以将八位二进制数分离，使得单独每一位用一位全加器来进行相关的运算，然后并行输出，最后用分流器进行还原。</p>
+<h3 id="实验过程：">实验过程：</h3>
+<p>1、首先进行一位全加器的设置，我们需要准备五个信号量，三个输入，两个输出，其中xi与yi为参加运算的对象，cin代表来自下一位的进位，si代表本位的输出结果，Cout代表向下一位的进位。</p>
+<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%871.png" alt="11"></p>
+<p>2、设计思路为：先用一个异或门判断xi与yi的和的情况，若异或门为1，则xi+yi==1，此时与cin进位再次进行异或门判断，若异或门为仍1，则说明不产生进位，则si可置1。若第一个异或门与cin的与门为1，则说明产生了进位并且si位为0.当xi与yi的与门为1时，cin也应该置1。经过调试判断，最终如图所示。</p>
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片2.png" style="zoom:50%;">
+<p>3、用logisim进行测试，检验是否制作成果，经检验得制作成功。</p>
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片3.png" style="zoom:33%;">
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片4.png" style="zoom:50%;">
+<p>4、制作分流器，准备分流器，数据位宽为8的输入，8个数据位宽为1的隧道，将隧道与分流器相连，分流器与8位位宽的输入相连。</p>
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片6.png" style="zoom:50%;">
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片7.png" style="zoom:50%;">
+<p>5、同理，准备一个y输入与s输出。</p>
+<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%878.png" alt></p>
+<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%879.png" alt></p>
+<p>6、准备8个一位全加器，一个用于表示加减的输入sub，一个用于检测溢出的of（overflow），一个cout表示最高位的进位。<br>
+其基本思路是：利用sub与y输入形成异或门，用于执行加和减时y的不同形态，将异或门的结果与一起并入全加器的两个加位，输出位依次接上s的8个隧道。将8个全加器按照这样的方式链接，最后将一位全加器用进位位连接起来，sub链接至第一个全加器的进位位，这样做的目的是将原本的（x+y）变成（x+y的补码）即为（x+（1+y的反码））。结果连接如下。</p>
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片10.png" style="zoom:80%;">
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>硬件设计</category>
+      </categories>
+      <tags>
+        <tag>logisim</tag>
       </tags>
   </entry>
   <entry>
