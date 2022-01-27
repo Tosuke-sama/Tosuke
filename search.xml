@@ -1,44 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>4位快速加法器的设计</title>
-    <url>/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/</url>
-    <content><![CDATA[<h2 id="4位快速加法器的设计">4位快速加法器的设计</h2>
-<h3 id="实验目的：">实验目的：</h3>
-<p>掌握快速加法器中先行进位的原理，能利用相关知识设计4位先行进位电路，并利用设计的4位先行进位电路构造4位快速加法器，能分析对应电路的时间延迟。</p>
-<h3 id="实验结果：">实验结果：</h3>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8711.png" alt></p>
-<h3 id="实验结果分析：">实验结果分析：</h3>
-<p>因为我们已经完成了的4位先行进位，（什么？你没什么印象？<a href="https://tosuke.gitee.io/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/">点我马上传送</a>现在我们可以来来实现4位快速加法器，没错，其实4位快速加法器就是根据我们第三个实验的原理而来，实验三所写的4位先行进位现在在4位快速加法器里是重要的中心电路。</p>
-<p>第一步先准备一下我们需要的输入输出：</p>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8712.png" alt></p>
-<p>然后对应好我们之前的4位先行进位的电路封装：</p>
-<img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/图片13.png" style="zoom:80%;">
-<img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/图片14.png" style="zoom:80%;">
-<p>确认好我们的电路封装后，那我们先来输入我们的P1、P2等Pi输入，因为</p>
-<pre><code>                          **Pi=ai⊕bi  Gi=ai*bi**
-</code></pre>
-<p>所以我们将xi、yi连上异或门连上电路封装的pi输入，将xi、yi连上与门连上电路封装的gi输入，最后不要忘了连上C0的输入：</p>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8715.png" alt></p>
-<p>那我们输入就算完成了，现在来看看电路封装的输出部分，我们电路的电路的输出分别是Ci和p*、g*成组先进函数，又因为我们推出的运算公式中：</p>
-<p>​														Si=Pi⊕Ci</p>
-<p>所以我们需要将封装电路输出的Ci与Pi连上异或门再输出给Si，由于在上一步已经制造了Pi，所以连接如图：</p>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8716.png" alt></p>
-<p>最后连接上代表最高位进位的C4与p*、g*成组先进函数，电路图就链接好了。</p>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8717.png" alt></p>
-<blockquote>
-<p>有问题请通过旁边的对话窗口联系京介喔。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>硬件设计</category>
-      </categories>
-      <tags>
-        <tag>logisim</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>用logisim实现4位先行进位</title>
     <url>/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/</url>
     <content><![CDATA[<h3 id="实验目的：">实验目的：</h3>
@@ -81,9 +43,103 @@ $$</p>
       </tags>
   </entry>
   <entry>
+    <title>4位快速加法器的设计</title>
+    <url>/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h2 id="4位快速加法器的设计">4位快速加法器的设计</h2>
+<h3 id="实验目的：">实验目的：</h3>
+<p>掌握快速加法器中先行进位的原理，能利用相关知识设计4位先行进位电路，并利用设计的4位先行进位电路构造4位快速加法器，能分析对应电路的时间延迟。</p>
+<h3 id="实验结果：">实验结果：</h3>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8711.png" alt></p>
+<h3 id="实验结果分析：">实验结果分析：</h3>
+<p>因为我们已经完成了的4位先行进位，（什么？你没什么印象？<a href="https://tosuke.gitee.io/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/">点我马上传送</a>现在我们可以来来实现4位快速加法器，没错，其实4位快速加法器就是根据我们第三个实验的原理而来，实验三所写的4位先行进位现在在4位快速加法器里是重要的中心电路。</p>
+<p>第一步先准备一下我们需要的输入输出：</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8712.png" alt></p>
+<p>然后对应好我们之前的4位先行进位的电路封装：</p>
+<img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/图片13.png" style="zoom:80%;">
+<img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/图片14.png" style="zoom:80%;">
+<p>确认好我们的电路封装后，那我们先来输入我们的P1、P2等Pi输入，因为</p>
+<pre><code>                          **Pi=ai⊕bi  Gi=ai*bi**
+</code></pre>
+<p>所以我们将xi、yi连上异或门连上电路封装的pi输入，将xi、yi连上与门连上电路封装的gi输入，最后不要忘了连上C0的输入：</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8715.png" alt></p>
+<p>那我们输入就算完成了，现在来看看电路封装的输出部分，我们电路的电路的输出分别是Ci和p*、g*成组先进函数，又因为我们推出的运算公式中：</p>
+<p>​														Si=Pi⊕Ci</p>
+<p>所以我们需要将封装电路输出的Ci与Pi连上异或门再输出给Si，由于在上一步已经制造了Pi，所以连接如图：</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8716.png" alt></p>
+<p>最后连接上代表最高位进位的C4与p*、g*成组先进函数，电路图就链接好了。</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8717.png" alt></p>
+<blockquote>
+<p>有问题请通过旁边的对话窗口联系京介喔。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>硬件设计</category>
+      </categories>
+      <tags>
+        <tag>logisim</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS入门小识</title>
     <url>/2022/01/18/CSS%E5%85%A5%E9%97%A8%E5%B0%8F%E8%AF%86/</url>
-    <content><![CDATA[<p>阿松大</p>
+    <content><![CDATA[<blockquote>
+<p>更新时间：2022.1.27，css内容的学习需要富有艺术性。。缓慢更新中。。</p>
+</blockquote>
+<h1>2、选择器</h1>
+<h2 id="1、标签选择器">1、标签选择器</h2>
+<h2 id="2、类选择器">2、类选择器</h2>
+<h2 id="3、id选择器">3、id选择器</h2>
+<h1>3、层次选择器</h1>
+<h2 id="3-1后代选择器">3.1后代选择器</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">body p&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-子选择器">3.2 子选择器</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">body&gt;p&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-3相邻兄弟选择器">3.3相邻兄弟选择器</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">.class + p&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-4通用兄弟选择器-向下">3.4通用兄弟选择器(向下)</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">.class + p&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>字体样式</h1>
+<h1>文本样式</h1>
+<h2 id="1、颜色">1、颜色</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">color：</span><br></pre></td></tr></table></figure>
+<h2 id="2、文本对齐的方式">2、文本对齐的方式</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">text-align:</span><br></pre></td></tr></table></figure>
+<h2 id="3、首行缩进">3、首行缩进</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">text-indent:2em(em为一个字)</span><br></pre></td></tr></table></figure>
+<h2 id="4、行高">4、行高</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">line-height:(设为容器一样的高度)</span><br></pre></td></tr></table></figure>
+<h2 id="5、装饰">5、装饰</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">text-decoration:underline/line-through/overline(上划线、中、下)</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">img,span&#123;</span><br><span class="line">vertical-align:middle(img/span居中对齐两个标签)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>超链接去下划线。</p>
+<h1>超链接伪类</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a.hover&#123;</span><br><span class="line"></span><br><span class="line">&#125;鼠标悬浮效果</span><br><span class="line">a.active&#123;</span><br><span class="line">激活，点击未放开</span><br><span class="line">&#125;</span><br><span class="line">cursor: url(&#x27;img/hammer.ico&#x27;),auto;</span><br><span class="line">鼠标效果</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">text-shadow: 阴影颜色 偏移 偏移 模糊</span><br></pre></td></tr></table></figure>
+<h1>列表样式</h1>
+<p>list-style:<br>
+none去掉原点<br>
+circle空心圆<br>
+decimal数字<br>
+square正方形</p>
+<h1>边框</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">border: 1px solid red</span><br></pre></td></tr></table></figure>
+<h1>背景图片</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">background-repeat：repeat-x/repeat-y/no repeat</span><br><span class="line">背景重复方式</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/01/18/CSS%E5%85%A5%E9%97%A8%E5%B0%8F%E8%AF%86/image-20220119111404781.png" alt="image-20220119111404781"></p>
+<h1>渐变</h1>
+<p><img src="/2022/01/18/CSS%E5%85%A5%E9%97%A8%E5%B0%8F%E8%AF%86/image-20220119112059881.png" alt="image-20220119112059881"></p>
+<h1>盒子模型</h1>
+<h2 id="什么是盒子模型">什么是盒子模型</h2>
+<p><img src="/2022/01/18/CSS%E5%85%A5%E9%97%A8%E5%B0%8F%E8%AF%86/image-20220119112515546.png" alt="image-20220119112515546"></p>
+<h2 id="边框">边框</h2>
+<p>margin+border+padding</p>
+<h1>浮动</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">h1~h6 p div  列表</span><br></pre></td></tr></table></figure>
+<p>行内元素</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">span img strong。。</span><br></pre></td></tr></table></figure>
+<h2 id="display">display</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">display:block(行内变块内)</span><br><span class="line">display:inline-block(行内变块内)是块且可以内联</span><br><span class="line">inline（行内）</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -475,6 +531,335 @@ W3C标准包括<br>
       </categories>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript入门小识</title>
+    <url>/2022/01/20/JavaScript%E5%85%A5%E9%97%A8%E5%B0%8F%E8%AF%86/</url>
+    <content><![CDATA[<h1>什么是JavaScript？</h1>
+<p>JavaScript 是互联网上最流行的脚本语言，这门语言可用于 HTML 和 web，更可广泛用于服务器、PC、笔记本电脑、平板电脑和智能手机等设备。</p>
+<h1>引入JavaScript</h1>
+<h3 id="1-内部引入">1.内部引入</h3>
+<h3 id="script-标签"><code>&lt;script&gt;</code> 标签</h3>
+<p>如需在 HTML 页面中插入 JavaScript，请使用 <code>&lt;script&gt;</code> 标签。</p>
+<p><code>&lt;script&gt;</code>和 <code>&lt;/script&gt;</code>会告诉 JavaScript 在何处开始和结束，之间的代码行包含了 JavaScript:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">alert(<span class="string">&quot;我的第一个 JavaScript&quot;</span>);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="2-外部引入">2.外部引入</h3>
+<p>也可以把脚本保存到外部文件中。外部文件通常包含被多个网页使用的代码。</p>
+<p>外部 JavaScript 文件的文件扩展名是 .js。</p>
+<p>如需使用外部文件，请在  <script>标签的 “src” 属性中设置该 .js 文件，例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">&quot;myScript.js&quot;</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="基本语法入门">基本语法入门</h2>
+<h2 id="数据类型">数据类型</h2>
+<p><strong>变量名不能用数字开头</strong></p>
+<p>number：数字（不区分大小写）</p>
+<p>字符串：‘abc’、“ann”</p>
+<p>布尔值：true，false</p>
+<p>逻辑运算:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&amp;&amp;  于</span><br><span class="line">|| 或</span><br><span class="line">！ 非</span><br></pre></td></tr></table></figure>
+<p>比较运算符</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">=</span><br><span class="line">== 等于（类型不算）</span><br><span class="line">=== 绝对等于（类型）</span><br></pre></td></tr></table></figure>
+<p>在js中一般使用“===”</p>
+<p><strong>注意</strong>：NaN（not a number）与所有值都不相等（包括自己）只能使用isNaN(NaN)来判断是否未NaN</p>
+<p>null和undefind：未定义</p>
+<p>数组：什么都装，不需要类型相同。尽量使用中括号表示数组</p>
+<p>类：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> person&#123;</span><br><span class="line">name：“十大”,</span><br><span class="line"><span class="attr">age</span>: <span class="string">&#x27;10&#x27;</span></span><br><span class="line"><span class="attr">tag</span>: [<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对象成员用逗号隔开，最后一位不需要逗号。</p>
+<p>用“.”来访问对象成员</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">person.name</span><br><span class="line">&gt;<span class="string">&quot;十大&quot;</span></span><br><span class="line">person.age</span><br><span class="line">&gt;<span class="number">10</span></span><br></pre></td></tr></table></figure>
+<h2 id="严格检查模式">严格检查模式</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span></span><br></pre></td></tr></table></figure>
+<h1>数据类型</h1>
+<p>在 JavaScript 中有 6 种不同的数据类型：</p>
+<ul>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>object</li>
+<li>function</li>
+<li>symbol</li>
+</ul>
+<p>3 种对象类型：</p>
+<ul>
+<li>Object</li>
+<li>Date</li>
+<li>Array</li>
+</ul>
+<p>2 个不包含任何值的数据类型：</p>
+<ul>
+<li>null</li>
+<li>undefined</li>
+</ul>
+<p><strong>你可以使用 typeof 操作符来查看 JavaScript 变量的数据类型。</strong></p>
+<h2 id="constructor-属性">constructor 属性</h2>
+<p><strong>constructor</strong> 属性返回所有 JavaScript 变量的构造函数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;John&quot;</span>.constructor                 <span class="comment">// 返回函数 String()  &#123; [native code] &#125;</span></span><br><span class="line">(<span class="number">3.14</span>).constructor                 <span class="comment">// 返回函数 Number()  &#123; [native code] &#125;</span></span><br><span class="line"><span class="literal">false</span>.constructor                  <span class="comment">// 返回函数 Boolean() &#123; [native code] &#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="1、字符串">1、字符串</h2>
+<p>1、正常的字符串使用单引号或者双引号包围</p>
+<p>2、注意转义字符\</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">\<span class="string">&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>3、多行字符串编写</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> msg = <span class="string">`hello</span></span><br><span class="line"><span class="string">sad</span></span><br><span class="line"><span class="string">happy</span></span><br><span class="line"><span class="string">das`</span></span><br></pre></td></tr></table></figure>
+<p>4、模板字符串</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> name=<span class="string">&quot;Tosuke&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> msg =<span class="string">`你好呀,<span class="subst">$&#123;name&#125;</span>;</span></span><br></pre></td></tr></table></figure>
+<p>5、字符串的长度</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">str.length</span><br></pre></td></tr></table></figure>
+<p>6、字符串的可变性，不可变性</p>
+<p><img src="JavaScript%E5%85%A5%E9%97%A8%E5%B0%8F%E8%AF%86/image-20220120144032536.png" alt="image-20220120144032536"></p>
+<p>7、大小写转换</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//注意，此为方法</span></span><br><span class="line">student.toUpperCase()</span><br><span class="line">student.toLowerCase()</span><br></pre></td></tr></table></figure>
+<p>8、student.indexOf(‘t’)</p>
+<p>9、substring</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">student.substring(<span class="number">1</span>)<span class="comment">//从第一个字符串截取到最后一个</span></span><br><span class="line">student.substring(<span class="number">1</span>,<span class="number">3</span>)<span class="comment">//[1,3)</span></span><br></pre></td></tr></table></figure>
+<h2 id="2、数组">2、数组</h2>
+<p>array可以包含任意类型的数据类型</p>
+<p>1、长度</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">arr.length</span><br></pre></td></tr></table></figure>
+<p>可以对长度数据进行修改，数组相应大小就会改变。（小心数据丢失！）</p>
+<p>2、indexOf，通过元素获得下标索引</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">arr.indexof(<span class="number">2</span>)</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>3、slice()</p>
+<h2 id="JavaScript-类型转换">JavaScript 类型转换</h2>
+<p>JavaScript 变量可以转换为新变量或其他数据类型：</p>
+<ul>
+<li>通过使用 JavaScript 函数</li>
+<li>通过 JavaScript 自身自动转换</li>
+</ul>
+<h3 id="将数字转换为字符串">将数字转换为字符串</h3>
+<p>全局方法 <strong>String()</strong> 可以将数字转换为字符串。</p>
+<p>该方法可用于任何类型的数字，字母，变量，表达式（Number 方法 <strong>toString()</strong> 也是有同样的效果。）：</p>
+<h1>JavaScript 正则表达式</h1>
+<p>正则表达式是由一个字符序列形成的搜索模式。</p>
+<p>当你在文本中搜索数据时，你可以用搜索模式来描述你要查询的内容。</p>
+<p>正则表达式可以是一个简单的字符，或一个更复杂的模式。</p>
+<p>正则表达式可用于所有文本搜索和文本替换的操作。</p>
+<p><img src="JavaScript%E5%85%A5%E9%97%A8%E5%B0%8F%E8%AF%86/image-20220127162021505.png" alt="image-20220127162021505"></p>
+<h2 id="使用-test">使用 test()</h2>
+<p>test() 方法是一个正则表达式方法。</p>
+<p>test() 方法用于检测一个字符串是否匹配某个模式，如果字符串中含有匹配的文本，则返回 true，否则返回 false。</p>
+<table>
+<thead>
+<tr>
+<th>[abc]</th>
+<th>查找方括号之间的任何字符。</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[0-9]</td>
+<td>查找任何从 0 至 9 的数字。</td>
+</tr>
+<tr>
+<td>(x|y)</td>
+<td>查找任何以 | 分隔的选项。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">元字符</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\d</td>
+<td style="text-align:center">查找数字。</td>
+</tr>
+<tr>
+<td style="text-align:left">\s</td>
+<td style="text-align:center">查找空白字符。</td>
+</tr>
+<tr>
+<td style="text-align:left">\b</td>
+<td style="text-align:center">匹配单词边界。</td>
+</tr>
+<tr>
+<td style="text-align:left">\uxxxx</td>
+<td style="text-align:center">查找以十六进制数 xxxx 规定的 Unicode 字符。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="使用-exec">使用 exec()</h2>
+<p>exec() 方法是一个正则表达式方法。</p>
+<p>exec() 方法用于检索字符串中的正则表达式的匹配。</p>
+<p>该函数返回一个数组，其中存放匹配的结果。如果未找到匹配，则返回值为 null。</p>
+<h1>JavaScript 错误 - throw、try 和 catch</h1>
+<hr>
+<p><strong>try</strong> 语句测试代码块的错误。</p>
+<p><strong>catch</strong> 语句处理错误。</p>
+<p><strong>throw</strong> 语句创建自定义错误。</p>
+<p><strong>finally</strong> 语句在 try 和 catch 语句之后，无论是否有触发异常，该语句都会执行。</p>
+<p>该部分与Java依然极其相似：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    ...    <span class="comment">//异常的抛出</span></span><br><span class="line">&#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">    ...    <span class="comment">//异常的捕获与处理</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    ...    <span class="comment">//结束处理</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>JavaScript 调试</h1>
+<p>我们浏览器启用调试工具一般是按下 F12 键，并在调试菜单中选择 “Console” 。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;123&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="设置断点">设置断点</h2>
+<p>在调试窗口中，你可以设置 JavaScript 代码的断点。</p>
+<p>在每个断点上，都会停止执行 JavaScript 代码，以便于我们检查 JavaScript 变量的值。</p>
+<p>在检查完毕后，可以重新执行代码（如播放按钮）。</p>
+<h1>JavaScript 声明提升</h1>
+<p>JavaScript 中，函数及变量的声明都将被提升到函数的最顶部。</p>
+<p>JavaScript 中，变量可以在使用后声明，也就是变量可以先使用再声明。</p>
+<p>意思是尽管设置变量时没有在这行代码之前声明它，而是在后面才声明时也是可以使用的（声明自动提升），不过大家还是得遵守先声明再使用的原则。</p>
+<h1>JavaScript 严格模式(use strict)</h1>
+<p>使用 “use strict” 指令<br>
+“use strict” 指令在 JavaScript 1.8.5 (ECMAScript5) 中新增。</p>
+<p>它不是一条语句，但是是一个字面量表达式，在 JavaScript 旧版本中会被忽略。</p>
+<p>“use strict” 的目的是指定代码在严格条件下执行。</p>
+<p>严格模式下你不能使用未声明的变量。</p>
+<h2 id="表单验证">表单验证</h2>
+<p>HTML 表单验证可以通过 JavaScript 来完成。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TableTest</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x=<span class="built_in">document</span>.forms[<span class="string">&quot;myform&quot;</span>][<span class="string">&quot;fname&quot;</span>].value;</span><br><span class="line">  <span class="keyword">if</span>(x==<span class="literal">null</span>||x==<span class="string">&quot;&quot;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      alert(<span class="string">&quot;需要输入名字。&quot;</span>)；</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;form name=<span class="string">&quot;myForm&quot;</span> action=<span class="string">&quot;demo_form.php&quot;</span> onsubmit=<span class="string">&quot;return validateForm()&quot;</span> method=<span class="string">&quot;post&quot;</span>&gt;</span><br><span class="line">名字: <span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;fname&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h1>JavaScript this 关键字</h1>
+<p>面向对象语言中 this 表示当前对象的一个引用。</p>
+<p>但在 JavaScript 中 this 不是固定不变的，它会随着执行环境的改变而改变。</p>
+<ul>
+<li>在方法中，this 表示该方法所属的对象。</li>
+<li>如果单独使用，this 表示全局对象。</li>
+<li>在函数中，this 表示全局对象。</li>
+<li>在函数中，在严格模式下，this 是未定义的(undefined)。</li>
+<li>在事件中，this 表示接收事件的元素。</li>
+<li>类似 call() 和 apply() 方法可以将 this 引用到任何对象</li>
+</ul>
+<h1>JavaScript let 和 const</h1>
+<h3 id="ECMAScript-2015-ECMAScript-6">ECMAScript 2015(ECMAScript 6)</h3>
+<p>ES2015(ES6) 新增加了两个重要的 JavaScript 关键字: <strong>let</strong> 和 <strong>const</strong>。</p>
+<p>let 声明的变量只在 let 命令所在的代码块内有效。</p>
+<p>const 声明一个只读的常量，一旦声明，常量的值就不能改变。</p>
+<p>在 ES6 之前，JavaScript 只有两种作用域： <strong>全局变量</strong> 与 <strong>函数内的局部变量</strong>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">let 定义的代码只在这里生效。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>JavaScript JSON</h1>
+<ul>
+<li>JSON 英文全称 <strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation</li>
+<li>JSON 是一种轻量级的数据交换格式</li>
+<li>JSON是独立的语言</li>
+<li>JSON 易于理解</li>
+</ul>
+<h2 id="JSON-语法规则">JSON 语法规则</h2>
+<ul>
+<li>数据为 键/值 对。</li>
+<li>数据由逗号分隔。</li>
+<li>大括号保存对象</li>
+<li>方括号保存数组</li>
+</ul>
+<h2 id="JSON-数据-一个名称对应一个值">JSON 数据 - 一个名称对应一个值</h2>
+<p>JSON 数据格式为 键/值 对，就像 JavaScript 对象属性。</p>
+<p>键/值对包括字段名称（在双引号中），后面一个冒号，然后是值：</p>
+<p>“name”:“Runoob”</p>
+<hr>
+<h2 id="JSON-对象">JSON 对象</h2>
+<p>JSON 对象保存在大括号内。</p>
+<p>就像在 JavaScript 中, 对象可以保存多个 键/值 对：</p>
+<p>{“name”:“Runoob”, “url”:“<a href="http://www.runoob.com">www.runoob.com</a>”}</p>
+<hr>
+<h2 id="JSON-数组">JSON 数组</h2>
+<p>JSON 数组保存在中括号内。</p>
+<p>就像在 JavaScript 中, 数组可以包含对象：</p>
+<p>“sites”:[    {“name”:“Runoob”, “url”:“<a href="http://www.runoob.com">www.runoob.com</a>”},     {“name”:“Google”, “url”:“<a href="http://www.google.com">www.google.com</a>”},    {“name”:“Taobao”, “url”:“<a href="http://www.taobao.com">www.taobao.com</a>”} ]JSON 数据 - 一个名称对应一个值</p>
+<p>JSON 数据格式为 键/值 对，就像 JavaScript 对象属性。</p>
+<p>键/值对包括字段名称（在双引号中），后面一个冒号，然后是值：</p>
+<p>“name”:“Runoob”</p>
+<p>JSON 语法规则<br>
+数据为 键/值 对。<br>
+数据由逗号分隔。<br>
+大括号保存对象<br>
+方括号保存数组</p>
+<hr>
+<h2 id="JSON-对象-2">JSON 对象</h2>
+<p>JSON 对象保存在大括号内。</p>
+<p>就像在 JavaScript 中, 对象可以保存多个 键/值 对：</p>
+<p>{“name”:“Runoob”, “url”:“<a href="http://www.runoob.com">www.runoob.com</a>”}</p>
+<hr>
+<h2 id="重要函数">重要函数</h2>
+<p>用于转换json字符串与js对象</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">函数</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/js/javascript-json-parse.html">JSON.parse()</a></td>
+<td style="text-align:left">用于将一个 JSON 字符串转换为 JavaScript 对象。</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/js/javascript-json-stringify.html">JSON.stringify()</a></td>
+<td style="text-align:left">用于将 JavaScript 值转换为 JSON 字符串。</td>
+</tr>
+</tbody>
+</table>
+<h1>异步编程</h1>
+<p>在前端编程中（甚至后端有时也是这样），我们在处理一些简短、快速的操作时，例如计算 1 + 1 的结果，往往在主线程中就可以完成。主线程作为一个线程，不能够同时接受多方面的请求。所以，当一个事件没有结束时，界面将无法处理其他请求。</p>
+<p>现在有一个按钮，如果我们设置它的 onclick 事件为一个死循环，那么当这个按钮按下，整个网页将失去响应。</p>
+<p>为了避免这种情况的发生，我们常常用子线程来完成一些可能消耗时间足够长以至于被用户察觉的事情，比如读取一个大文件或者发出一个网络请求。因为子线程独立于主线程，所以即使出现阻塞也不会影响主线程的运行。但是子线程有一个局限：一旦发射了以后就会与主线程失去同步，我们无法确定它的结束，如果结束之后需要处理一些事情，比如处理来自服务器的信息，我们是无法将它合并到主线程中去的。</p>
+<p>为了解决这个问题，JavaScript 中的异步操作函数往往通过回调函数来实现异步任务的结果处理。</p>
+<blockquote>
+<p>值得一提的是，js里的同步与异步的概念是与我们现实生活中的同异步恰恰相反的。</p>
+</blockquote>
+<h2 id="回调函数">回调函数</h2>
+<p>回调函数就是一个函数，它是在我们启动一个异步任务的时候就告诉它：等你完成了这个任务之后要干什么。这样一来主线程几乎不用关心异步任务的状态了，他自己会善始善终。</p>
+<p>例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">&quot;demo&quot;</span>).innerHTML=<span class="string">&quot;RUNOOB!&quot;</span>;</span><br><span class="line">&#125;, <span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+<p>这是一个延时函数，将会在3000毫秒后执行。</p>
+<h2 id="Promise">Promise</h2>
+<p>Promise 是一个 ECMAScript 6 提供的类，目的是更加优雅地书写复杂的异步任务。</p>
+<p>例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;First&quot;</span>);</span><br><span class="line">        resolve();</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;Second&quot;</span>);</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;, <span class="number">4000</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;Third&quot;</span>);</span><br><span class="line">    &#125;, <span class="number">3000</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这段代码实现了分三次输出字符串，第一次间隔 1 秒，第二次间隔 4 秒，第三次间隔 3 秒，</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Run&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//这段程序会直接输出Run</span></span><br></pre></td></tr></table></figure>
+<p>Promise 构造函数只有一个函数作为参数，叫做起始函数，起始函数有两个参数resolve 和 reject，其中调用 resolve 代表一切正常，reject 是出现异常时所调用的。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> b = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="number">0</span>) reject(<span class="string">&quot;Divide zero&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> resolve(a / b);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;a / b = &quot;</span> + value);</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;).finally(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;End&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这段程序执行结果是:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">a / b = <span class="number">0</span></span><br><span class="line">End</span><br></pre></td></tr></table></figure>
+<hr>
+<p>resolve() 中可以放置一个参数用于向下一个 then 传递一个值，then 中的函数也可以返回一个值传递给 then。但是，如果 then 中返回的是一个 Promise 对象，那么下一个 then 将相当于对这个返回的 Promise 进行操作，这一点从刚才的计时器的例子中可以看出来。</p>
+<p>reject() 参数中一般会传递一个异常给之后的 catch 函数用于处理异常。</p>
+<p>但是请注意以下两点：</p>
+<ul>
+<li>resolve 和 reject 的作用域只有起始函数，不包括 then 以及其他序列；</li>
+<li>resolve 和 reject 并不能够使起始函数停止运行，别忘了 return。</li>
+</ul>
+<h3 id="Promise-函数">Promise 函数</h3>
+<p>上述的 “计时器” 程序看上去比函数瀑布还要长，所以我们可以将它的核心部分写成一个 Promise 函数：</p>
+<p>封装promise函数：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params">delay, message</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(message);</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;, delay);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们就可以放心大胆的实现程序功能了：</p>
+<p>使用函数：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">print(<span class="number">1000</span>, <span class="string">&quot;First&quot;</span>).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> print(<span class="number">4000</span>, <span class="string">&quot;Second&quot;</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    print(<span class="number">3000</span>, <span class="string">&quot;Third&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><em>这种返回值为一个 Promise 对象的函数称作 Promise 函数，它常常用于开发基于异步操作的库。</em></p>
+<blockquote>
+<p>下面是一些常见问题及解答的收录：</p>
+<p><strong>Q: then、catch 和 finally 序列能否顺序颠倒？</strong></p>
+<p>A: 可以，效果完全一样。但不建议这样做，最好按 then-catch-finally 的顺序编写程序。</p>
+<p><strong>Q: 除了 then 块以外，其它两种块能否多次使用？</strong></p>
+<p>A: 可以，finally 与 then 一样会按顺序执行，但是 catch 块只会执行第一个，除非 catch 块里有异常。所以最好只安排一个 catch 和 finally 块。</p>
+<p><strong>Q: then 块如何中断？</strong></p>
+<p>A: then 块默认会向下顺序执行，return 是不能中断的，可以通过 throw 来跳转至 catch 实现中断。</p>
+<p><strong>Q: 什么时候适合用 Promise 而不是传统回调函数？</strong></p>
+<p>A: 当需要多次顺序执行异步操作的时候，例如，如果想通过异步方法先后检测用户名和密码，需要先异步检测用户名，然后再异步检测密码的情况下就很适合 Promise。</p>
+<p><strong>Q: Promise 是一种将异步转换为同步的方法吗？</strong></p>
+<p>A: 完全不是。Promise 只不过是一种更良好的编程风格。</p>
+<p><strong>Q: 什么时候我们需要再写一个 then 而不是在当前的 then 接着编程？</strong></p>
+<p>A: 当你又需要调用一个异步任务的时候。</p>
+</blockquote>
+<h2 id="异步函数（async-function）">异步函数（async function）</h2>
+<p>在之前的promise函数中，我们可以把接下来调用promise函数的过程变得更加简洁：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">asyncFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">await</span> print(<span class="number">1000</span>, <span class="string">&quot;First&quot;</span>);</span><br><span class="line">    <span class="keyword">await</span> print(<span class="number">4000</span>, <span class="string">&quot;Second&quot;</span>);</span><br><span class="line">    <span class="keyword">await</span> print(<span class="number">3000</span>, <span class="string">&quot;Third&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">asyncFunc();</span><br></pre></td></tr></table></figure>
+<p>异步函数 async function 中可以使用 await 指令，await 指令后必须跟着一个 Promise，异步函数会在这个 Promise 运行中暂停，直到其运行结束再继续运行。</p>
+</script></p>]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>前端入门</tag>
       </tags>
   </entry>
   <entry>
