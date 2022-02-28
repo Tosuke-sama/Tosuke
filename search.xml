@@ -43,44 +43,6 @@ $$</p>
       </tags>
   </entry>
   <entry>
-    <title>4位快速加法器的设计</title>
-    <url>/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/</url>
-    <content><![CDATA[<h2 id="4位快速加法器的设计">4位快速加法器的设计</h2>
-<h3 id="实验目的：">实验目的：</h3>
-<p>掌握快速加法器中先行进位的原理，能利用相关知识设计4位先行进位电路，并利用设计的4位先行进位电路构造4位快速加法器，能分析对应电路的时间延迟。</p>
-<h3 id="实验结果：">实验结果：</h3>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8711.png" alt></p>
-<h3 id="实验结果分析：">实验结果分析：</h3>
-<p>因为我们已经完成了的4位先行进位，（什么？你没什么印象？<a href="https://tosuke.gitee.io/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/">点我马上传送</a>现在我们可以来来实现4位快速加法器，没错，其实4位快速加法器就是根据我们第三个实验的原理而来，实验三所写的4位先行进位现在在4位快速加法器里是重要的中心电路。</p>
-<p>第一步先准备一下我们需要的输入输出：</p>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8712.png" alt></p>
-<p>然后对应好我们之前的4位先行进位的电路封装：</p>
-<img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/图片13.png" style="zoom:80%;">
-<img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/图片14.png" style="zoom:80%;">
-<p>确认好我们的电路封装后，那我们先来输入我们的P1、P2等Pi输入，因为</p>
-<pre><code>                          **Pi=ai⊕bi  Gi=ai*bi**
-</code></pre>
-<p>所以我们将xi、yi连上异或门连上电路封装的pi输入，将xi、yi连上与门连上电路封装的gi输入，最后不要忘了连上C0的输入：</p>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8715.png" alt></p>
-<p>那我们输入就算完成了，现在来看看电路封装的输出部分，我们电路的电路的输出分别是Ci和p*、g*成组先进函数，又因为我们推出的运算公式中：</p>
-<p>​														Si=Pi⊕Ci</p>
-<p>所以我们需要将封装电路输出的Ci与Pi连上异或门再输出给Si，由于在上一步已经制造了Pi，所以连接如图：</p>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8716.png" alt></p>
-<p>最后连接上代表最高位进位的C4与p*、g*成组先进函数，电路图就链接好了。</p>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8717.png" alt></p>
-<blockquote>
-<p>有问题请通过旁边的对话窗口联系京介喔。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>硬件设计</category>
-      </categories>
-      <tags>
-        <tag>logisim</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CSS入门小识</title>
     <url>/2022/01/18/CSS%E5%85%A5%E9%97%A8%E5%B0%8F%E8%AF%86/</url>
     <content><![CDATA[<blockquote>
@@ -150,128 +112,162 @@ square正方形</p>
       </tags>
   </entry>
   <entry>
-    <title>JavaSE的部分要点</title>
-    <url>/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/</url>
-    <content><![CDATA[<h1>scanner</h1>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">scanner.hasnextline()  <span class="comment">//判断是否还有输入</span></span><br></pre></td></tr></table></figure>
-<p>next（）与nextLine（）的区别；</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208161159615.png" alt="image-20211208161159615"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">sacanner.nextLine(); <span class="comment">//可以接受空白，以回车为结束。</span></span><br><span class="line">scanner.close();   <span class="comment">//关闭scanner</span></span><br></pre></td></tr></table></figure>
-<h1>增强for循环</h1>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x:数组名)&#123;</span><br><span class="line">  system.out.println(x);</span><br><span class="line">  <span class="comment">//遍历数组</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1>给main函数传递参数</h1>
-<p>找到包的路径下，在命令行中进行编译，运行。</p>
-<h1>可变参数</h1>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208164227825.png" alt="image-20211208164227825"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span>... i)</span></span>&#123;</span><br><span class="line"> system.out.println(i[]);</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">//此时i为可变参数，可输入多个值,i也就可能成为一个数组。</span></span><br></pre></td></tr></table></figure>
-<h1>递归</h1>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208164910624.png" alt="image-20211208164910624"></p>
-<h1>继承和多态</h1>
-<p>静态方法是类的方法，非静态的方法是对象的方法。</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208211748858.png" alt="image-20211208211748858"></p>
-<p>我们的person类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我开动了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>student类继承person类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">student</span> <span class="keyword">extends</span> <span class="title">person</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;学生的事怎么能叫吃呢？&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">learn</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我要学习了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>text类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">texi1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        student  s1=<span class="keyword">new</span> student();</span><br><span class="line">        person s2=<span class="keyword">new</span> student();</span><br><span class="line">s1.eat();</span><br><span class="line">s2.eat();</span><br><span class="line">s1.learn();</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208215628894.png" alt="image-20211208215628894"></p>
-<h2 id="多态（只针对方法）：">多态（只针对方法）：</h2>
-<p>同一方法可以根据发送对象的不同采取多种不同的行为方式，一个对象的实际类型是知道的，但指向对象的引用类型有很多，比如父类的引用指向了子类的对象。</p>
-<p>执行方法先看类里面的静态方法（静态方法属于类的，不属于对象），再看对象实际类型对应的方法。</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208214431807.png" alt="image-20211208214431807"></p>
-<h1>instanceof与类型转换</h1>
-<p>instanceof会判断两个类的继承关系，兄弟关系则会报错。</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209175621741.png" alt="image-20211209175621741"></p>
-<p><em>底类转高类不需要强制转换。</em></p>
-<p><em>高类转底类需要进行强制转换</em></p>
-<p>子类转换为父类可能会丢失一些方法（子类te’you）。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Object s1 = <span class="keyword">new</span> student(); </span><br><span class="line"><span class="comment">//底类转高类不需要强制转换</span></span><br><span class="line">person s2 = (student) s1;          <span class="comment">//高类转底类需要进行强制转换</span></span><br><span class="line">s2.eat();</span><br><span class="line">student s3 = (student) s2;</span><br><span class="line">s3.eat();</span><br><span class="line">s3.learn();</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209182350137.png" alt="image-20211209182350137"></p>
+    <title>4位快速加法器的设计</title>
+    <url>/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h2 id="4位快速加法器的设计">4位快速加法器的设计</h2>
+<h3 id="实验目的：">实验目的：</h3>
+<p>掌握快速加法器中先行进位的原理，能利用相关知识设计4位先行进位电路，并利用设计的4位先行进位电路构造4位快速加法器，能分析对应电路的时间延迟。</p>
+<h3 id="实验结果：">实验结果：</h3>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8711.png" alt></p>
+<h3 id="实验结果分析：">实验结果分析：</h3>
+<p>因为我们已经完成了的4位先行进位，（什么？你没什么印象？<a href="https://tosuke.gitee.io/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/">点我马上传送</a>现在我们可以来来实现4位快速加法器，没错，其实4位快速加法器就是根据我们第三个实验的原理而来，实验三所写的4位先行进位现在在4位快速加法器里是重要的中心电路。</p>
+<p>第一步先准备一下我们需要的输入输出：</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8712.png" alt></p>
+<p>然后对应好我们之前的4位先行进位的电路封装：</p>
+<img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/图片13.png" style="zoom:80%;">
+<img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/图片14.png" style="zoom:80%;">
+<p>确认好我们的电路封装后，那我们先来输入我们的P1、P2等Pi输入，因为</p>
+<pre><code>                          **Pi=ai⊕bi  Gi=ai*bi**
+</code></pre>
+<p>所以我们将xi、yi连上异或门连上电路封装的pi输入，将xi、yi连上与门连上电路封装的gi输入，最后不要忘了连上C0的输入：</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8715.png" alt></p>
+<p>那我们输入就算完成了，现在来看看电路封装的输出部分，我们电路的电路的输出分别是Ci和p*、g*成组先进函数，又因为我们推出的运算公式中：</p>
+<p>​														Si=Pi⊕Ci</p>
+<p>所以我们需要将封装电路输出的Ci与Pi连上异或门再输出给Si，由于在上一步已经制造了Pi，所以连接如图：</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8716.png" alt></p>
+<p>最后连接上代表最高位进位的C4与p*、g*成组先进函数，电路图就链接好了。</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8717.png" alt></p>
 <blockquote>
-<p>这里插入一个我突然看到的，对于对象和实例区别的一个例子：</p>
-<p>父母口中的女朋友（对象），怀里搂着的她（实例）。</p>
-<p>（精辟无敌）</p>
+<p>有问题请通过旁边的对话窗口联系京介喔。</p>
 </blockquote>
-<h1>抽象类与接口</h1>
-<h2 id="抽象类">抽象类</h2>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209182856546.png" alt="image-20211209182856546"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>硬件设计</category>
+      </categories>
+      <tags>
+        <tag>logisim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ES6,Javascript下一代版本答案</title>
+    <url>/2022/02/09/ES6-Javascript%E4%B8%8B%E4%B8%80%E4%BB%A3%E7%89%88%E6%9C%AC%E7%AD%94%E6%A1%88/</url>
+    <content><![CDATA[<h1>ES6简介</h1>
+<p>ES6， 全称 ECMAScript 6.0 ，是 JavaScript 的下一个版本标准，2015.06 发版。</p>
+<p>ES6 主要是为了解决 ES5 的先天不足，比如 JavaScript 里并没有类的概念，但是目前浏览器的 JavaScript 是 ES5 版本，大多数高版本的浏览器也支持 ES6，不过只实现了 ES6 的部分特性和功能。</p>
 <blockquote>
-<p>抽象类：给予类约束，让其他人帮我们实现。继承了抽象类的类必须重写抽象类所有的抽象方法（除非自己也是抽象类）。我们一般把他们叫做资本家与被压榨的苦力。</p>
+<p>实际上JavaScript现行最佳的语法规则就是ES6，几乎所有浏览器都支持ES6（除了已经被废弃的IE浏览器）。</p>
 </blockquote>
-<p>生成一个抽象类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> 资本家 </span>&#123;</span><br><span class="line">    <span class="comment">//来帮我写个方法,我只给需求，我就不写了</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">ganfan</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>以及一个苦力：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 被压榨的苦力 <span class="keyword">extends</span> 资本家 </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ganfan</span><span class="params">()</span> </span>&#123;</span><br><span class="line">System.out.println(<span class="string">&quot;我为老板冲锋陷阵！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        被压榨的苦力 苦力<span class="number">1</span> = <span class="keyword">new</span> 被压榨的苦力();</span><br><span class="line">        苦力<span class="number">1.</span>ganfan();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209184432977.png" alt="image-20211209184432977"></p>
-<h2 id="接口">接口</h2>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209184503107.png" alt="image-20211209184503107"></p>
-<p>接口全是抽象方法还有静态常量，只有由别人实现。即接口全是要求，资本家自愧不如。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">service</span> </span>&#123;</span><br><span class="line">    <span class="comment">//所有对象皆抽象</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">(<span class="keyword">int</span> speed)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">get</span> </span>&#123;</span><br><span class="line">   <span class="keyword">int</span> age=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fight</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lost</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>一个类实现两个接口：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">serviceimpl</span> <span class="keyword">implements</span> <span class="title">service</span>,<span class="title">get</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(<span class="keyword">int</span> speed)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fight</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lost</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>利用接口实现多继承,接口不能被实例化~接口中没有构造方法。</p>
-<h1>内部类</h1>
-<h2 id="成员内部类">成员内部类</h2>
-<p>定义一个内部类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是外面的&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">in</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是里面的&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>定义一个内部对象：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">run</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        text t1 = <span class="keyword">new</span> text();</span><br><span class="line">        text.in in1 = t1.<span class="function">new <span class="title">in</span><span class="params">()</span></span>;</span><br><span class="line">        t1.out();</span><br><span class="line">        in1.out();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果：</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209190853396.png" alt="image-20211209190853396"></p>
-<p><strong>内部类可以操纵外部类的私有属性，这是它的特点（毕竟是亲生的）。</strong></p>
-<h2 id="静态内部类">静态内部类</h2>
-<p>也就是定义内部类时加上static，需要时注意的是，如果内部类被静态化，那么这个静态内部类也许就不能访问外部类的私有属性了（静态内部类相当于预加载），除非该私有属性也是静态的。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是外面的&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">in</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是里面的&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="局部内部类">局部内部类</h2>
-<p>在方法里定义的类（类如局部变量）。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">in</span></span>&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">            </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这是里面的&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是外面的&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="匿名内部类">匿名内部类</h2>
-<p>new出来直接用，没有名字初始类，不用将实例保存到类。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">run</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> id;</span><br><span class="line">        id=<span class="keyword">new</span> Scanner().nextInt();</span><br><span class="line">        <span class="comment">//没有创建scanner类.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1>异常机制</h1>
-<h2 id="异常">异常</h2>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209193513675.png" alt="image-20211209193513675"></p>
-<p><strong>异常也是一种对象</strong></p>
-<p>当遇到异常或者是错误时，Java会抛出异常对象，可以对其进行捕获处理（尤其是异常）。</p>
-<h2 id="异常处理">异常处理</h2>
-<h3 id="五个关键字">五个关键字</h3>
-<p>try:尝试捕获异常的监控区。</p>
-<p>catch：捕获异常（括号里为想要捕获的异常类型）。</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211210195637949.png" alt="image-20211210195637949"></p>
-<p>finally：无论执不执行最后都要走的（一般用于善后工作）。</p>
-<p>throw：主动抛出异常。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> ArithmeticException();</span><br></pre></td></tr></table></figure>
-<p>throws：方法调用时抛出，</p>
-<p>写个报错程序：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> b=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(b/a);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(ArithmeticException e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;有问题&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">finally</span> &#123;<span class="comment">//善后处理</span></span><br><span class="line">            System.out.println(<span class="string">&quot;程序结束&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="ECMAScript-的背景">ECMAScript 的背景</h2>
+<p>JavaScript 是大家所了解的语言名称，但是这个语言名称是商标（ Oracle 公司注册的商标）。因此，JavaScript 的正式名称是 ECMAScript 。1996年11月，JavaScript 的创造者网景公司将 JS 提交给国际化标准组织 ECMA（European computer manufactures association，欧洲计算机制造联合会），希望这种语言能够成为国际标准，随后 ECMA 发布了规定浏览器脚本语言的标准，即 ECMAScript。这也有利于这门语言的开放和中立。</p>
+<h1>webpack</h1>
+<p>这是一款JavaScript应用程序的打包器，会对JavaScript程序进行分模块的打包，这里暂时不深入探讨。</p>
+<h1>let 与 const</h1>
+<p>ES6 新增加了两个重要的 JavaScript 关键字: <strong>let</strong> 和 <strong>const</strong>。</p>
+<h2 id="let">let</h2>
+<h3 id="只代码块内有效">只代码块内有效</h3>
+<p>let 声明的变量只在 let 命令所在的代码块内有效，即只在let所在的大括号内有效。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">0</span>;<span class="comment">//仅在大括号内有效。</span></span><br><span class="line">  a   <span class="comment">// 0</span></span><br><span class="line">&#125;</span><br><span class="line">a   <span class="comment">// 报错 ReferenceError: a is not defined</span></span><br></pre></td></tr></table></figure>
+<p>let 是在代码块内有效，而我们以前常用的var 是在全局范围内有效。</p>
+<h3 id="不能重复声明"><strong>不能重复声明</strong></h3>
+<p>let 只能声明一次，而var 可以声明多次</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> a = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">4</span>;</span><br><span class="line">a  <span class="comment">// Identifier &#x27;a&#x27; has already been declared</span></span><br><span class="line">b  <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+<p>for 循环计数器很适合用 let</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> 循环计数器很适合用 <span class="keyword">let</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出十个 10</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="number">10</span>; j++) &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(j);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出 0123456789</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>ctrl+alt+t可以快速构造代码块框架，包括try|catch语句。</p>
+<p>其实以上代码还牵扯到关于对“任务队列”的理解，用var定义的i为什么会输出十个10？是因为每一次for循环的时候，setTimeout都执行一次， 但是里面的函数没有被执行，而是被放到了任务队列里面，等待执行， for循环了4次，就放了4次，当主线程执行完成后，才进入任务队列里面执行——京介</p>
 </blockquote>
-<p>输出：</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211210201559270.png" alt="image-20211210201559270"></p>
-<h2 id="自定义异常">自定义异常</h2>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211210202529797.png" alt="image-20211210202529797"></p>
-<p>比如数字大于10，我们设计的异常：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Myexception</span> <span class="keyword">extends</span> <span class="title">Exception</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> detali;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Myexception</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.detali=a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Myexception&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;detali=&quot;</span> + detali +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试一下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            test(<span class="number">11</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Myexception e) &#123;</span><br><span class="line">        System.out.println(e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span>  <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a)</span> <span class="keyword">throws</span> Myexception </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(a&gt;<span class="number">10</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Myexception(a);</span><br><span class="line">        System.out.println(<span class="string">&quot;正常&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211210203653004.png" alt="image-20211210203653004"></p>
-<h1>结束</h1>
-<p>JavaSE大体部分就到此结束！</p>
+<h3 id="不存在变量提升">不存在变量提升</h3>
+<p>即let只能先定义声明才能使用，而var可以使用变量后再声明（变量提升）。</p>
+<h2 id="const-命令">const 命令</h2>
+<p>const命令大家应该很熟悉，类似于c语言的default，const 声明一个只读变量，声明之后不允许改变。意味着，一旦声明必须初始化，否则会报错。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> PI = <span class="string">&quot;3.1415926&quot;</span>;<span class="comment">//正确</span></span><br><span class="line"><span class="keyword">const</span> age;<span class="comment">//错误</span></span><br></pre></td></tr></table></figure>
+<p>ES6 明确规定，代码块内如果存在 let 或者 const，代码块会对这些命令声明的变量从块的开始就形成一个封闭作用域。代码块内，在声明变量 PI 之前使用它会报错。</p>
+<h3 id="注意要点">注意要点</h3>
+<p>const 如何做到变量在声明初始化之后不允许改变的？其实 const 其实保证的不是变量的值不变，而是保证变量指向的内存地址所保存的数据不允许改动。此时，你可能已经想到，简单类型和复合类型保存值的方式是不同的。是的，对于简单类型（数值 number、字符串 string 、布尔值 boolean）,值就保存在变量指向的那个内存地址，因此 const 声明的简单类型变量等同于常量。而复杂类型（对象 object，数组 array，函数 function），变量指向的内存地址其实是保存了一个指向实际数据的指针，所以 const 只能保证指针是固定的，至于指针指向的数据结构变不变就无法控制了，所以使用 const 声明复杂类型对象时要慎重。</p>
+<h1>解构赋值</h1>
+<h2 id="概述">概述</h2>
+<p>解构赋值是对赋值运算符的扩展。</p>
+<p>他是一种针对数组或者对象进行模式匹配，然后对其中的变量进行赋值。</p>
+<p>在代码书写上简洁且易读，语义更加清晰明了；也方便了复杂对象中数据字段获取。</p>
+<p>举例：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [a, b, c] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="comment">// a = 1</span></span><br><span class="line"><span class="comment">// b = 2</span></span><br><span class="line"><span class="comment">// c = 3</span></span><br></pre></td></tr></table></figure>
+<p>是不是一目了然呢？</p>
+<p>通俗地说，结构赋值就类似于一种快捷批处理命令，可以f方便我们的代码书写。</p>
+<hr>
+<h2 id="解构模型">解构模型</h2>
+<p>在解构中，有下面两部分参与：</p>
+<p>解构的源，解构赋值表达式的右边部分。解构的目标，解构赋值表达式的左边部分。</p>
+<p>数组的解构有以下特点模型：</p>
+<p><strong>可嵌套</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [a, [[b], c]] = [<span class="number">1</span>, [[<span class="number">2</span>], <span class="number">3</span>]]; </span><br><span class="line"><span class="comment">// a = 1 </span></span><br><span class="line"><span class="comment">// b = 2 </span></span><br><span class="line"><span class="comment">// c = 3</span></span><br></pre></td></tr></table></figure>
+<p><strong>可忽略</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [a, , b] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]; </span><br><span class="line"><span class="comment">// a = 1</span></span><br><span class="line"><span class="comment">// b = 3</span></span><br></pre></td></tr></table></figure>
+<p><strong>不完全解构</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [a = <span class="number">1</span>, b] = [];</span><br><span class="line"><span class="comment">// a = 1, b = undefined</span></span><br></pre></td></tr></table></figure>
+<p><strong>剩余运算符</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [a, ...b] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]; </span><br><span class="line"><span class="comment">//a = 1 </span></span><br><span class="line"><span class="comment">//b = [2, 3]</span></span><br></pre></td></tr></table></figure>
+<p><strong>字符串等</strong></p>
+<p>在数组的解构中，解构的目标若为可遍历对象，皆可进行解构赋值。可遍历对象即实现 Iterator 接口的数据。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [a, b, c, d, e] = <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line"><span class="comment">// a = &#x27;h&#x27; </span></span><br><span class="line"><span class="comment">// b = &#x27;e&#x27; </span></span><br><span class="line"><span class="comment">// c = &#x27;l&#x27;</span></span><br><span class="line"><span class="comment">// d = &#x27;l&#x27; </span></span><br><span class="line"><span class="comment">// e = &#x27;o&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><strong>解构默认值</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [a = <span class="number">2</span>] = [<span class="literal">undefined</span>]; <span class="comment">// a = 2</span></span><br></pre></td></tr></table></figure>
+<p>当解构模式有匹配结果，且匹配结果是 undefined 时，会触发默认值作为返回结果。</p>
+<ul>
+<li>
+<pre><code class="language-js">let [a = 3, b = a] = [];     
+// a = 3, b = 3 let [a = 3, b = a] = [1];
+// a = 1, b = 1 let [a = 3, b = a] = [1, 2]; 
+// a = 1, b = 2
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">1、a 与 b 匹配结果为 undefined ，触发默认值：**a = 3; b = a =3**</span><br><span class="line"></span><br><span class="line">2、a 正常解构赋值，匹配结果：a = 1，b 匹配结果 undefined ，触发默认值：**b = a =1**</span><br><span class="line"></span><br><span class="line">3、a 与 b 正常解构赋值，匹配结果：**a = 1，b = 2**</span><br><span class="line"></span><br><span class="line">## 对象模型的解构（Object）</span><br><span class="line"></span><br><span class="line">对象模型也有相应的解构特点模型，这里仅供了解。</span><br><span class="line"></span><br><span class="line">**基本**</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">let &#123; foo, bar &#125; = &#123; foo: &#x27;aaa&#x27;, bar: &#x27;bbb&#x27; &#125;;</span><br><span class="line">// foo = &#x27;aaa&#x27;</span><br><span class="line">// bar = &#x27;bbb&#x27;</span><br><span class="line"> </span><br><span class="line">let &#123; baz : foo &#125; = &#123; baz : &#x27;ddd&#x27; &#125;;</span><br><span class="line">// foo = &#x27;ddd&#x27;</span><br></pre></td></tr></table></figure>
+
+**可嵌套可忽略**
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">p</span>: [<span class="string">&#x27;hello&#x27;</span>, &#123;<span class="attr">y</span>: <span class="string">&#x27;world&#x27;</span>&#125;] &#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">p</span>: [x, &#123; y &#125;] &#125; = obj; </span><br><span class="line"><span class="comment">// x = &#x27;hello&#x27; </span></span><br><span class="line"><span class="comment">// y = &#x27;world&#x27; let obj = &#123;p: [&#x27;hello&#x27;, &#123;y: &#x27;world&#x27;&#125;] &#125;; </span></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">p</span>: [x, &#123;  &#125;] &#125; = obj; </span><br><span class="line"><span class="comment">// x = &#x27;hello&#x27;</span></span><br></pre></td></tr></table></figure>
+
+**不完全解构**
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">p</span>: [&#123;<span class="attr">y</span>: <span class="string">&#x27;world&#x27;</span>&#125;] &#125;; </span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">p</span>: [&#123; y &#125;, x ] &#125; = obj; </span><br><span class="line"><span class="comment">// x = undefined </span></span><br><span class="line"><span class="comment">// y = &#x27;world&#x27;</span></span><br></pre></td></tr></table></figure>
+
+**剩余运算符**
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;a, b, ...rest&#125; = &#123;<span class="attr">a</span>: <span class="number">10</span>, <span class="attr">b</span>: <span class="number">20</span>, <span class="attr">c</span>: <span class="number">30</span>, <span class="attr">d</span>: <span class="number">40</span>&#125;; </span><br><span class="line"><span class="comment">// a = 10 </span></span><br><span class="line"><span class="comment">// b = 20 </span></span><br><span class="line"><span class="comment">// rest = &#123;c: 30, d: 40&#125;</span></span><br></pre></td></tr></table></figure>
+
+**解构默认值**
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;a = <span class="number">10</span>, b = <span class="number">5</span>&#125; = &#123;<span class="attr">a</span>: <span class="number">3</span>&#125;; </span><br><span class="line"><span class="comment">// a = 3; b = 5; </span></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">a</span>: aa = <span class="number">10</span>, <span class="attr">b</span>: bb = <span class="number">5</span>&#125; = &#123;<span class="attr">a</span>: <span class="number">3</span>&#125;;</span><br><span class="line"><span class="comment">// aa = 3; bb = 5;</span></span><br></pre></td></tr></table></figure>
+
+# Symbol
+
+## 概述
+
+ES6 引入了一种新的原始数据类型 Symbol ，表示独一无二的值，**最大的用法是用来定义对象的唯一属性名。**
+
+ES6 数据类型除了 Number 、 String 、 Boolean 、 Object、 null 和 undefined ，还新增了 Symbol 。
+
+------
+
+## 基本用法
+
+Symbol 函数栈不能用 new 命令，因为 Symbol 是原始数据类型，不是对象。可以接受一个字符串作为参数，为新创建的 Symbol 提供描述，用来显示在控制台或者作为字符串的时候使用，便于区分。
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> sy = <span class="built_in">Symbol</span>(<span class="string">&quot;KK&quot;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(sy);   <span class="comment">// Symbol(KK)</span></span><br><span class="line"><span class="keyword">typeof</span>(sy);        <span class="comment">// &quot;symbol&quot;</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// 相同参数 Symbol() 返回的值不相等</span></span><br><span class="line"><span class="keyword">let</span> sy1 = <span class="built_in">Symbol</span>(<span class="string">&quot;kk&quot;</span>); </span><br><span class="line">sy === sy1;       <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+## 使用场景
+
+第一是作为属性名，由于每一个 Symbol 的值都是不相等的，所以 Symbol 作为对象的属性名，可以保证属性不重名。
+
+第二是定义常量，Symbol 的值是唯一的，所以不会出现相同值得常量。
+</code></pre>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>学习</category>
         <category>软件设计</category>
       </categories>
       <tags>
-        <tag>Java</tag>
+        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
@@ -531,6 +527,131 @@ W3C标准包括<br>
       </categories>
       <tags>
         <tag>前端入门</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaSE的部分要点</title>
+    <url>/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/</url>
+    <content><![CDATA[<h1>scanner</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">scanner.hasnextline()  <span class="comment">//判断是否还有输入</span></span><br></pre></td></tr></table></figure>
+<p>next（）与nextLine（）的区别；</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208161159615.png" alt="image-20211208161159615"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">sacanner.nextLine(); <span class="comment">//可以接受空白，以回车为结束。</span></span><br><span class="line">scanner.close();   <span class="comment">//关闭scanner</span></span><br></pre></td></tr></table></figure>
+<h1>增强for循环</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x:数组名)&#123;</span><br><span class="line">  system.out.println(x);</span><br><span class="line">  <span class="comment">//遍历数组</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>给main函数传递参数</h1>
+<p>找到包的路径下，在命令行中进行编译，运行。</p>
+<h1>可变参数</h1>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208164227825.png" alt="image-20211208164227825"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span>... i)</span></span>&#123;</span><br><span class="line"> system.out.println(i[]);</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">//此时i为可变参数，可输入多个值,i也就可能成为一个数组。</span></span><br></pre></td></tr></table></figure>
+<h1>递归</h1>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208164910624.png" alt="image-20211208164910624"></p>
+<h1>继承和多态</h1>
+<p>静态方法是类的方法，非静态的方法是对象的方法。</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208211748858.png" alt="image-20211208211748858"></p>
+<p>我们的person类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我开动了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>student类继承person类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">student</span> <span class="keyword">extends</span> <span class="title">person</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;学生的事怎么能叫吃呢？&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">learn</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我要学习了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>text类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">texi1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        student  s1=<span class="keyword">new</span> student();</span><br><span class="line">        person s2=<span class="keyword">new</span> student();</span><br><span class="line">s1.eat();</span><br><span class="line">s2.eat();</span><br><span class="line">s1.learn();</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208215628894.png" alt="image-20211208215628894"></p>
+<h2 id="多态（只针对方法）：">多态（只针对方法）：</h2>
+<p>同一方法可以根据发送对象的不同采取多种不同的行为方式，一个对象的实际类型是知道的，但指向对象的引用类型有很多，比如父类的引用指向了子类的对象。</p>
+<p>执行方法先看类里面的静态方法（静态方法属于类的，不属于对象），再看对象实际类型对应的方法。</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208214431807.png" alt="image-20211208214431807"></p>
+<h1>instanceof与类型转换</h1>
+<p>instanceof会判断两个类的继承关系，兄弟关系则会报错。</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209175621741.png" alt="image-20211209175621741"></p>
+<p><em>底类转高类不需要强制转换。</em></p>
+<p><em>高类转底类需要进行强制转换</em></p>
+<p>子类转换为父类可能会丢失一些方法（子类te’you）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Object s1 = <span class="keyword">new</span> student(); </span><br><span class="line"><span class="comment">//底类转高类不需要强制转换</span></span><br><span class="line">person s2 = (student) s1;          <span class="comment">//高类转底类需要进行强制转换</span></span><br><span class="line">s2.eat();</span><br><span class="line">student s3 = (student) s2;</span><br><span class="line">s3.eat();</span><br><span class="line">s3.learn();</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209182350137.png" alt="image-20211209182350137"></p>
+<blockquote>
+<p>这里插入一个我突然看到的，对于对象和实例区别的一个例子：</p>
+<p>父母口中的女朋友（对象），怀里搂着的她（实例）。</p>
+<p>（精辟无敌）</p>
+</blockquote>
+<h1>抽象类与接口</h1>
+<h2 id="抽象类">抽象类</h2>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209182856546.png" alt="image-20211209182856546"></p>
+<blockquote>
+<p>抽象类：给予类约束，让其他人帮我们实现。继承了抽象类的类必须重写抽象类所有的抽象方法（除非自己也是抽象类）。我们一般把他们叫做资本家与被压榨的苦力。</p>
+</blockquote>
+<p>生成一个抽象类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> 资本家 </span>&#123;</span><br><span class="line">    <span class="comment">//来帮我写个方法,我只给需求，我就不写了</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">ganfan</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>以及一个苦力：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 被压榨的苦力 <span class="keyword">extends</span> 资本家 </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ganfan</span><span class="params">()</span> </span>&#123;</span><br><span class="line">System.out.println(<span class="string">&quot;我为老板冲锋陷阵！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        被压榨的苦力 苦力<span class="number">1</span> = <span class="keyword">new</span> 被压榨的苦力();</span><br><span class="line">        苦力<span class="number">1.</span>ganfan();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209184432977.png" alt="image-20211209184432977"></p>
+<h2 id="接口">接口</h2>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209184503107.png" alt="image-20211209184503107"></p>
+<p>接口全是抽象方法还有静态常量，只有由别人实现。即接口全是要求，资本家自愧不如。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">service</span> </span>&#123;</span><br><span class="line">    <span class="comment">//所有对象皆抽象</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">(<span class="keyword">int</span> speed)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">get</span> </span>&#123;</span><br><span class="line">   <span class="keyword">int</span> age=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fight</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lost</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一个类实现两个接口：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">serviceimpl</span> <span class="keyword">implements</span> <span class="title">service</span>,<span class="title">get</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(<span class="keyword">int</span> speed)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fight</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lost</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>利用接口实现多继承,接口不能被实例化~接口中没有构造方法。</p>
+<h1>内部类</h1>
+<h2 id="成员内部类">成员内部类</h2>
+<p>定义一个内部类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是外面的&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">in</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是里面的&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义一个内部对象：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">run</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        text t1 = <span class="keyword">new</span> text();</span><br><span class="line">        text.in in1 = t1.<span class="function">new <span class="title">in</span><span class="params">()</span></span>;</span><br><span class="line">        t1.out();</span><br><span class="line">        in1.out();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209190853396.png" alt="image-20211209190853396"></p>
+<p><strong>内部类可以操纵外部类的私有属性，这是它的特点（毕竟是亲生的）。</strong></p>
+<h2 id="静态内部类">静态内部类</h2>
+<p>也就是定义内部类时加上static，需要时注意的是，如果内部类被静态化，那么这个静态内部类也许就不能访问外部类的私有属性了（静态内部类相当于预加载），除非该私有属性也是静态的。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是外面的&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">in</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是里面的&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="局部内部类">局部内部类</h2>
+<p>在方法里定义的类（类如局部变量）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">in</span></span>&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">            </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这是里面的&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是外面的&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="匿名内部类">匿名内部类</h2>
+<p>new出来直接用，没有名字初始类，不用将实例保存到类。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">run</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> id;</span><br><span class="line">        id=<span class="keyword">new</span> Scanner().nextInt();</span><br><span class="line">        <span class="comment">//没有创建scanner类.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1>异常机制</h1>
+<h2 id="异常">异常</h2>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209193513675.png" alt="image-20211209193513675"></p>
+<p><strong>异常也是一种对象</strong></p>
+<p>当遇到异常或者是错误时，Java会抛出异常对象，可以对其进行捕获处理（尤其是异常）。</p>
+<h2 id="异常处理">异常处理</h2>
+<h3 id="五个关键字">五个关键字</h3>
+<p>try:尝试捕获异常的监控区。</p>
+<p>catch：捕获异常（括号里为想要捕获的异常类型）。</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211210195637949.png" alt="image-20211210195637949"></p>
+<p>finally：无论执不执行最后都要走的（一般用于善后工作）。</p>
+<p>throw：主动抛出异常。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> ArithmeticException();</span><br></pre></td></tr></table></figure>
+<p>throws：方法调用时抛出，</p>
+<p>写个报错程序：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> b=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(b/a);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(ArithmeticException e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;有问题&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">finally</span> &#123;<span class="comment">//善后处理</span></span><br><span class="line">            System.out.println(<span class="string">&quot;程序结束&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ctrl+alt+t可以快速构造代码块框架，包括try|catch语句。</p>
+</blockquote>
+<p>输出：</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211210201559270.png" alt="image-20211210201559270"></p>
+<h2 id="自定义异常">自定义异常</h2>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211210202529797.png" alt="image-20211210202529797"></p>
+<p>比如数字大于10，我们设计的异常：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Myexception</span> <span class="keyword">extends</span> <span class="title">Exception</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> detali;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Myexception</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.detali=a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Myexception&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;detali=&quot;</span> + detali +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试一下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            test(<span class="number">11</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Myexception e) &#123;</span><br><span class="line">        System.out.println(e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span>  <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a)</span> <span class="keyword">throws</span> Myexception </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(a&gt;<span class="number">10</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Myexception(a);</span><br><span class="line">        System.out.println(<span class="string">&quot;正常&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211210203653004.png" alt="image-20211210203653004"></p>
+<h1>结束</h1>
+<p>JavaSE大体部分就到此结束！</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -1322,6 +1443,12 @@ W3C标准包括<br>
     <content><![CDATA[<blockquote>
 <p>更新于2022.1.29</p>
 </blockquote>
+<h1>什么是Nodejs？</h1>
+<p>为了让JavaScript代码能够脱离浏览器独立进行运行，NodeJs便由此而生。JavaScript能够运行在浏览器的一大原因是浏览器内置了V8引擎，能够将JavaScript代码转换为机器语言，而NodeJs封装了v8引擎，本身由c++编写。也就可以正常运行。这样，JavaScript在电脑也可以正常运行。</p>
+<p>此次我们要使用NodeJs制作一个简单的Web服务器。</p>
+<h1>安装NodeJs</h1>
+<p>网络下载安装包进行安装，此处不再赘述。</p>
+<h1>认识https请求</h1>
 ]]></content>
       <categories>
         <category>学习</category>
