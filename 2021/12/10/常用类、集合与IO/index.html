@@ -1,0 +1,562 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Java常用类 | 京介的正牌博客</title><meta name="keywords" content="Java"><meta name="author" content="Tosuke"><meta name="copyright" content="Tosuke"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在JavaSE的基础上进阶！这就是关于常用类的故事。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java常用类">
+<meta property="og:url" content="http://tosuke.gitee.io/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/index.html">
+<meta property="og:site_name" content="京介的正牌博客">
+<meta property="og:description" content="在JavaSE的基础上进阶！这就是关于常用类的故事。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2021/12/e7a5a04aa9f776f5.jpg">
+<meta property="article:published_time" content="2021-12-10T12:45:36.000Z">
+<meta property="article:modified_time" content="2022-08-12T03:40:31.900Z">
+<meta property="article:author" content="Tosuke">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2021/12/e7a5a04aa9f776f5.jpg"><link rel="shortcut icon" href="/img/5.jpg"><link rel="canonical" href="http://tosuke.gitee.io/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?https://hm.baidu.com/hm.js?630b13955374eacfad7d551e707d4250";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="/%E4%BA%AC%E4%BB%8B" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Java常用类',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-12 11:40:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><div class="aplayer" data-id="8259771218" data-server="tencent" data-type="playlist" data-fixed="true" data-listFolded="false" data-order="random" data-preload="none"></div><link rel="stylesheet" href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css"><script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="baidu-site-verification" content="code-Z2QEOewjp2" /><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/6.png" onerror="onerror=null;src='/img/1.jpg'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">31</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接！</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我！</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s3.bmp.ovh/imgs/2021/12/e7a5a04aa9f776f5.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">京介的正牌博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接！</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我！</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Java常用类</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-12-10T12:45:36.000Z" title="发表于 2021-12-10 20:45:36">2021-12-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-12T03:40:31.900Z" title="更新于 2022-08-12 11:40:31">2022-08-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/">软件设计</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Java常用类"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>object类</h1>
+<p>java语言所有类的根类，object也就是所有类的父类（也就意味着所有类都可以使用object类的方法），位于lang包中，所以不需要导包便可使用。</p>
+<h2 id="getclass">getclass</h2>
+<p>getclass()方法是返回应引用中存储的实际对象类型（返回值为class类型）</p>
+<p>多用于判断两个对象是否是同一个类。</p>
+<h2 id="hashCode">hashCode</h2>
+<p>hashCode()方法返回的是一个int类型，是根据对象的地址或字符串或数字使用hash算法计算出的数值。</p>
+<h2 id="tostring">tostring</h2>
+<p>String tostring()   返回该对象的字符串表示。</p>
+<p>类如我们创建一个person类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">person</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用text测试一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        person p1 = <span class="keyword">new</span> person(<span class="string">&quot;瑾介&quot;</span>,<span class="number">20</span>);</span><br><span class="line">        String s=p1.toString();</span><br><span class="line">        System.out.println(p1);</span><br><span class="line">        System.out.println(s);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211124624726.png" alt="image-20211211124624726"></p>
+<p>我们发现，直接打印对象的名字，其实就是调用了tostring方法。打印的都是堆内存中的十六进制地址值。</p>
+<p>如果想直接打印对象的属性的话，我们可以重写tostring方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;person&#123;name=&quot;</span>+<span class="keyword">this</span>.name+<span class="string">&quot;,age=&quot;</span>+<span class="keyword">this</span>.age+<span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在再来打印的话：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211125454617.png" alt="image-20211211125454617"></p>
+<p>这样就实现了我们自定义的tostring输出了。</p>
+<h2 id="equals">equals</h2>
+<p>指示其他的某个对象是否与此对象”相等“。</p>
+<p>如果没有重写equals方法，那么它将会直接比较两个对象的地址值，我们依然用之前的person对象来做测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        person p1 = <span class="keyword">new</span> person(<span class="string">&quot;瑾介&quot;</span>,<span class="number">20</span>);</span><br><span class="line">        person p2 = <span class="keyword">new</span> person(<span class="string">&quot;瑾介&quot;</span>,<span class="number">20</span>);</span><br><span class="line">        System.out.println(p1.equals(p2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211130438858.png" alt="image-20211211130438858"></p>
+<p>比较两个两个对象的地址值几乎没有什么意义，那我们还是来重写一下equals海曙吧。</p>
+<p><em><strong>不过这里需要注意的是，这里隐含了一个多态的问题，即我们引入的参数obj是object类的，他无法访问到我们person类的name、age等参数，所以我们需要进行一个向下转型，也就是强制转换：</strong></em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">   person person = (person)obj;<span class="comment">//进行强制转换成我们的person类。</span></span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">this</span>.age==person.age&amp;&amp;<span class="keyword">this</span>.name==person.name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试结果：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211143201551.png" alt="image-20211211143201551"></p>
+<p>当然为了防止类型转换异常，我们一般得写一个if条件来判断我们的参数是否是person的父类，完整的重写如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> person) &#123;</span><br><span class="line">        person person = (person) obj;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.age == person.age &amp;&amp; <span class="keyword">this</span>.name == person.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;<span class="comment">//不是person类型直接false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="finalize">finalize</h2>
+<p>当对象被判定为垃圾对象是，由jvm自动调用此方法，用于标记垃圾对象，进入回收队列。因为Java由自动回收垃圾机制，故平时一般不太会使用。</p>
+<h1>String类</h1>
+<h2 id="字符串池">字符串池</h2>
+<p>字符串是常量，创建后不可以改变，字符串字面值存储在字符串池中，可以共享。</p>
+<p>字符串池是位于堆的一个区，为了便于共享而创建的，当创建字符串的时候会先到字符串池里寻找，比如说：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String name=<span class="string">&quot;jinjie&quot;</span>;<span class="comment">//&quot;jinjie&quot;常量存储在字符串池中</span></span><br><span class="line">        name=<span class="string">&quot;jingjie&quot;</span>;<span class="comment">//新的字符串“jingjie”被创建赋值给了name（“jinjie”就成了废弃物。）</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们在多加两行代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String name=<span class="string">&quot;jinjie&quot;</span>;<span class="comment">//&quot;jinjie&quot;常量存储在字符串池中</span></span><br><span class="line">        name=<span class="string">&quot;jingjie&quot;</span>;<span class="comment">//新的字符串“jingjie”被创建赋值给了name（“jinjie”就成了废弃物。）</span></span><br><span class="line">         String name2=<span class="string">&quot;jingjie&quot;</span>;</span><br><span class="line">        System.out.println(name2==name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据共享的原则，这时候创建的name2先到字符串池中寻找有没有“jingjie”，在发现有之后，就把字符串池中“jingjie”的地址也赋值给了name2，所以name2和name的地址是相等的，所以结果为：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211214144031671.png" alt="image-20211214144031671"></p>
+<p>另外，我们有两种方式来定义字符串：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String name=<span class="string">&quot;jinjie&quot;</span>;</span><br><span class="line">String name=<span class="keyword">new</span> String(<span class="string">&quot;jinjie&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>上面一种是我们常用的方法，它只创建了一个对象，但是下面一种方法我们却创造了两个对象，在堆里有一个对象，在字符串池里也有一个对象，但是真正的运行的时候只有一个对象，即堆里的对象也指向字符串池里的对象（所以比较浪费空间。</p>
+<p>所以字符串比较要用equals进行比较（String重写了equals方法）。</p>
+<h2 id="String的常用方法">String的常用方法</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">length</span><span class="params">()</span></span>;<span class="comment">//返回字符串的长度。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">char</span> <span class="title">charAt</span><span class="params">(<span class="keyword">int</span> index)</span></span>;<span class="comment">//根据下标获取字符。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(String str)</span></span>;<span class="comment">//判断当前字符串是否含有str。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">char</span>[] toCharArray();<span class="comment">//将字符串转化成数组。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(String str)</span></span>;<span class="comment">//返回str首次出现的下标，若不存在则返回-1.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> interestinglast <span class="title">IndexOf</span><span class="params">(String str)</span>:<span class="comment">//查找字符串在当前字符串中最后一次出现的下标。</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">trim</span><span class="params">()</span></span>;<span class="comment">//去掉字符串的前后空格。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toUpperCase</span><span class="params">()</span></span>;<span class="comment">//将小写转换成大写。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">endWith</span><span class="params">(String str)</span></span>;<span class="comment">//判断字符串是否即以str结尾。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">replace</span><span class="params">(<span class="keyword">char</span> oldchar,<span class="keyword">char</span> newChar)</span></span>;<span class="comment">//替换字符。</span></span><br><span class="line"><span class="keyword">public</span> String[] split(String str);<span class="comment">//根据str做拆分。</span></span><br></pre></td></tr></table></figure>
+<h2 id="可变字符串">可变字符串</h2>
+<p>StringBuilder:可变长字符串，效率快，线程不安全。</p>
+<p>StringBuffer:可变长字符串，效率慢，线程安全。</p>
+<blockquote>
+<p>现在一般使用StringBuilder.</p>
+</blockquote>
+<p>我们来看个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">   StringBuffer n = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">   n.append(<span class="string">&quot;我叫京介！&quot;</span>);<span class="comment">//1.在最后面添加字符。</span></span><br><span class="line">   n.append(<span class="string">&quot;请多指教！&quot;</span>);</span><br><span class="line">   System.out.println(n.toString());</span><br><span class="line">   System.out.println(<span class="string">&quot;-----------------------------&quot;</span>);</span><br><span class="line">   n.insert(<span class="number">0</span>,<span class="string">&quot;你好！&quot;</span>);<span class="comment">//2.在指定位置添加内容。</span></span><br><span class="line">        System.out.println(n.toString());</span><br><span class="line">        System.out.println(<span class="string">&quot;-----------------------------&quot;</span>);</span><br><span class="line">n.replace(<span class="number">0</span>,<span class="number">2</span>,<span class="string">&quot;欢迎！&quot;</span>);<span class="comment">//替换字符串。</span></span><br><span class="line">System.out.println(n.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211215192541609.png" alt="image-20211215192541609"></p>
+<h1>BigDecimal类</h1>
+<p>float与double类型储存的数据都是近似值（比如1.0就是0.999999……），原因是因为它们采取的是二进制存储。需要精度存储时要使用BigDecimal类来精确计算浮点数。</p>
+<p>我们举例来说：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">double</span> a1=<span class="number">1.0</span>;</span><br><span class="line">        <span class="keyword">double</span> a2=<span class="number">0.9</span>;</span><br><span class="line">        System.out.println(a1-a2);</span><br><span class="line">        <span class="comment">//储存近似值。</span></span><br><span class="line">        System.out.println(<span class="string">&quot;=====================&quot;</span>);</span><br><span class="line">        BigDecimal b1=<span class="keyword">new</span> BigDecimal(<span class="string">&quot;1.0&quot;</span>);</span><br><span class="line">        BigDecimal b2=<span class="keyword">new</span> BigDecimal(<span class="string">&quot;0.9&quot;</span>);</span><br><span class="line">        BigDecimal r=b1.subtract(b2);<span class="comment">//减法</span></span><br><span class="line">        System.out.println(r);</span><br><span class="line">        System.out.println(<span class="string">&quot;=====================&quot;</span>);</span><br><span class="line">        BigDecimal r1=b1.add(b2);<span class="comment">//加法</span></span><br><span class="line">        System.out.println(r1);</span><br><span class="line">        System.out.println(<span class="string">&quot;=====================&quot;</span>);</span><br><span class="line">        BigDecimal r2=b1.multiply(b2);<span class="comment">//乘法</span></span><br><span class="line">        System.out.println(r2);</span><br><span class="line">        System.out.println(<span class="string">&quot;=====================&quot;</span>);</span><br><span class="line">        BigDecimal r3=b1.divide(b2,<span class="number">2</span>,BigDecimal.ROUND_HALF_UP);<span class="comment">//除法</span></span><br><span class="line">        System.out.println(r3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用BigDecimal进行运算时是调用BigDecimal的方法，值得注意的是，在使用BigDecimal的除法方法的时候，如果出现除不尽的现象的话，程序将会报错，所以这时3要使用到divide除法方法的重载方法，在参数的后面添加保留的小数位数以及保留的方法</p>
+<blockquote>
+<p>保留方法的参数是Bigdecimal的几个常量，BigDecimal.ROUND_HALF_UP的意义即为四舍五入。</p>
+</blockquote>
+<p>结果是：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211215195425390.png" alt="image-20211215195425390"></p>
+<h1>System类</h1>
+<p>系统类是静态的，直接使用就可以，下面我列举几个方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>static void arraycopy(……)</td>
+<td>复制数组</td>
+</tr>
+<tr>
+<td>static void currentTimeMillis();</td>
+<td>获取系统当前时间（返回毫秒值）</td>
+</tr>
+<tr>
+<td>static void gc();</td>
+<td>建议JVM回收垃圾</td>
+</tr>
+<tr>
+<td>static void exit(int status);</td>
+<td>退出JVM</td>
+</tr>
+</tbody>
+</table>
+<h1>++包装类</h1>
+<p>对于基本数据类型所拓展的包装类型，这样基本数据类型就可以实现更多的方法和功能。</p>
+<blockquote>
+<p>实际上，更深层的原因是Java不在支持指针操作，因此创造出了内部类的功能使得数据能在堆和栈之间进行转换。</p>
+</blockquote>
+<p>其包装类对应如下：</p>
+<table>
+<thead>
+<tr>
+<th>基本数据类型</th>
+<th>包装类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>byte</td>
+<td>Byte</td>
+</tr>
+<tr>
+<td>short</td>
+<td>Short</td>
+</tr>
+<tr>
+<td>int</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>char</td>
+<td>Character</td>
+</tr>
+</tbody>
+</table>
+<p>每一种包装类型都由更多的方法与属性。</p>
+<h2 id="装箱、拆箱">装箱、拆箱</h2>
+<p>装箱：把栈里面的东西装到堆里面去（基本类型转换为引用类型）。</p>
+<p><em>一般通过引用类型的构造方法实现，比如：</em><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211212144744804.png" alt="image-20211212144744804"></p>
+<p>拆箱：把堆里面的东西装到栈里面去（引用类型转换为基本类型）。</p>
+<p><em>一般通过number类（包装类型的父类）的方法进行拆箱</em>*，比如：*</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211212172036602.png" alt="image-20211212172036602"></p>
+<blockquote>
+<p>JDK1.5之后，java开始提供自动装箱和拆箱……意思是直接用赋值符号就行了。但其背后的实质是一样的，只是Java在背后帮我们自动操作了。</p>
+</blockquote>
+<h2 id="类型转换">类型转换</h2>
+<h3 id="1、基本类型与字符串类型转换">1、基本类型与字符串类型转换</h3>
+<h4 id="1-1使用-号">1.1使用+号</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ni=<span class="number">10</span>;</span><br><span class="line">String s1=n1+<span class="string">&quot;&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="1-2使用tostring方法">1.2使用tostring方法</h4>
+<p>使用Integer中的tostring()方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s2=Integer.toString(ni);</span><br><span class="line">String s2=Integer.toString(ni，<span class="number">16</span>);<span class="comment">//此方法可以重载，按十六进制进行转换。 </span></span><br></pre></td></tr></table></figure>
+<h3 id="2、字符串类型与基本类型转换">2、字符串类型与基本类型转换</h3>
+<h4 id="2-1使用Integer的parse方法">2.1使用Integer的parse方法</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String str=<span class="string">&quot;150&quot;</span>;</span><br><span class="line"><span class="keyword">int</span> n=Integer.parse(str);<span class="comment">//str里只能有数字。</span></span><br></pre></td></tr></table></figure>
+<h3 id="3、Boolean字符串转换为基本类型">3、Boolean字符串转换为基本类型</h3>
+<p>依旧使用parse进行格式化：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String str2=<span class="string">&quot;true&quot;</span>;</span><br><span class="line"><span class="keyword">boolean</span> b1=Boolean.parseBoolean(str2);<span class="comment">//只用true能被格式化为true,其它字符均为false。</span></span><br></pre></td></tr></table></figure>
+<h2 id="整数缓冲区">整数缓冲区</h2>
+<p>Java预先创建了256的常用的整数包装对象，在实际的应用当中，对已经创建的对象进行复用。</p>
+<p>我们来举个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Integer integer1 = <span class="keyword">new</span> Integer(<span class="number">100</span>);</span><br><span class="line">        Integer integer2 = <span class="keyword">new</span> Integer(<span class="number">100</span>);</span><br><span class="line">        System.out.println(integer1==integer2);</span><br><span class="line">        System.out.println(<span class="string">&quot;=================&quot;</span>);</span><br><span class="line">        Integer integer3=<span class="number">100</span>;<span class="comment">//自动装箱</span></span><br><span class="line">        Integer integer4=<span class="number">100</span>;</span><br><span class="line">        System.out.println(integer4==integer3);</span><br><span class="line">      	Integer integer5=<span class="number">200</span>;</span><br><span class="line">        Integer integer6=<span class="number">200</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>猜猜看会输出什么？</p>
+<p>表面上都是生成代表int值100的Integer类型，但结果是：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211212180010477.png" alt="image-20211212180010477"></p>
+<p>为什么会出现这种情况呢？这是因为integer1与integer2是new出来的，属于不同的地址，“==”比较的是地址值，第一个当然不同。</p>
+<p>第二个为自动装箱，调用的都是Integer的valueof方法。那我们来看一下valueof方法：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211212180440932.png" alt="image-20211212180440932"></p>
+<p>是不是发现只要参数是在一定范围里的int，那么就返回了一个cache数组里的元素？</p>
+<p>我们再来具体的看一看具体的数和cache数组：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211212180855001.png" alt="静态中间那坨可以忽略"></p>
+<p><em>静态中间那坨可以忽略，为的是最后的high=h</em></p>
+<p>这，就是我们的整数缓冲区，一个名为cache的数组，最高high为127，low为-128，所以我们的integer3与integer4是同一个，已经被实例好的对象，所以就是相等的咯。</p>
+<p>当然，相信大家都发现了，integer5与integer6的int数字是大于了127的，所以执行相应语句，也就是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br></pre></td></tr></table></figure>
+<p>那这自然就跟1、2的结果是一样的了。</p>
+<h1>日期时间类</h1>
+<h2 id="Date类">Date类</h2>
+<p>类Date表示特定的瞬间，精确到毫秒。</p>
+<blockquote>
+<p>毫秒，即为千分之一秒。</p>
+</blockquote>
+<p>毫秒值一般用于计算日期的间隔，即将日期都转换成毫秒值进行加减，比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.currentTimeMillis()<span class="comment">//可以输出当前系统时间距离时间原点1970年1月1日凌晨经历了多少毫秒</span></span><br></pre></td></tr></table></figure>
+<h3 id="无参构造">无参构造</h3>
+<p>直接实例化一个无参构造的Date类，打印出来将是我们系统的标准时间。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">date</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">			text();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">text</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Date date = <span class="keyword">new</span> Date();</span><br><span class="line">        System.out.println(date);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出为：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211150504218.png" alt="image-20211211150504218"></p>
+<p>这里的CST指的是中国标准时间。</p>
+<h3 id="带参的构造方法">带参的构造方法</h3>
+<p>Date类还可以使用带参的构造方法，此时参数为从时间原点开始的毫秒值，列如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Date date = <span class="keyword">new</span> Date(<span class="number">0</span>);<span class="comment">//将上面的代码块的构造方法添加为0的参数。</span></span><br></pre></td></tr></table></figure>
+<p>此时它就会打印：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211151139834.png" alt="image-20211211151139834"></p>
+<p>即为打印时间原点。</p>
+<h3 id="gettime-方法">gettime()方法</h3>
+<p>将日期转换成毫秒值，返回的是一个long类型的结果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Date date = <span class="keyword">new</span> Date();</span><br><span class="line">      <span class="keyword">long</span> s=date.getTime();</span><br><span class="line">      System.out.println(s);</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211151520479.png" alt="image-20211211151520479"></p>
+<h2 id="DateFormat类">DateFormat类</h2>
+<p>是对时间与日期进行一个格式化的抽象类，属于Java.text包中，有两个作用：</p>
+<p>格式化：从日期转到文本[String format(Date date)]</p>
+<p>解析：从文本转到日期[Date parse(String source)]</p>
+<p>由于DateFormat是一个抽象类，所以我们要用到他的子类SimpleDateFormat进行对日期格式的约束。</p>
+<blockquote>
+<p><code>SimpleDateFormat</code> 是一个以与语言环境有关的方式来格式化和解析日期的具体类。它允许进行格式化（日期 -&gt;  文本）、解析（文本 -&gt; 日期）和规范化。</p>
+</blockquote>
+<h3 id="格式化">格式化</h3>
+<p>要相对时间进行一个格式化的输出，需要用到SimpleDateFormat里的format方法，那我们首先的得创建一个**”模式“**，通过这个模式来告诉我们的类应该怎样输出时间，在SimpleDateFormat类中，模式通过字母来代表创建，下面我们列举一些常用的代表：</p>
+<table>
+<thead>
+<tr>
+<th>字母代表</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>y</td>
+<td>年</td>
+</tr>
+<tr>
+<td>M</td>
+<td>月</td>
+</tr>
+<tr>
+<td>d</td>
+<td>日</td>
+</tr>
+<tr>
+<td>H</td>
+<td>时</td>
+</tr>
+<tr>
+<td>m</td>
+<td>分</td>
+</tr>
+<tr>
+<td>s</td>
+<td>秒</td>
+</tr>
+</tbody>
+</table>
+<p>所以我们可以写出类似于： <strong>”yyyy-MM-dd  HH:mm:ss“</strong>   这样的时间格式。</p>
+<p>来创建一个SimpleDateFormat类试试吧：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">demo();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        SimpleDateFormat t1 = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年MM月dd日HH:mm:ss&quot;</span>);<span class="comment">//模式作为参数传入SimpleDateFormat类。</span></span><br><span class="line">        Date date = <span class="keyword">new</span> Date();<span class="comment">//创建一个时期类</span></span><br><span class="line">        String time;</span><br><span class="line">        time=t1.format(date);<span class="comment">//用方法来格式化我们的日期类.</span></span><br><span class="line">        System.out.println(time);</span><br><span class="line">        System.out.println(date);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211155207944.png" alt="image-20211211155207944"></p>
+<h3 id="解析">解析</h3>
+<p>使用SimpleDateFormat里的parse方法，可以将一段字符串日期转换为Date类日期。</p>
+<p>这里值得注意的是，如果字符串日期的模式与设定的模式不相符合的话，parse方法会抛出一个异常，这时我们要么使用throw继续向上抛出异常，要么使用try  catch自己进行处理。</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">demo();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        SimpleDateFormat t1 = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年MM月dd日HH:mm:ss&quot;</span>);<span class="comment">//模式作为参数传入。</span></span><br><span class="line">        Date date = <span class="keyword">new</span> Date();</span><br><span class="line">        String time;</span><br><span class="line">        time=t1.format(date);</span><br><span class="line">        Date d1 = <span class="keyword">new</span> Date();</span><br><span class="line">        <span class="keyword">try</span> &#123;<span class="comment">//使用try catch来监控</span></span><br><span class="line">            d1=t1.parse(time);</span><br><span class="line">            System.out.println(d1);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">           System.out.println(<span class="string">&quot;格式出错&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211163615731.png" alt="image-20211211163615731"></p>
+<p>如果我们使用不一样的时间的话：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SimpleDateFormat t2 = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年dd日MM月HH:mm:ss&quot;</span>);<span class="comment">//模式作为参数传入。</span></span><br><span class="line">d1=t2.parse(time);<span class="comment">//修改要捕获异常的语句</span></span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/image-20211211164157365.png" alt="image-20211211164157365"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Tosuke</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://tosuke.gitee.io/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/">http://tosuke.gitee.io/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://tosuke.gitee.io" target="_blank">京介的正牌博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a></div><div class="post_share"><div class="social-share" data-image="https://s3.bmp.ovh/imgs/2021/12/e7a5a04aa9f776f5.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/12/15/Java%E7%9A%84I-O%E6%B5%81/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s3.bmp.ovh/imgs/2021/12/e055742dfc1f1d27.jpg" onerror="onerror=null;src='/img/3.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Java的I/O流</div></div></a></div><div class="next-post pull-right"><a href="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s3.bmp.ovh/imgs/2021/12/79b423676fa0ea77.jpg" onerror="onerror=null;src='/img/3.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">JavaSE的部分要点</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/" title="JavaSE的部分要点"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s3.bmp.ovh/imgs/2021/12/79b423676fa0ea77.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-10</div><div class="title">JavaSE的部分要点</div></div></a></div><div><a href="/2021/12/21/Java%E6%B3%9B%E5%9E%8B/" title="Java泛型"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s3.bmp.ovh/imgs/2021/12/e055742dfc1f1d27.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-21</div><div class="title">Java泛型</div></div></a></div><div><a href="/2021/12/15/Java%E7%9A%84I-O%E6%B5%81/" title="Java的I/O流"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s3.bmp.ovh/imgs/2021/12/e055742dfc1f1d27.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-15</div><div class="title">Java的I/O流</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/6.png" onerror="this.onerror=null;this.src='/img/1.jpg'" alt="avatar"/></div><div class="author-info__name">Tosuke</div><div class="author-info__description">ToCode Team</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">31</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://gitee.com/Tosuke"><i class="fab fa-github"></i><span>关注</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎大家的到来！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">object类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#getclass"><span class="toc-number">1.1.</span> <span class="toc-text">getclass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hashCode"><span class="toc-number">1.2.</span> <span class="toc-text">hashCode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tostring"><span class="toc-number">1.3.</span> <span class="toc-text">tostring</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#equals"><span class="toc-number">1.4.</span> <span class="toc-text">equals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#finalize"><span class="toc-number">1.5.</span> <span class="toc-text">finalize</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">String类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%B1%A0"><span class="toc-number">2.1.</span> <span class="toc-text">字符串池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">String的常用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E5%8F%98%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.3.</span> <span class="toc-text">可变字符串</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">BigDecimal类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">System类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">++包装类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%85%E7%AE%B1%E3%80%81%E6%8B%86%E7%AE%B1"><span class="toc-number">5.1.</span> <span class="toc-text">装箱、拆箱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">5.2.</span> <span class="toc-text">类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">5.2.1.</span> <span class="toc-text">1、基本类型与字符串类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1%E4%BD%BF%E7%94%A8-%E5%8F%B7"><span class="toc-number">5.2.1.1.</span> <span class="toc-text">1.1使用+号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2%E4%BD%BF%E7%94%A8tostring%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.1.2.</span> <span class="toc-text">1.2使用tostring方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">5.2.2.</span> <span class="toc-text">2、字符串类型与基本类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1%E4%BD%BF%E7%94%A8Integer%E7%9A%84parse%E6%96%B9%E6%B3%95"><span class="toc-number">5.2.2.1.</span> <span class="toc-text">2.1使用Integer的parse方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81Boolean%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B"><span class="toc-number">5.2.3.</span> <span class="toc-text">3、Boolean字符串转换为基本类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="toc-number">5.3.</span> <span class="toc-text">整数缓冲区</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">日期时间类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Date%E7%B1%BB"><span class="toc-number">6.1.</span> <span class="toc-text">Date类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E5%8F%82%E6%9E%84%E9%80%A0"><span class="toc-number">6.1.1.</span> <span class="toc-text">无参构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A6%E5%8F%82%E7%9A%84%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-number">6.1.2.</span> <span class="toc-text">带参的构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gettime-%E6%96%B9%E6%B3%95"><span class="toc-number">6.1.3.</span> <span class="toc-text">gettime()方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DateFormat%E7%B1%BB"><span class="toc-number">6.2.</span> <span class="toc-text">DateFormat类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">6.2.1.</span> <span class="toc-text">格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90"><span class="toc-number">6.2.2.</span> <span class="toc-text">解析</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/08/06/CSS%E5%B8%83%E5%B1%80/" title="CSS布局解析"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic.imgdb.cn/item/62f5c71716f2c2beb11893dd.jpg" onerror="this.onerror=null;this.src='/img/3.jpg'" alt="CSS布局解析"/></a><div class="content"><a class="title" href="/2022/08/06/CSS%E5%B8%83%E5%B1%80/" title="CSS布局解析">CSS布局解析</a><time datetime="2022-08-06T02:02:03.000Z" title="发表于 2022-08-06 10:02:03">2022-08-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/30/TypeScrpt%E4%B8%8EJS%E7%9A%84%E5%8C%BA%E5%88%AB%E5%AD%A6%E4%B9%A0/" title="TypeScrpt与JS的区别学习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic.imgdb.cn/item/62f5c6ed16f2c2beb118182a.jpg" onerror="this.onerror=null;this.src='/img/3.jpg'" alt="TypeScrpt与JS的区别学习"/></a><div class="content"><a class="title" href="/2022/07/30/TypeScrpt%E4%B8%8EJS%E7%9A%84%E5%8C%BA%E5%88%AB%E5%AD%A6%E4%B9%A0/" title="TypeScrpt与JS的区别学习">TypeScrpt与JS的区别学习</a><time datetime="2022-07-30T02:02:03.000Z" title="发表于 2022-07-30 10:02:03">2022-07-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/15/Node.js%E2%80%94%E6%94%B9%E5%8F%98JavaScript%E7%9A%84%E5%91%BD%E8%BF%90/" title="Nodejs学习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://www.dmoe.cc/random.php" onerror="this.onerror=null;this.src='/img/3.jpg'" alt="Nodejs学习"/></a><div class="content"><a class="title" href="/2022/05/15/Node.js%E2%80%94%E6%94%B9%E5%8F%98JavaScript%E7%9A%84%E5%91%BD%E8%BF%90/" title="Nodejs学习">Nodejs学习</a><time datetime="2022-05-15T11:02:03.000Z" title="发表于 2022-05-15 19:02:03">2022-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/15/Vue2.x/" title="Vue2入门"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://www.52api.cc/acg/api.php" onerror="this.onerror=null;this.src='/img/3.jpg'" alt="Vue2入门"/></a><div class="content"><a class="title" href="/2022/05/15/Vue2.x/" title="Vue2入门">Vue2入门</a><time datetime="2022-05-15T02:02:03.000Z" title="发表于 2022-05-15 10:02:03">2022-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/01/AJAX%E2%80%94%E5%86%AC%E6%97%A5%E9%98%BF%E8%B4%BE%E5%85%8B%E6%96%AF%EF%BC%88%E4%BC%AA%EF%BC%89/" title="AJAX"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://imgapi.xl0408.top/index.php" onerror="this.onerror=null;this.src='/img/3.jpg'" alt="AJAX"/></a><div class="content"><a class="title" href="/2022/05/01/AJAX%E2%80%94%E5%86%AC%E6%97%A5%E9%98%BF%E8%B4%BE%E5%85%8B%E6%96%AF%EF%BC%88%E4%BC%AA%EF%BC%89/" title="AJAX">AJAX</a><time datetime="2022-05-01T11:02:03.000Z" title="发表于 2022-05-01 19:02:03">2022-05-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://s3.bmp.ovh/imgs/2021/12/e7a5a04aa9f776f5.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Tosuke</div><div class="footer_custom_text">人们望着我的名字，却叫不出口来。</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '5bwqBH3Me4gXY9utghuqIPwx-gzGzoHsz',
+      appKey: 'qqsqG7HFuJY5tlSSpTgMlIhu',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="京介的,正牌,博客" data-fontsize="15px" data-random="false" async="async"></script><script src="//code.tidio.co/z0gzmawwr8ternicqp3vc4ufdydycclh.js" async="async"></script><div class="aplayer" data-id="8259771218" data-server="tencent" data-type="playlist" data-fixed="true" data-listFolded="false" data-order="random" data-preload="none"></div><link rel="stylesheet" href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css"><script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="/true"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

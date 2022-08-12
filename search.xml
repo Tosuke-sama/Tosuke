@@ -43,6 +43,101 @@ $$</p>
       </tags>
   </entry>
   <entry>
+    <title>4位快速加法器的设计</title>
+    <url>/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h2 id="4位快速加法器的设计">4位快速加法器的设计</h2>
+<h3 id="实验目的：">实验目的：</h3>
+<p>掌握快速加法器中先行进位的原理，能利用相关知识设计4位先行进位电路，并利用设计的4位先行进位电路构造4位快速加法器，能分析对应电路的时间延迟。</p>
+<h3 id="实验结果：">实验结果：</h3>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8711.png" alt></p>
+<h3 id="实验结果分析：">实验结果分析：</h3>
+<p>因为我们已经完成了的4位先行进位，（什么？你没什么印象？<a href="https://tosuke.gitee.io/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/">点我马上传送</a>现在我们可以来来实现4位快速加法器，没错，其实4位快速加法器就是根据我们第三个实验的原理而来，实验三所写的4位先行进位现在在4位快速加法器里是重要的中心电路。</p>
+<p>第一步先准备一下我们需要的输入输出：</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8712.png" alt></p>
+<p>然后对应好我们之前的4位先行进位的电路封装：</p>
+<img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/图片13.png" style="zoom:80%;">
+<img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/图片14.png" style="zoom:80%;">
+<p>确认好我们的电路封装后，那我们先来输入我们的P1、P2等Pi输入，因为</p>
+<pre><code>                          **Pi=ai⊕bi  Gi=ai*bi**
+</code></pre>
+<p>所以我们将xi、yi连上异或门连上电路封装的pi输入，将xi、yi连上与门连上电路封装的gi输入，最后不要忘了连上C0的输入：</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8715.png" alt></p>
+<p>那我们输入就算完成了，现在来看看电路封装的输出部分，我们电路的电路的输出分别是Ci和p*、g*成组先进函数，又因为我们推出的运算公式中：</p>
+<p>​														Si=Pi⊕Ci</p>
+<p>所以我们需要将封装电路输出的Ci与Pi连上异或门再输出给Si，由于在上一步已经制造了Pi，所以连接如图：</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8716.png" alt></p>
+<p>最后连接上代表最高位进位的C4与p*、g*成组先进函数，电路图就链接好了。</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8717.png" alt></p>
+<blockquote>
+<p>有问题请通过旁边的对话窗口联系京介喔。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>硬件设计</category>
+      </categories>
+      <tags>
+        <tag>logisim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Babel学习</title>
+    <url>/2022/04/26/Babel%E5%B0%8F%E8%AF%86/</url>
+    <content><![CDATA[<h1>Babel 简介</h1>
+<p>Babel 是一个 JavaScript 编译器，Babel 是一个工具链，主要用于将采用 ECMAScript 2015+ 语法编写的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境中。下面列出的是 Babel 能为你做的事情：</p>
+<ul>
+<li>语法转换</li>
+<li>通过 Polyfill 方式在目标环境中添加缺失的特性 （通过引入第三方 polyfill 模块，例如 <a href="https://github.com/zloirock/core-js">core-js</a>）</li>
+<li>源码转换（codemods）</li>
+</ul>
+<p>大概的功能就是帮助我们在旧的浏览器环境中将 <code>ES6+</code> 的代码转换为兼容低版本的 <code>JS</code> 代码。</p>
+<p>让我们从一个案例入手来学习Babel。</p>
+<p>首先从终端来初始化一个项目：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir babel-basic &amp;&amp; cd babel-basic</span><br><span class="line">//创建文件夹并进入</span><br><span class="line">npm init -y</span><br><span class="line">//初始化项目，-y是yes的意思，省略了敲回车的步骤。</span><br><span class="line">mkdir src &amp;&amp; cd src</span><br><span class="line">touch index.js</span><br></pre></td></tr></table></figure>
+<h1>@babel/core</h1>
+<p>学习 Babel，首先要了解一个叫 @babel/core 的东西，它是 Babel 的核心模块，所以首先要安装这个模块。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i --save-dev @babel/core</span><br></pre></td></tr></table></figure>
+<p>安装成功之后就可以在我们的代码中使用了，在js中直接引用：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">&#x27;@babel/core&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h1>@babel/cli</h1>
+<p>这是一个终端运行工具，内置的插件，运行你从终端使用 babel 的工具。同样也需要安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i --save-dev @babel/cli</span><br></pre></td></tr></table></figure>
+<p>接着，在 src/index.js 中写一段简单代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = <span class="function">() =&gt;</span> <span class="number">1</span>; <span class="comment">// 箭头函数, 返回值为1</span></span><br><span class="line"><span class="built_in">console</span>.log(fn());</span><br></pre></td></tr></table></figure>
+<p>用法一：命令行的形式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./node_modules/.bin/babel src --out-dir lib  </span><br></pre></td></tr></table></figure>
+<p>这行代码的意思是：它使用我们设置的<strong>解析方式</strong>来解释 <code>src</code> 目录下的所有 <code>js</code> 文件，并将转换后的每个文件都输出到 <code>lib</code> 目录下。</p>
+<blockquote>
+<p>也可以利用 npm@5.2.0 所自带的 npm 包运行器将 <code>./node_modules/.bin/babel</code> 命令缩短为 <code>npx babel</code></p>
+</blockquote>
+<p>注意，大家在使用命令行时可能会用到“因为在此系统上禁止运行脚本”的错误（如下）</p>
+<p><img src="/2022/04/26/Babel%E5%B0%8F%E8%AF%86/image-20220505160117375.png" alt="image-20220505160117375"></p>
+<p>解决方法如下：</p>
+<ul>
+<li>管理员身份运行 PowerShell</li>
+<li>执行：get-ExecutionPolicy，若显示 Restricted 表示状态是禁止的</li>
+<li>执行：set-ExecutionPolicy，会提示输入参数</li>
+<li>输入 RemoteSigned 会提示进行选择</li>
+<li>输入：Y，回车</li>
+</ul>
+<p><img src="/2022/04/26/Babel%E5%B0%8F%E8%AF%86/image-20220505160227355.png" alt="image-20220505160227355"></p>
+<p>回到正题，我们打开lib文件夹会发现里面的文件与src文件夹里的一模一样，这是因为到目前为止我们并没有设置任何的解析方式，解析最重要的就是<code>--plugins</code> 和 <code>--presets</code> 这两个参数。</p>
+<p>不过在那之前，我们先看看我们上面使用过的–out-dir参数，你可以通过 <code>--help</code> 参数来查看命令行工具所能接受的所有参数列表。</p>
+<p>这里给大家部分列举一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Options:</span><br><span class="line">  -f, --filename [filename]                   The filename to use when reading from stdin. This will be used in source-maps, errors etc.</span><br><span class="line">  --presets [list]                            A comma-separated list of preset names.</span><br><span class="line">  --plugins [list]                            A comma-separated list of plugin names.</span><br><span class="line">  --config-file [path]                        Path to a .babelrc file to use.  --env-name [name]                           The name of the &#x27;env&#x27; to use when loading configs and plugins. Defaults to the value of BABEL_ENV, or else NODE_ENV, or else &#x27;development&#x27;.</span><br><span class="line">  --root-mode [mode]                          The project-root resolution mode. One of &#x27;root&#x27; (the default), &#x27;upward&#x27;, or &#x27;upward-optional&#x27;.</span><br><span class="line">  --source-type [script|module]</span><br><span class="line">  --no-babelrc                                Whether or not to look up .babelrc and .babelignore files.</span><br><span class="line">  --ignore [list]                             List of glob paths to **not** compile.</span><br><span class="line">  --only [list]                               List of glob paths to **only** </span><br><span class="line">compile.</span><br><span class="line">  --no-highlight-code                         Enable or disable ANSI syntax highlighting of code frames. (on by default)</span><br></pre></td></tr></table></figure>
+<h1>插件（plugins）和预设（preset）</h1>
+<h2 id="piugins">piugins</h2>
+<p><code>plugins</code> 的本质是一个 <code>js</code> 程序，指示着 <code>Babel</code> 如何转换代码，如何解析代码。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AJAX</title>
     <url>/2022/05/01/AJAX%E2%80%94%E5%86%AC%E6%97%A5%E9%98%BF%E8%B4%BE%E5%85%8B%E6%96%AF%EF%BC%88%E4%BC%AA%EF%BC%89/</url>
     <content><![CDATA[<h1>AJAX，动态刷新网页</h1>
@@ -192,44 +287,6 @@ $$</p>
       </tags>
   </entry>
   <entry>
-    <title>4位快速加法器的设计</title>
-    <url>/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/</url>
-    <content><![CDATA[<h2 id="4位快速加法器的设计">4位快速加法器的设计</h2>
-<h3 id="实验目的：">实验目的：</h3>
-<p>掌握快速加法器中先行进位的原理，能利用相关知识设计4位先行进位电路，并利用设计的4位先行进位电路构造4位快速加法器，能分析对应电路的时间延迟。</p>
-<h3 id="实验结果：">实验结果：</h3>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8711.png" alt></p>
-<h3 id="实验结果分析：">实验结果分析：</h3>
-<p>因为我们已经完成了的4位先行进位，（什么？你没什么印象？<a href="https://tosuke.gitee.io/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/">点我马上传送</a>现在我们可以来来实现4位快速加法器，没错，其实4位快速加法器就是根据我们第三个实验的原理而来，实验三所写的4位先行进位现在在4位快速加法器里是重要的中心电路。</p>
-<p>第一步先准备一下我们需要的输入输出：</p>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8712.png" alt></p>
-<p>然后对应好我们之前的4位先行进位的电路封装：</p>
-<img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/图片13.png" style="zoom:80%;">
-<img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/图片14.png" style="zoom:80%;">
-<p>确认好我们的电路封装后，那我们先来输入我们的P1、P2等Pi输入，因为</p>
-<pre><code>                          **Pi=ai⊕bi  Gi=ai*bi**
-</code></pre>
-<p>所以我们将xi、yi连上异或门连上电路封装的pi输入，将xi、yi连上与门连上电路封装的gi输入，最后不要忘了连上C0的输入：</p>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8715.png" alt></p>
-<p>那我们输入就算完成了，现在来看看电路封装的输出部分，我们电路的电路的输出分别是Ci和p*、g*成组先进函数，又因为我们推出的运算公式中：</p>
-<p>​														Si=Pi⊕Ci</p>
-<p>所以我们需要将封装电路输出的Ci与Pi连上异或门再输出给Si，由于在上一步已经制造了Pi，所以连接如图：</p>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8716.png" alt></p>
-<p>最后连接上代表最高位进位的C4与p*、g*成组先进函数，电路图就链接好了。</p>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8717.png" alt></p>
-<blockquote>
-<p>有问题请通过旁边的对话窗口联系京介喔。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>硬件设计</category>
-      </categories>
-      <tags>
-        <tag>logisim</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CSS入门小识</title>
     <url>/2022/01/18/CSS%E5%85%A5%E9%97%A8%E5%B0%8F%E8%AF%86/</url>
     <content><![CDATA[<blockquote>
@@ -299,53 +356,90 @@ square正方形</p>
       </tags>
   </entry>
   <entry>
-    <title>Babel学习</title>
-    <url>/2022/04/26/Babel%E5%B0%8F%E8%AF%86/</url>
-    <content><![CDATA[<h1>Babel 简介</h1>
-<p>Babel 是一个 JavaScript 编译器，Babel 是一个工具链，主要用于将采用 ECMAScript 2015+ 语法编写的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境中。下面列出的是 Babel 能为你做的事情：</p>
+    <title>CSS布局解析</title>
+    <url>/2022/08/06/CSS%E5%B8%83%E5%B1%80/</url>
+    <content><![CDATA[<h1>前言</h1>
+<p>对于一个前端开发者而言，css的布局现如今虽然有很多的布局工具以供使用，但是掌握原生的布局理念和方法依然是至关重要的一环，我是京介，吃了css的大亏，所谓基础不牢地动山摇，重新审视于学习css布局是当下应做之事。</p>
+<h1>前置基础</h1>
+<h2 id="HTML">HTML</h2>
+<p>对于几个常用标签的熟练使用，在看见原型图时来确定我们对应使用的标签，比较简单的有：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>无意义的块状标签</span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>无意义的行内标签</span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span>段落标签</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span>无序列表</span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span>有序列表</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span>超链接标签</span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span>图片标签</span><br><span class="line"><span class="tag">&lt;<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>斜体</span><br><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span><span class="tag">&lt;/<span class="name">b</span>&gt;</span>粗体</span><br></pre></td></tr></table></figure>
+<h2 id="CSS">CSS</h2>
+<h3 id="选择器">选择器</h3>
+<p>页面布局的基本格式就是=“选择器+属性名+属性值”，属性名与属性值根据要求我们可以自由调整，所以css的关键其实就在于选择器的使用，css给出了许多功能不一的选择器，我们需要记住较为常用选择器：</p>
 <ul>
-<li>语法转换</li>
-<li>通过 Polyfill 方式在目标环境中添加缺失的特性 （通过引入第三方 polyfill 模块，例如 <a href="https://github.com/zloirock/core-js">core-js</a>）</li>
-<li>源码转换（codemods）</li>
+<li>id选择器    #id</li>
+<li>类选择器   .class</li>
+<li>关系选择器 div p、 div&gt;p、div,p</li>
+<li>伪类选择器  hover</li>
+<li>结构性伪类选择器 E:after、E:before、E:first-child()、E:last-child</li>
 </ul>
-<p>大概的功能就是帮助我们在旧的浏览器环境中将 <code>ES6+</code> 的代码转换为兼容低版本的 <code>JS</code> 代码。</p>
-<p>让我们从一个案例入手来学习Babel。</p>
-<p>首先从终端来初始化一个项目：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir babel-basic &amp;&amp; cd babel-basic</span><br><span class="line">//创建文件夹并进入</span><br><span class="line">npm init -y</span><br><span class="line">//初始化项目，-y是yes的意思，省略了敲回车的步骤。</span><br><span class="line">mkdir src &amp;&amp; cd src</span><br><span class="line">touch index.js</span><br></pre></td></tr></table></figure>
-<h1>@babel/core</h1>
-<p>学习 Babel，首先要了解一个叫 @babel/core 的东西，它是 Babel 的核心模块，所以首先要安装这个模块。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i --save-dev @babel/core</span><br></pre></td></tr></table></figure>
-<p>安装成功之后就可以在我们的代码中使用了，在js中直接引用：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">&#x27;@babel/core&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<h1>@babel/cli</h1>
-<p>这是一个终端运行工具，内置的插件，运行你从终端使用 babel 的工具。同样也需要安装：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i --save-dev @babel/cli</span><br></pre></td></tr></table></figure>
-<p>接着，在 src/index.js 中写一段简单代码：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = <span class="function">() =&gt;</span> <span class="number">1</span>; <span class="comment">// 箭头函数, 返回值为1</span></span><br><span class="line"><span class="built_in">console</span>.log(fn());</span><br></pre></td></tr></table></figure>
-<p>用法一：命令行的形式：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./node_modules/.bin/babel src --out-dir lib  </span><br></pre></td></tr></table></figure>
-<p>这行代码的意思是：它使用我们设置的<strong>解析方式</strong>来解释 <code>src</code> 目录下的所有 <code>js</code> 文件，并将转换后的每个文件都输出到 <code>lib</code> 目录下。</p>
+<p>属性</p>
+<p>当然光是了解一些选择器还不够，我们在用选择器选定了要添加样式的标签后，最重要的当然是修改添加标签的各种属性了，需要记住几个常用属性：</p>
+<ul>
+<li>字体属性：font-size</li>
+<li>文本属性：text-decoration（规定添加到文本的修饰，下划线、上划线、删除线等）、text-align（文字对齐方式）</li>
+<li>首行缩进：text-indent</li>
+<li>宽高属性：width、height、min-height、max-height</li>
+<li>背景属性：background</li>
+<li>列表属性：list-style</li>
+<li>字体颜色：color</li>
+</ul>
+<h3 id="布局属性">布局属性</h3>
+<p>不过我们在考虑页面该如何布局时，我们会使用一些关于布局的特殊属性：</p>
+<ul>
+<li>
+<p>定位属性：position</p>
+</li>
+<li>
+<p>布局属性：display</p>
+</li>
+<li>
+<p>浮动属性：float、clear</p>
+</li>
+<li>
+<p>盒子模型：border、margin、padding</p>
+</li>
+<li>
+<p>圆角边框：border、margin、padding</p>
+</li>
+<li>
+<p>阴影： text-shadow、box-shadow</p>
+</li>
+</ul>
+<p>接下来我们会稍微具体的来研究一下各个属性的意义以及使用方法。</p>
+<h1>浮动属性</h1>
+<p>语法：float：none/left/right;</p>
+<p>浮动定位（float）是指：</p>
+<ol>
+<li>将对应元素排除在普通流之外，并且不在页面中占据空间</li>
+<li>浮动的元素会放置在包含框的左侧或右侧</li>
+<li>浮动元素不会超过包含框</li>
+</ol>
 <blockquote>
-<p>也可以利用 npm@5.2.0 所自带的 npm 包运行器将 <code>./node_modules/.bin/babel</code> 命令缩短为 <code>npx babel</code></p>
+<p>包含框是指对应元素外层的容器（例如div）</p>
 </blockquote>
-<p>注意，大家在使用命令行时可能会用到“因为在此系统上禁止运行脚本”的错误（如下）</p>
-<p><img src="/2022/04/26/Babel%E5%B0%8F%E8%AF%86/image-20220505160117375.png" alt="image-20220505160117375"></p>
-<p>解决方法如下：</p>
-<ul>
-<li>管理员身份运行 PowerShell</li>
-<li>执行：get-ExecutionPolicy，若显示 Restricted 表示状态是禁止的</li>
-<li>执行：set-ExecutionPolicy，会提示输入参数</li>
-<li>输入 RemoteSigned 会提示进行选择</li>
-<li>输入：Y，回车</li>
-</ul>
-<p><img src="/2022/04/26/Babel%E5%B0%8F%E8%AF%86/image-20220505160227355.png" alt="image-20220505160227355"></p>
-<p>回到正题，我们打开lib文件夹会发现里面的文件与src文件夹里的一模一样，这是因为到目前为止我们并没有设置任何的解析方式，解析最重要的就是<code>--plugins</code> 和 <code>--presets</code> 这两个参数。</p>
-<p>不过在那之前，我们先看看我们上面使用过的–out-dir参数，你可以通过 <code>--help</code> 参数来查看命令行工具所能接受的所有参数列表。</p>
-<p>这里给大家部分列举一下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Options:</span><br><span class="line">  -f, --filename [filename]                   The filename to use when reading from stdin. This will be used in source-maps, errors etc.</span><br><span class="line">  --presets [list]                            A comma-separated list of preset names.</span><br><span class="line">  --plugins [list]                            A comma-separated list of plugin names.</span><br><span class="line">  --config-file [path]                        Path to a .babelrc file to use.  --env-name [name]                           The name of the &#x27;env&#x27; to use when loading configs and plugins. Defaults to the value of BABEL_ENV, or else NODE_ENV, or else &#x27;development&#x27;.</span><br><span class="line">  --root-mode [mode]                          The project-root resolution mode. One of &#x27;root&#x27; (the default), &#x27;upward&#x27;, or &#x27;upward-optional&#x27;.</span><br><span class="line">  --source-type [script|module]</span><br><span class="line">  --no-babelrc                                Whether or not to look up .babelrc and .babelignore files.</span><br><span class="line">  --ignore [list]                             List of glob paths to **not** compile.</span><br><span class="line">  --only [list]                               List of glob paths to **only** </span><br><span class="line">compile.</span><br><span class="line">  --no-highlight-code                         Enable or disable ANSI syntax highlighting of code frames. (on by default)</span><br></pre></td></tr></table></figure>
-<h1>插件（plugins）和预设（preset）</h1>
-<h2 id="piugins">piugins</h2>
-<p><code>plugins</code> 的本质是一个 <code>js</code> 程序，指示着 <code>Babel</code> 如何转换代码，如何解析代码。</p>
+<p>浮动的元素可以在框内向左或者向右移动，但它始终在框之内。</p>
+<p>浮动元素不会互相重叠或者上下浮动，且一旦浮动，该元素的display属性将失效。</p>
+<p>总的来说，浮动元素就像是从普通元素流的水中浮到了水面上，成了水面上随流而动的一个方块，而水下的方块就会被挨着挤上去，比如说我这里设置了一个600px的父div，里面有3个200px的子div，设置好不同的元素后，根据正常情况下div块状元素独占一行来说，它的效果是这样的：</p>
+<p><img src="/2022/08/06/CSS%E5%B8%83%E5%B1%80/image-20220725133846847.png" alt="image-20220725133846847"></p>
+<p>当我们把第二块蓝色的块设置为右浮动（float：right）后：</p>
+<p><img src="/2022/08/06/CSS%E5%B8%83%E5%B1%80/image-20220725133947108.png" alt="image-20220725133947108"></p>
+<p>这时的蓝色块并不是不见了，而是因为右浮动的原因脱离了普通文档流，浮动在了父容器的右边（和原来位置一样），看不见是因为被挡住了，所以前面的浮在水面上的说法不太准确，虽然逻辑更像，只是看起来更像沉入水底了。</p>
+<p>当把三个子容器全部设置为浮动后，效果如下：</p>
+<p><img src="/2022/08/06/CSS%E5%B8%83%E5%B1%80/image-20220725134457466.png" alt="image-20220725134457466"></p>
+<p>三个元素浮动着并排在一起，如果父容器的空间不够的话皆会被挤到下一行：</p>
+<p><img src="/2022/08/06/CSS%E5%B8%83%E5%B1%80/image-20220725134638940.png" alt="image-20220725134638940"></p>
+<h2 id="高度塌陷">高度塌陷</h2>
+<p>当父元素没有设置宽高时，父容器会根据子容器的宽高来自动计算自己的宽高，但是由之前我们提到的性质：</p>
+<p><strong>浮动元素不会互相重叠或者上下浮动，且一旦浮动，该元素的display属性将失效。</strong></p>
+<p>父容器将察觉不到子容器的宽高从而无法设置自己的宽高，父元素高度丢失以后，其下的元素会自动上移，导致页面的布局混乱，解决这种问题的办法有：</p>
+<ol>
+<li>overflow：hidden（超出部分隐藏）</li>
+<li>父元素设为浮动</li>
+<li>cleart：both（清除浮动）——一般使用这个方法</li>
+</ol>
+<p>**注意！**在使用了浮动以后记得及时在边缘的容器上使用浮动清除，不然页面就会陷入高度塌陷的问题！</p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -653,92 +747,6 @@ square正方形</p>
 <h3 id="返回值">返回值</h3>
 <p>async 函数返回一个 Promise 对象，可以使用 then 方法添加回调函数。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">helloAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;helloAsync&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"><span class="built_in">console</span>.log(helloAsync())  <span class="comment">// Promise &#123;&lt;resolved&gt;: &quot;helloAsync&quot;&#125;</span></span><br><span class="line"> </span><br><span class="line">helloAsync().then(<span class="function"><span class="params">v</span>=&gt;</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(v);         <span class="comment">// helloAsync</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>软件设计</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Express框架</title>
-    <url>/2022/04/18/Express%20%E6%A1%86%E6%9E%B6/</url>
-    <content><![CDATA[<h2 id="Express-简介">Express 简介</h2>
-<p>Express 是一个简洁而灵活的 node.js Web应用框架, 提供了一系列强大特性帮助你创建各种 Web 应用，和丰富的 HTTP 工具。</p>
-<p>使用 Express 可以快速地搭建一个完整功能的网站。</p>
-<p>Express 框架核心特性：</p>
-<ul>
-<li>可以设置中间件来响应 HTTP 请求。</li>
-<li>定义了路由表用于执行不同的 HTTP 请求动作。</li>
-<li>可以通过向模板传递参数来动态渲染 HTML 页面。</li>
-</ul>
-<h2 id="安装-Express">安装 Express</h2>
-<p>安装 Express 并将其保存到依赖列表中：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm install express --save</span><br></pre></td></tr></table></figure>
-<p>以上命令会将 Express 框架安装在当前目录的 <strong>node_modules</strong> 目录中， <strong>node_modules</strong> 目录下会自动创建 express 目录。以下几个重要的模块是需要与 express 框架一起安装的：</p>
-<ul>
-<li><strong>body-parser</strong> - node.js 中间件，用于处理 JSON, Raw, Text 和 URL 编码的数据。</li>
-<li><strong>cookie-parser</strong> - 这就是一个解析Cookie的工具。通过req.cookies可以取到传过来的cookie，并把它们转成对象。</li>
-<li><strong>multer</strong> - node.js 中间件，用于处理 enctype=“multipart/form-data”（设置表单的MIME编码）的表单数据。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm install body-parser --save</span><br><span class="line">$ cnpm install cookie-parser --save</span><br><span class="line">$ cnpm install multer --save</span><br></pre></td></tr></table></figure>
-<p>安装完后，我们可以查看下 express 使用的版本号：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm list express</span><br><span class="line">/data/www/node</span><br><span class="line">└── express@4.15.2  -&gt; /Users/tianqixin/www/node/node_modules/.4.15.2@express</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意以上均是在淘宝镜像上进行加载的，需要提前安装淘宝镜像，如没有安装也无妨，删除cnpm的c即可。</p>
-</blockquote>
-<h2 id="第一个-Express-框架实例">第一个 Express 框架实例</h2>
-<p>接下来我们使用 Express 框架来输出 “Hello World”。</p>
-<p>以下实例中我们引入了 express 模块，并在客户端发起请求后，响应 “Hello World” 字符串。</p>
-<p>创建 express_demo.js 文件，代码如下所示：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//express_demo.js 文件</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"> </span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">   res.send(<span class="string">&#x27;Hello World&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> server = app.listen(<span class="number">8081</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">var</span> host = server.address().address</span><br><span class="line">  <span class="keyword">var</span> port = server.address().port</span><br><span class="line"> </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;应用实例，访问地址为 http://%s:%s&quot;</span>, host, port)</span><br><span class="line"> </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>执行以上代码后，在浏览器中访问 <a href="http://127.0.0.1:8081">http://127.0.0.1:8081</a>，便可得到服务器返回的hello world。</p>
-<h2 id="请求和响应">请求和响应</h2>
-<p>Express 应用使用回调函数的参数： <strong>request</strong> 和 <strong>response</strong> 对象来处理请求和响应的数据。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">app.get(&#x27;/&#x27;, function (req, res) &#123;</span><br><span class="line">   // --</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><strong>request</strong> 和 <strong>response</strong> 对象的具体介绍：</p>
-<p><strong>Request 对象</strong> - request 对象表示 HTTP 请求，包含了请求查询字符串，参数，内容，HTTP 头部等属性。常见属性有：</p>
-<ol>
-<li>req.app：当callback为外部文件时，用req.app访问express的实例</li>
-<li>req.baseUrl：获取路由当前安装的URL路径</li>
-<li>req.body / req.cookies：获得「请求主体」/ Cookies</li>
-<li>req.fresh / req.stale：判断请求是否还「新鲜」</li>
-<li>req.hostname / req.ip：获取主机名和IP地址</li>
-<li>req.originalUrl：获取原始请求URL</li>
-<li>req.params：获取路由的parameters</li>
-<li>req.path：获取请求路径</li>
-<li>req.protocol：获取协议类型</li>
-<li>req.query：获取URL的查询参数串</li>
-<li>req.route：获取当前匹配的路由</li>
-<li>req.subdomains：获取子域名</li>
-<li>req.accepts()：检查可接受的请求的文档类型</li>
-<li>req.acceptsCharsets / req.acceptsEncodings / req.acceptsLanguages：返回指定字符集的第一个可接受字符编码</li>
-<li>req.get()：获取指定的HTTP请求头</li>
-<li><a href="http://req.is">req.is</a>()：判断请求头Content-Type的MIME类型</li>
-</ol>
-<p><strong>Response 对象</strong> - response 对象表示 HTTP 响应，即在接收到请求时向客户端发送的 HTTP 响应数据。常见属性有：</p>
-<ol>
-<li>res.app：同req.app一样</li>
-<li>res.append()：追加指定HTTP头</li>
-<li>res.set()在res.append()后将重置之前设置的头</li>
-<li>res.cookie(name，value [，option])：设置Cookie</li>
-<li>opition: domain / expires / httpOnly / maxAge / path / secure / signed</li>
-<li>res.clearCookie()：清除Cookie</li>
-<li>res.download()：传送指定路径的文件</li>
-<li>res.get()：返回指定的HTTP头</li>
-<li>res.json()：传送JSON响应</li>
-<li>res.jsonp()：传送JSONP响应</li>
-<li>res.location()：只设置响应的Location HTTP头，不设置状态码或者close response</li>
-<li>res.redirect()：设置响应的Location HTTP头，并且设置状态码302</li>
-<li>res.render(view,[locals],callback)：渲染一个view，同时向callback传递渲染后的字符串，如果在渲染过程中有错误发生next(err)将会被自动调用。callback将会被传入一个可能发生的错误以及渲染后的页面，这样就不会自动输出了。</li>
-<li>res.send()：传送HTTP响应</li>
-<li>res.sendFile(path [，options] [，fn])：传送指定路径的文件 -会自动根据文件extension设定Content-Type</li>
-<li>res.set()：设置HTTP头，传入object可以一次设置多个头</li>
-<li>res.status()：设置HTTP状态码</li>
-<li>res.type()：设置Content-Type的MIME类型</li>
-</ol>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -1922,6 +1930,92 @@ async 函数返回一个 Promise 对象，可以使用 then 方法添加回调�
       </tags>
   </entry>
   <entry>
+    <title>Express框架</title>
+    <url>/2022/04/18/Express%20%E6%A1%86%E6%9E%B6/</url>
+    <content><![CDATA[<h2 id="Express-简介">Express 简介</h2>
+<p>Express 是一个简洁而灵活的 node.js Web应用框架, 提供了一系列强大特性帮助你创建各种 Web 应用，和丰富的 HTTP 工具。</p>
+<p>使用 Express 可以快速地搭建一个完整功能的网站。</p>
+<p>Express 框架核心特性：</p>
+<ul>
+<li>可以设置中间件来响应 HTTP 请求。</li>
+<li>定义了路由表用于执行不同的 HTTP 请求动作。</li>
+<li>可以通过向模板传递参数来动态渲染 HTML 页面。</li>
+</ul>
+<h2 id="安装-Express">安装 Express</h2>
+<p>安装 Express 并将其保存到依赖列表中：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm install express --save</span><br></pre></td></tr></table></figure>
+<p>以上命令会将 Express 框架安装在当前目录的 <strong>node_modules</strong> 目录中， <strong>node_modules</strong> 目录下会自动创建 express 目录。以下几个重要的模块是需要与 express 框架一起安装的：</p>
+<ul>
+<li><strong>body-parser</strong> - node.js 中间件，用于处理 JSON, Raw, Text 和 URL 编码的数据。</li>
+<li><strong>cookie-parser</strong> - 这就是一个解析Cookie的工具。通过req.cookies可以取到传过来的cookie，并把它们转成对象。</li>
+<li><strong>multer</strong> - node.js 中间件，用于处理 enctype=“multipart/form-data”（设置表单的MIME编码）的表单数据。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm install body-parser --save</span><br><span class="line">$ cnpm install cookie-parser --save</span><br><span class="line">$ cnpm install multer --save</span><br></pre></td></tr></table></figure>
+<p>安装完后，我们可以查看下 express 使用的版本号：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm list express</span><br><span class="line">/data/www/node</span><br><span class="line">└── express@4.15.2  -&gt; /Users/tianqixin/www/node/node_modules/.4.15.2@express</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意以上均是在淘宝镜像上进行加载的，需要提前安装淘宝镜像，如没有安装也无妨，删除cnpm的c即可。</p>
+</blockquote>
+<h2 id="第一个-Express-框架实例">第一个 Express 框架实例</h2>
+<p>接下来我们使用 Express 框架来输出 “Hello World”。</p>
+<p>以下实例中我们引入了 express 模块，并在客户端发起请求后，响应 “Hello World” 字符串。</p>
+<p>创建 express_demo.js 文件，代码如下所示：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//express_demo.js 文件</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"> </span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">   res.send(<span class="string">&#x27;Hello World&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> server = app.listen(<span class="number">8081</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">var</span> host = server.address().address</span><br><span class="line">  <span class="keyword">var</span> port = server.address().port</span><br><span class="line"> </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;应用实例，访问地址为 http://%s:%s&quot;</span>, host, port)</span><br><span class="line"> </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>执行以上代码后，在浏览器中访问 <a href="http://127.0.0.1:8081">http://127.0.0.1:8081</a>，便可得到服务器返回的hello world。</p>
+<h2 id="请求和响应">请求和响应</h2>
+<p>Express 应用使用回调函数的参数： <strong>request</strong> 和 <strong>response</strong> 对象来处理请求和响应的数据。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">app.get(&#x27;/&#x27;, function (req, res) &#123;</span><br><span class="line">   // --</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>request</strong> 和 <strong>response</strong> 对象的具体介绍：</p>
+<p><strong>Request 对象</strong> - request 对象表示 HTTP 请求，包含了请求查询字符串，参数，内容，HTTP 头部等属性。常见属性有：</p>
+<ol>
+<li>req.app：当callback为外部文件时，用req.app访问express的实例</li>
+<li>req.baseUrl：获取路由当前安装的URL路径</li>
+<li>req.body / req.cookies：获得「请求主体」/ Cookies</li>
+<li>req.fresh / req.stale：判断请求是否还「新鲜」</li>
+<li>req.hostname / req.ip：获取主机名和IP地址</li>
+<li>req.originalUrl：获取原始请求URL</li>
+<li>req.params：获取路由的parameters</li>
+<li>req.path：获取请求路径</li>
+<li>req.protocol：获取协议类型</li>
+<li>req.query：获取URL的查询参数串</li>
+<li>req.route：获取当前匹配的路由</li>
+<li>req.subdomains：获取子域名</li>
+<li>req.accepts()：检查可接受的请求的文档类型</li>
+<li>req.acceptsCharsets / req.acceptsEncodings / req.acceptsLanguages：返回指定字符集的第一个可接受字符编码</li>
+<li>req.get()：获取指定的HTTP请求头</li>
+<li><a href="http://req.is">req.is</a>()：判断请求头Content-Type的MIME类型</li>
+</ol>
+<p><strong>Response 对象</strong> - response 对象表示 HTTP 响应，即在接收到请求时向客户端发送的 HTTP 响应数据。常见属性有：</p>
+<ol>
+<li>res.app：同req.app一样</li>
+<li>res.append()：追加指定HTTP头</li>
+<li>res.set()在res.append()后将重置之前设置的头</li>
+<li>res.cookie(name，value [，option])：设置Cookie</li>
+<li>opition: domain / expires / httpOnly / maxAge / path / secure / signed</li>
+<li>res.clearCookie()：清除Cookie</li>
+<li>res.download()：传送指定路径的文件</li>
+<li>res.get()：返回指定的HTTP头</li>
+<li>res.json()：传送JSON响应</li>
+<li>res.jsonp()：传送JSONP响应</li>
+<li>res.location()：只设置响应的Location HTTP头，不设置状态码或者close response</li>
+<li>res.redirect()：设置响应的Location HTTP头，并且设置状态码302</li>
+<li>res.render(view,[locals],callback)：渲染一个view，同时向callback传递渲染后的字符串，如果在渲染过程中有错误发生next(err)将会被自动调用。callback将会被传入一个可能发生的错误以及渲染后的页面，这样就不会自动输出了。</li>
+<li>res.send()：传送HTTP响应</li>
+<li>res.sendFile(path [，options] [，fn])：传送指定路径的文件 -会自动根据文件extension设定Content-Type</li>
+<li>res.set()：设置HTTP头，传入object可以一次设置多个头</li>
+<li>res.status()：设置HTTP状态码</li>
+<li>res.type()：设置Content-Type的MIME类型</li>
+</ol>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HTML入门</title>
     <url>/2022/01/11/HTML%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<h1>初识HTML</h1>
@@ -2645,26 +2739,6 @@ W3C标准包括<br>
       </tags>
   </entry>
   <entry>
-    <title>Java泛型</title>
-    <url>/2021/12/21/Java%E6%B3%9B%E5%9E%8B/</url>
-    <content><![CDATA[<h1>泛型的概念</h1>
-<h1>泛型的好处</h1>
-<h2 id="类型安全">类型安全</h2>
-<h2 id="消除强制转换类型">消除强制转换类型</h2>
-<h1>泛型的作用</h1>
-<h2 id="编译期间检查">编译期间检查</h2>
-<h1>泛型类</h1>
-<p><img src="/2021/12/21/Java%E6%B3%9B%E5%9E%8B/image-20211221125349265.png" alt="image-20211221125349265"></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>软件设计</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JavaScript入门小识</title>
     <url>/2022/01/20/JavaScript%E5%85%A5%E9%97%A8%E5%B0%8F%E8%AF%86/</url>
     <content><![CDATA[<h1>什么是JavaScript？</h1>
@@ -2994,6 +3068,26 @@ W3C标准包括<br>
       </tags>
   </entry>
   <entry>
+    <title>Java泛型</title>
+    <url>/2021/12/21/Java%E6%B3%9B%E5%9E%8B/</url>
+    <content><![CDATA[<h1>泛型的概念</h1>
+<h1>泛型的好处</h1>
+<h2 id="类型安全">类型安全</h2>
+<h2 id="消除强制转换类型">消除强制转换类型</h2>
+<h1>泛型的作用</h1>
+<h2 id="编译期间检查">编译期间检查</h2>
+<h1>泛型类</h1>
+<p><img src="/2021/12/21/Java%E6%B3%9B%E5%9E%8B/image-20211221125349265.png" alt="image-20211221125349265"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java的I/O流</title>
     <url>/2021/12/15/Java%E7%9A%84I-O%E6%B5%81/</url>
     <content><![CDATA[<h1>I/O框架</h1>
@@ -3086,27 +3180,6 @@ W3C标准包括<br>
       </categories>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>NodeJs搭建简易web后端</title>
-    <url>/2022/01/29/NodeJs%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93web%E5%90%8E%E7%AB%AF/</url>
-    <content><![CDATA[<blockquote>
-<p>更新于2022.1.29</p>
-</blockquote>
-<h1>什么是Nodejs？</h1>
-<p>为了让JavaScript代码能够脱离浏览器独立进行运行，NodeJs便由此而生。JavaScript能够运行在浏览器的一大原因是浏览器内置了V8引擎，能够将JavaScript代码转换为机器语言，而NodeJs封装了v8引擎，本身由c++编写。也就可以正常运行。这样，JavaScript在电脑也可以正常运行。</p>
-<p>此次我们要使用NodeJs制作一个简单的Web服务器。</p>
-<h1>安装NodeJs</h1>
-<p>网络下载安装包进行安装，此处不再赘述。</p>
-<h1>认识https请求</h1>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>软件设计</category>
-      </categories>
-      <tags>
-        <tag>后端入门</tag>
       </tags>
   </entry>
   <entry>
@@ -4126,6 +4199,27 @@ W3C标准包括<br>
       </categories>
       <tags>
         <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NodeJs搭建简易web后端</title>
+    <url>/2022/01/29/NodeJs%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93web%E5%90%8E%E7%AB%AF/</url>
+    <content><![CDATA[<blockquote>
+<p>更新于2022.1.29</p>
+</blockquote>
+<h1>什么是Nodejs？</h1>
+<p>为了让JavaScript代码能够脱离浏览器独立进行运行，NodeJs便由此而生。JavaScript能够运行在浏览器的一大原因是浏览器内置了V8引擎，能够将JavaScript代码转换为机器语言，而NodeJs封装了v8引擎，本身由c++编写。也就可以正常运行。这样，JavaScript在电脑也可以正常运行。</p>
+<p>此次我们要使用NodeJs制作一个简单的Web服务器。</p>
+<h1>安装NodeJs</h1>
+<p>网络下载安装包进行安装，此处不再赘述。</p>
+<h1>认识https请求</h1>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>后端入门</tag>
       </tags>
   </entry>
   <entry>
@@ -5373,40 +5467,6 @@ W3C标准包括<br>
       </tags>
   </entry>
   <entry>
-    <title>用logisim实现八位可控加减法器</title>
-    <url>/2021/12/03/%E7%AC%AC%E4%BA%8C/</url>
-    <content><![CDATA[<h1>计算机组成原理实验</h1>
-<p>你好，好久不见！吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼，作为第二篇博客，我决定先从一些简单的实验分享开始啦！（实际因为本人是小菜鸡一只的原因。。）</p>
-<h2 id="用logisim实现八位可控加减法器">用logisim实现八位可控加减法器</h2>
-<h3 id="思路解析：">思路解析：</h3>
-<p>要实现八位可控加减法器，采用并行思路，首先需要八个一位全加器，用分流器可以将八位二进制数分离，使得单独每一位用一位全加器来进行相关的运算，然后并行输出，最后用分流器进行还原。</p>
-<h3 id="实验过程：">实验过程：</h3>
-<p>1、首先进行一位全加器的设置，我们需要准备五个信号量，三个输入，两个输出，其中xi与yi为参加运算的对象，cin代表来自下一位的进位，si代表本位的输出结果，Cout代表向下一位的进位。</p>
-<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%871.png" alt="11"></p>
-<p>2、设计思路为：先用一个异或门判断xi与yi的和的情况，若异或门为1，则xi+yi==1，此时与cin进位再次进行异或门判断，若异或门为仍1，则说明不产生进位，则si可置1。若第一个异或门与cin的与门为1，则说明产生了进位并且si位为0.当xi与yi的与门为1时，cin也应该置1。经过调试判断，最终如图所示。</p>
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片2.png" style="zoom:50%;">
-<p>3、用logisim进行测试，检验是否制作成果，经检验得制作成功。</p>
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片3.png" style="zoom:33%;">
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片4.png" style="zoom:50%;">
-<p>4、制作分流器，准备分流器，数据位宽为8的输入，8个数据位宽为1的隧道，将隧道与分流器相连，分流器与8位位宽的输入相连。</p>
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片6.png" style="zoom:50%;">
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片7.png" style="zoom:50%;">
-<p>5、同理，准备一个y输入与s输出。</p>
-<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%878.png" alt></p>
-<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%879.png" alt></p>
-<p>6、准备8个一位全加器，一个用于表示加减的输入sub，一个用于检测溢出的of（overflow），一个cout表示最高位的进位。<br>
-其基本思路是：利用sub与y输入形成异或门，用于执行加和减时y的不同形态，将异或门的结果与一起并入全加器的两个加位，输出位依次接上s的8个隧道。将8个全加器按照这样的方式链接，最后将一位全加器用进位位连接起来，sub链接至第一个全加器的进位位，这样做的目的是将原本的（x+y）变成（x+y的补码）即为（x+（1+y的反码））。结果连接如下。</p>
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片10.png" style="zoom:80%;">
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>硬件设计</category>
-      </categories>
-      <tags>
-        <tag>logisim</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java常用类</title>
     <url>/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/</url>
     <content><![CDATA[<h1>object类</h1>
@@ -5689,6 +5749,40 @@ W3C标准包括<br>
       </categories>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用logisim实现八位可控加减法器</title>
+    <url>/2021/12/03/%E7%AC%AC%E4%BA%8C/</url>
+    <content><![CDATA[<h1>计算机组成原理实验</h1>
+<p>你好，好久不见！吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼，作为第二篇博客，我决定先从一些简单的实验分享开始啦！（实际因为本人是小菜鸡一只的原因。。）</p>
+<h2 id="用logisim实现八位可控加减法器">用logisim实现八位可控加减法器</h2>
+<h3 id="思路解析：">思路解析：</h3>
+<p>要实现八位可控加减法器，采用并行思路，首先需要八个一位全加器，用分流器可以将八位二进制数分离，使得单独每一位用一位全加器来进行相关的运算，然后并行输出，最后用分流器进行还原。</p>
+<h3 id="实验过程：">实验过程：</h3>
+<p>1、首先进行一位全加器的设置，我们需要准备五个信号量，三个输入，两个输出，其中xi与yi为参加运算的对象，cin代表来自下一位的进位，si代表本位的输出结果，Cout代表向下一位的进位。</p>
+<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%871.png" alt="11"></p>
+<p>2、设计思路为：先用一个异或门判断xi与yi的和的情况，若异或门为1，则xi+yi==1，此时与cin进位再次进行异或门判断，若异或门为仍1，则说明不产生进位，则si可置1。若第一个异或门与cin的与门为1，则说明产生了进位并且si位为0.当xi与yi的与门为1时，cin也应该置1。经过调试判断，最终如图所示。</p>
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片2.png" style="zoom:50%;">
+<p>3、用logisim进行测试，检验是否制作成果，经检验得制作成功。</p>
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片3.png" style="zoom:33%;">
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片4.png" style="zoom:50%;">
+<p>4、制作分流器，准备分流器，数据位宽为8的输入，8个数据位宽为1的隧道，将隧道与分流器相连，分流器与8位位宽的输入相连。</p>
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片6.png" style="zoom:50%;">
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片7.png" style="zoom:50%;">
+<p>5、同理，准备一个y输入与s输出。</p>
+<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%878.png" alt></p>
+<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%879.png" alt></p>
+<p>6、准备8个一位全加器，一个用于表示加减的输入sub，一个用于检测溢出的of（overflow），一个cout表示最高位的进位。<br>
+其基本思路是：利用sub与y输入形成异或门，用于执行加和减时y的不同形态，将异或门的结果与一起并入全加器的两个加位，输出位依次接上s的8个隧道。将8个全加器按照这样的方式链接，最后将一位全加器用进位位连接起来，sub链接至第一个全加器的进位位，这样做的目的是将原本的（x+y）变成（x+y的补码）即为（x+（1+y的反码））。结果连接如下。</p>
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片10.png" style="zoom:80%;">
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>硬件设计</category>
+      </categories>
+      <tags>
+        <tag>logisim</tag>
       </tags>
   </entry>
   <entry>
