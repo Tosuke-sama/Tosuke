@@ -43,101 +43,6 @@ $$</p>
       </tags>
   </entry>
   <entry>
-    <title>4位快速加法器的设计</title>
-    <url>/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/</url>
-    <content><![CDATA[<h2 id="4位快速加法器的设计">4位快速加法器的设计</h2>
-<h3 id="实验目的：">实验目的：</h3>
-<p>掌握快速加法器中先行进位的原理，能利用相关知识设计4位先行进位电路，并利用设计的4位先行进位电路构造4位快速加法器，能分析对应电路的时间延迟。</p>
-<h3 id="实验结果：">实验结果：</h3>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8711.png" alt></p>
-<h3 id="实验结果分析：">实验结果分析：</h3>
-<p>因为我们已经完成了的4位先行进位，（什么？你没什么印象？<a href="https://tosuke.gitee.io/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/">点我马上传送</a>现在我们可以来来实现4位快速加法器，没错，其实4位快速加法器就是根据我们第三个实验的原理而来，实验三所写的4位先行进位现在在4位快速加法器里是重要的中心电路。</p>
-<p>第一步先准备一下我们需要的输入输出：</p>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8712.png" alt></p>
-<p>然后对应好我们之前的4位先行进位的电路封装：</p>
-<img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/图片13.png" style="zoom:80%;">
-<img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/图片14.png" style="zoom:80%;">
-<p>确认好我们的电路封装后，那我们先来输入我们的P1、P2等Pi输入，因为</p>
-<pre><code>                          **Pi=ai⊕bi  Gi=ai*bi**
-</code></pre>
-<p>所以我们将xi、yi连上异或门连上电路封装的pi输入，将xi、yi连上与门连上电路封装的gi输入，最后不要忘了连上C0的输入：</p>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8715.png" alt></p>
-<p>那我们输入就算完成了，现在来看看电路封装的输出部分，我们电路的电路的输出分别是Ci和p*、g*成组先进函数，又因为我们推出的运算公式中：</p>
-<p>​														Si=Pi⊕Ci</p>
-<p>所以我们需要将封装电路输出的Ci与Pi连上异或门再输出给Si，由于在上一步已经制造了Pi，所以连接如图：</p>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8716.png" alt></p>
-<p>最后连接上代表最高位进位的C4与p*、g*成组先进函数，电路图就链接好了。</p>
-<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8717.png" alt></p>
-<blockquote>
-<p>有问题请通过旁边的对话窗口联系京介喔。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>硬件设计</category>
-      </categories>
-      <tags>
-        <tag>logisim</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Babel学习</title>
-    <url>/2022/04/26/Babel%E5%B0%8F%E8%AF%86/</url>
-    <content><![CDATA[<h1>Babel 简介</h1>
-<p>Babel 是一个 JavaScript 编译器，Babel 是一个工具链，主要用于将采用 ECMAScript 2015+ 语法编写的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境中。下面列出的是 Babel 能为你做的事情：</p>
-<ul>
-<li>语法转换</li>
-<li>通过 Polyfill 方式在目标环境中添加缺失的特性 （通过引入第三方 polyfill 模块，例如 <a href="https://github.com/zloirock/core-js">core-js</a>）</li>
-<li>源码转换（codemods）</li>
-</ul>
-<p>大概的功能就是帮助我们在旧的浏览器环境中将 <code>ES6+</code> 的代码转换为兼容低版本的 <code>JS</code> 代码。</p>
-<p>让我们从一个案例入手来学习Babel。</p>
-<p>首先从终端来初始化一个项目：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir babel-basic &amp;&amp; cd babel-basic</span><br><span class="line">//创建文件夹并进入</span><br><span class="line">npm init -y</span><br><span class="line">//初始化项目，-y是yes的意思，省略了敲回车的步骤。</span><br><span class="line">mkdir src &amp;&amp; cd src</span><br><span class="line">touch index.js</span><br></pre></td></tr></table></figure>
-<h1>@babel/core</h1>
-<p>学习 Babel，首先要了解一个叫 @babel/core 的东西，它是 Babel 的核心模块，所以首先要安装这个模块。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i --save-dev @babel/core</span><br></pre></td></tr></table></figure>
-<p>安装成功之后就可以在我们的代码中使用了，在js中直接引用：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">&#x27;@babel/core&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<h1>@babel/cli</h1>
-<p>这是一个终端运行工具，内置的插件，运行你从终端使用 babel 的工具。同样也需要安装：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i --save-dev @babel/cli</span><br></pre></td></tr></table></figure>
-<p>接着，在 src/index.js 中写一段简单代码：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = <span class="function">() =&gt;</span> <span class="number">1</span>; <span class="comment">// 箭头函数, 返回值为1</span></span><br><span class="line"><span class="built_in">console</span>.log(fn());</span><br></pre></td></tr></table></figure>
-<p>用法一：命令行的形式：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./node_modules/.bin/babel src --out-dir lib  </span><br></pre></td></tr></table></figure>
-<p>这行代码的意思是：它使用我们设置的<strong>解析方式</strong>来解释 <code>src</code> 目录下的所有 <code>js</code> 文件，并将转换后的每个文件都输出到 <code>lib</code> 目录下。</p>
-<blockquote>
-<p>也可以利用 npm@5.2.0 所自带的 npm 包运行器将 <code>./node_modules/.bin/babel</code> 命令缩短为 <code>npx babel</code></p>
-</blockquote>
-<p>注意，大家在使用命令行时可能会用到“因为在此系统上禁止运行脚本”的错误（如下）</p>
-<p><img src="/2022/04/26/Babel%E5%B0%8F%E8%AF%86/image-20220505160117375.png" alt="image-20220505160117375"></p>
-<p>解决方法如下：</p>
-<ul>
-<li>管理员身份运行 PowerShell</li>
-<li>执行：get-ExecutionPolicy，若显示 Restricted 表示状态是禁止的</li>
-<li>执行：set-ExecutionPolicy，会提示输入参数</li>
-<li>输入 RemoteSigned 会提示进行选择</li>
-<li>输入：Y，回车</li>
-</ul>
-<p><img src="/2022/04/26/Babel%E5%B0%8F%E8%AF%86/image-20220505160227355.png" alt="image-20220505160227355"></p>
-<p>回到正题，我们打开lib文件夹会发现里面的文件与src文件夹里的一模一样，这是因为到目前为止我们并没有设置任何的解析方式，解析最重要的就是<code>--plugins</code> 和 <code>--presets</code> 这两个参数。</p>
-<p>不过在那之前，我们先看看我们上面使用过的–out-dir参数，你可以通过 <code>--help</code> 参数来查看命令行工具所能接受的所有参数列表。</p>
-<p>这里给大家部分列举一下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Options:</span><br><span class="line">  -f, --filename [filename]                   The filename to use when reading from stdin. This will be used in source-maps, errors etc.</span><br><span class="line">  --presets [list]                            A comma-separated list of preset names.</span><br><span class="line">  --plugins [list]                            A comma-separated list of plugin names.</span><br><span class="line">  --config-file [path]                        Path to a .babelrc file to use.  --env-name [name]                           The name of the &#x27;env&#x27; to use when loading configs and plugins. Defaults to the value of BABEL_ENV, or else NODE_ENV, or else &#x27;development&#x27;.</span><br><span class="line">  --root-mode [mode]                          The project-root resolution mode. One of &#x27;root&#x27; (the default), &#x27;upward&#x27;, or &#x27;upward-optional&#x27;.</span><br><span class="line">  --source-type [script|module]</span><br><span class="line">  --no-babelrc                                Whether or not to look up .babelrc and .babelignore files.</span><br><span class="line">  --ignore [list]                             List of glob paths to **not** compile.</span><br><span class="line">  --only [list]                               List of glob paths to **only** </span><br><span class="line">compile.</span><br><span class="line">  --no-highlight-code                         Enable or disable ANSI syntax highlighting of code frames. (on by default)</span><br></pre></td></tr></table></figure>
-<h1>插件（plugins）和预设（preset）</h1>
-<h2 id="piugins">piugins</h2>
-<p><code>plugins</code> 的本质是一个 <code>js</code> 程序，指示着 <code>Babel</code> 如何转换代码，如何解析代码。</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>软件设计</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AJAX</title>
     <url>/2022/05/01/AJAX%E2%80%94%E5%86%AC%E6%97%A5%E9%98%BF%E8%B4%BE%E5%85%8B%E6%96%AF%EF%BC%88%E4%BC%AA%EF%BC%89/</url>
     <content><![CDATA[<h1>AJAX，动态刷新网页</h1>
@@ -287,6 +192,44 @@ $$</p>
       </tags>
   </entry>
   <entry>
+    <title>4位快速加法器的设计</title>
+    <url>/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h2 id="4位快速加法器的设计">4位快速加法器的设计</h2>
+<h3 id="实验目的：">实验目的：</h3>
+<p>掌握快速加法器中先行进位的原理，能利用相关知识设计4位先行进位电路，并利用设计的4位先行进位电路构造4位快速加法器，能分析对应电路的时间延迟。</p>
+<h3 id="实验结果：">实验结果：</h3>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8711.png" alt></p>
+<h3 id="实验结果分析：">实验结果分析：</h3>
+<p>因为我们已经完成了的4位先行进位，（什么？你没什么印象？<a href="https://tosuke.gitee.io/2021/12/07/4%E4%BD%8D%E5%85%88%E8%A1%8C%E8%BF%9B%E4%BD%8D74182/">点我马上传送</a>现在我们可以来来实现4位快速加法器，没错，其实4位快速加法器就是根据我们第三个实验的原理而来，实验三所写的4位先行进位现在在4位快速加法器里是重要的中心电路。</p>
+<p>第一步先准备一下我们需要的输入输出：</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8712.png" alt></p>
+<p>然后对应好我们之前的4位先行进位的电路封装：</p>
+<img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/图片13.png" style="zoom:80%;">
+<img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/图片14.png" style="zoom:80%;">
+<p>确认好我们的电路封装后，那我们先来输入我们的P1、P2等Pi输入，因为</p>
+<pre><code>                          **Pi=ai⊕bi  Gi=ai*bi**
+</code></pre>
+<p>所以我们将xi、yi连上异或门连上电路封装的pi输入，将xi、yi连上与门连上电路封装的gi输入，最后不要忘了连上C0的输入：</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8715.png" alt></p>
+<p>那我们输入就算完成了，现在来看看电路封装的输出部分，我们电路的电路的输出分别是Ci和p*、g*成组先进函数，又因为我们推出的运算公式中：</p>
+<p>​														Si=Pi⊕Ci</p>
+<p>所以我们需要将封装电路输出的Ci与Pi连上异或门再输出给Si，由于在上一步已经制造了Pi，所以连接如图：</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8716.png" alt></p>
+<p>最后连接上代表最高位进位的C4与p*、g*成组先进函数，电路图就链接好了。</p>
+<p><img src="/2021/12/07/4%E4%BD%8D%E5%BF%AB%E9%80%9F%E5%8A%A0%E6%B3%95%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/%E5%9B%BE%E7%89%8717.png" alt></p>
+<blockquote>
+<p>有问题请通过旁边的对话窗口联系京介喔。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>硬件设计</category>
+      </categories>
+      <tags>
+        <tag>logisim</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS入门小识</title>
     <url>/2022/01/18/CSS%E5%85%A5%E9%97%A8%E5%B0%8F%E8%AF%86/</url>
     <content><![CDATA[<blockquote>
@@ -353,6 +296,63 @@ square正方形</p>
       </categories>
       <tags>
         <tag>前端入门</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Babel学习</title>
+    <url>/2022/04/26/Babel%E5%B0%8F%E8%AF%86/</url>
+    <content><![CDATA[<h1>Babel 简介</h1>
+<p>Babel 是一个 JavaScript 编译器，Babel 是一个工具链，主要用于将采用 ECMAScript 2015+ 语法编写的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境中。下面列出的是 Babel 能为你做的事情：</p>
+<ul>
+<li>语法转换</li>
+<li>通过 Polyfill 方式在目标环境中添加缺失的特性 （通过引入第三方 polyfill 模块，例如 <a href="https://github.com/zloirock/core-js">core-js</a>）</li>
+<li>源码转换（codemods）</li>
+</ul>
+<p>大概的功能就是帮助我们在旧的浏览器环境中将 <code>ES6+</code> 的代码转换为兼容低版本的 <code>JS</code> 代码。</p>
+<p>让我们从一个案例入手来学习Babel。</p>
+<p>首先从终端来初始化一个项目：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir babel-basic &amp;&amp; cd babel-basic</span><br><span class="line">//创建文件夹并进入</span><br><span class="line">npm init -y</span><br><span class="line">//初始化项目，-y是yes的意思，省略了敲回车的步骤。</span><br><span class="line">mkdir src &amp;&amp; cd src</span><br><span class="line">touch index.js</span><br></pre></td></tr></table></figure>
+<h1>@babel/core</h1>
+<p>学习 Babel，首先要了解一个叫 @babel/core 的东西，它是 Babel 的核心模块，所以首先要安装这个模块。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i --save-dev @babel/core</span><br></pre></td></tr></table></figure>
+<p>安装成功之后就可以在我们的代码中使用了，在js中直接引用：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">&#x27;@babel/core&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h1>@babel/cli</h1>
+<p>这是一个终端运行工具，内置的插件，运行你从终端使用 babel 的工具。同样也需要安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i --save-dev @babel/cli</span><br></pre></td></tr></table></figure>
+<p>接着，在 src/index.js 中写一段简单代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = <span class="function">() =&gt;</span> <span class="number">1</span>; <span class="comment">// 箭头函数, 返回值为1</span></span><br><span class="line"><span class="built_in">console</span>.log(fn());</span><br></pre></td></tr></table></figure>
+<p>用法一：命令行的形式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./node_modules/.bin/babel src --out-dir lib  </span><br></pre></td></tr></table></figure>
+<p>这行代码的意思是：它使用我们设置的<strong>解析方式</strong>来解释 <code>src</code> 目录下的所有 <code>js</code> 文件，并将转换后的每个文件都输出到 <code>lib</code> 目录下。</p>
+<blockquote>
+<p>也可以利用 npm@5.2.0 所自带的 npm 包运行器将 <code>./node_modules/.bin/babel</code> 命令缩短为 <code>npx babel</code></p>
+</blockquote>
+<p>注意，大家在使用命令行时可能会用到“因为在此系统上禁止运行脚本”的错误（如下）</p>
+<p><img src="/2022/04/26/Babel%E5%B0%8F%E8%AF%86/image-20220505160117375.png" alt="image-20220505160117375"></p>
+<p>解决方法如下：</p>
+<ul>
+<li>管理员身份运行 PowerShell</li>
+<li>执行：get-ExecutionPolicy，若显示 Restricted 表示状态是禁止的</li>
+<li>执行：set-ExecutionPolicy，会提示输入参数</li>
+<li>输入 RemoteSigned 会提示进行选择</li>
+<li>输入：Y，回车</li>
+</ul>
+<p><img src="/2022/04/26/Babel%E5%B0%8F%E8%AF%86/image-20220505160227355.png" alt="image-20220505160227355"></p>
+<p>回到正题，我们打开lib文件夹会发现里面的文件与src文件夹里的一模一样，这是因为到目前为止我们并没有设置任何的解析方式，解析最重要的就是<code>--plugins</code> 和 <code>--presets</code> 这两个参数。</p>
+<p>不过在那之前，我们先看看我们上面使用过的–out-dir参数，你可以通过 <code>--help</code> 参数来查看命令行工具所能接受的所有参数列表。</p>
+<p>这里给大家部分列举一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Options:</span><br><span class="line">  -f, --filename [filename]                   The filename to use when reading from stdin. This will be used in source-maps, errors etc.</span><br><span class="line">  --presets [list]                            A comma-separated list of preset names.</span><br><span class="line">  --plugins [list]                            A comma-separated list of plugin names.</span><br><span class="line">  --config-file [path]                        Path to a .babelrc file to use.  --env-name [name]                           The name of the &#x27;env&#x27; to use when loading configs and plugins. Defaults to the value of BABEL_ENV, or else NODE_ENV, or else &#x27;development&#x27;.</span><br><span class="line">  --root-mode [mode]                          The project-root resolution mode. One of &#x27;root&#x27; (the default), &#x27;upward&#x27;, or &#x27;upward-optional&#x27;.</span><br><span class="line">  --source-type [script|module]</span><br><span class="line">  --no-babelrc                                Whether or not to look up .babelrc and .babelignore files.</span><br><span class="line">  --ignore [list]                             List of glob paths to **not** compile.</span><br><span class="line">  --only [list]                               List of glob paths to **only** </span><br><span class="line">compile.</span><br><span class="line">  --no-highlight-code                         Enable or disable ANSI syntax highlighting of code frames. (on by default)</span><br></pre></td></tr></table></figure>
+<h1>插件（plugins）和预设（preset）</h1>
+<h2 id="piugins">piugins</h2>
+<p><code>plugins</code> 的本质是一个 <code>js</code> 程序，指示着 <code>Babel</code> 如何转换代码，如何解析代码。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
@@ -653,6 +653,92 @@ square正方形</p>
 <h3 id="返回值">返回值</h3>
 <p>async 函数返回一个 Promise 对象，可以使用 then 方法添加回调函数。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">helloAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;helloAsync&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"><span class="built_in">console</span>.log(helloAsync())  <span class="comment">// Promise &#123;&lt;resolved&gt;: &quot;helloAsync&quot;&#125;</span></span><br><span class="line"> </span><br><span class="line">helloAsync().then(<span class="function"><span class="params">v</span>=&gt;</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(v);         <span class="comment">// helloAsync</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Express框架</title>
+    <url>/2022/04/18/Express%20%E6%A1%86%E6%9E%B6/</url>
+    <content><![CDATA[<h2 id="Express-简介">Express 简介</h2>
+<p>Express 是一个简洁而灵活的 node.js Web应用框架, 提供了一系列强大特性帮助你创建各种 Web 应用，和丰富的 HTTP 工具。</p>
+<p>使用 Express 可以快速地搭建一个完整功能的网站。</p>
+<p>Express 框架核心特性：</p>
+<ul>
+<li>可以设置中间件来响应 HTTP 请求。</li>
+<li>定义了路由表用于执行不同的 HTTP 请求动作。</li>
+<li>可以通过向模板传递参数来动态渲染 HTML 页面。</li>
+</ul>
+<h2 id="安装-Express">安装 Express</h2>
+<p>安装 Express 并将其保存到依赖列表中：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm install express --save</span><br></pre></td></tr></table></figure>
+<p>以上命令会将 Express 框架安装在当前目录的 <strong>node_modules</strong> 目录中， <strong>node_modules</strong> 目录下会自动创建 express 目录。以下几个重要的模块是需要与 express 框架一起安装的：</p>
+<ul>
+<li><strong>body-parser</strong> - node.js 中间件，用于处理 JSON, Raw, Text 和 URL 编码的数据。</li>
+<li><strong>cookie-parser</strong> - 这就是一个解析Cookie的工具。通过req.cookies可以取到传过来的cookie，并把它们转成对象。</li>
+<li><strong>multer</strong> - node.js 中间件，用于处理 enctype=“multipart/form-data”（设置表单的MIME编码）的表单数据。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm install body-parser --save</span><br><span class="line">$ cnpm install cookie-parser --save</span><br><span class="line">$ cnpm install multer --save</span><br></pre></td></tr></table></figure>
+<p>安装完后，我们可以查看下 express 使用的版本号：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm list express</span><br><span class="line">/data/www/node</span><br><span class="line">└── express@4.15.2  -&gt; /Users/tianqixin/www/node/node_modules/.4.15.2@express</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意以上均是在淘宝镜像上进行加载的，需要提前安装淘宝镜像，如没有安装也无妨，删除cnpm的c即可。</p>
+</blockquote>
+<h2 id="第一个-Express-框架实例">第一个 Express 框架实例</h2>
+<p>接下来我们使用 Express 框架来输出 “Hello World”。</p>
+<p>以下实例中我们引入了 express 模块，并在客户端发起请求后，响应 “Hello World” 字符串。</p>
+<p>创建 express_demo.js 文件，代码如下所示：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//express_demo.js 文件</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"> </span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">   res.send(<span class="string">&#x27;Hello World&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> server = app.listen(<span class="number">8081</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">var</span> host = server.address().address</span><br><span class="line">  <span class="keyword">var</span> port = server.address().port</span><br><span class="line"> </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;应用实例，访问地址为 http://%s:%s&quot;</span>, host, port)</span><br><span class="line"> </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>执行以上代码后，在浏览器中访问 <a href="http://127.0.0.1:8081">http://127.0.0.1:8081</a>，便可得到服务器返回的hello world。</p>
+<h2 id="请求和响应">请求和响应</h2>
+<p>Express 应用使用回调函数的参数： <strong>request</strong> 和 <strong>response</strong> 对象来处理请求和响应的数据。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">app.get(&#x27;/&#x27;, function (req, res) &#123;</span><br><span class="line">   // --</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>request</strong> 和 <strong>response</strong> 对象的具体介绍：</p>
+<p><strong>Request 对象</strong> - request 对象表示 HTTP 请求，包含了请求查询字符串，参数，内容，HTTP 头部等属性。常见属性有：</p>
+<ol>
+<li>req.app：当callback为外部文件时，用req.app访问express的实例</li>
+<li>req.baseUrl：获取路由当前安装的URL路径</li>
+<li>req.body / req.cookies：获得「请求主体」/ Cookies</li>
+<li>req.fresh / req.stale：判断请求是否还「新鲜」</li>
+<li>req.hostname / req.ip：获取主机名和IP地址</li>
+<li>req.originalUrl：获取原始请求URL</li>
+<li>req.params：获取路由的parameters</li>
+<li>req.path：获取请求路径</li>
+<li>req.protocol：获取协议类型</li>
+<li>req.query：获取URL的查询参数串</li>
+<li>req.route：获取当前匹配的路由</li>
+<li>req.subdomains：获取子域名</li>
+<li>req.accepts()：检查可接受的请求的文档类型</li>
+<li>req.acceptsCharsets / req.acceptsEncodings / req.acceptsLanguages：返回指定字符集的第一个可接受字符编码</li>
+<li>req.get()：获取指定的HTTP请求头</li>
+<li><a href="http://req.is">req.is</a>()：判断请求头Content-Type的MIME类型</li>
+</ol>
+<p><strong>Response 对象</strong> - response 对象表示 HTTP 响应，即在接收到请求时向客户端发送的 HTTP 响应数据。常见属性有：</p>
+<ol>
+<li>res.app：同req.app一样</li>
+<li>res.append()：追加指定HTTP头</li>
+<li>res.set()在res.append()后将重置之前设置的头</li>
+<li>res.cookie(name，value [，option])：设置Cookie</li>
+<li>opition: domain / expires / httpOnly / maxAge / path / secure / signed</li>
+<li>res.clearCookie()：清除Cookie</li>
+<li>res.download()：传送指定路径的文件</li>
+<li>res.get()：返回指定的HTTP头</li>
+<li>res.json()：传送JSON响应</li>
+<li>res.jsonp()：传送JSONP响应</li>
+<li>res.location()：只设置响应的Location HTTP头，不设置状态码或者close response</li>
+<li>res.redirect()：设置响应的Location HTTP头，并且设置状态码302</li>
+<li>res.render(view,[locals],callback)：渲染一个view，同时向callback传递渲染后的字符串，如果在渲染过程中有错误发生next(err)将会被自动调用。callback将会被传入一个可能发生的错误以及渲染后的页面，这样就不会自动输出了。</li>
+<li>res.send()：传送HTTP响应</li>
+<li>res.sendFile(path [，options] [，fn])：传送指定路径的文件 -会自动根据文件extension设定Content-Type</li>
+<li>res.set()：设置HTTP头，传入object可以一次设置多个头</li>
+<li>res.status()：设置HTTP状态码</li>
+<li>res.type()：设置Content-Type的MIME类型</li>
+</ol>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -1836,217 +1922,6 @@ async 函数返回一个 Promise 对象，可以使用 then 方法添加回调�
       </tags>
   </entry>
   <entry>
-    <title>JavaSE的部分要点</title>
-    <url>/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/</url>
-    <content><![CDATA[<h1>scanner</h1>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">scanner.hasnextline()  <span class="comment">//判断是否还有输入</span></span><br></pre></td></tr></table></figure>
-<p>next（）与nextLine（）的区别；</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208161159615.png" alt="image-20211208161159615"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">sacanner.nextLine(); <span class="comment">//可以接受空白，以回车为结束。</span></span><br><span class="line">scanner.close();   <span class="comment">//关闭scanner</span></span><br></pre></td></tr></table></figure>
-<h1>增强for循环</h1>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x:数组名)&#123;</span><br><span class="line">  system.out.println(x);</span><br><span class="line">  <span class="comment">//遍历数组</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1>给main函数传递参数</h1>
-<p>找到包的路径下，在命令行中进行编译，运行。</p>
-<h1>可变参数</h1>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208164227825.png" alt="image-20211208164227825"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span>... i)</span></span>&#123;</span><br><span class="line"> system.out.println(i[]);</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">//此时i为可变参数，可输入多个值,i也就可能成为一个数组。</span></span><br></pre></td></tr></table></figure>
-<h1>递归</h1>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208164910624.png" alt="image-20211208164910624"></p>
-<h1>继承和多态</h1>
-<p>静态方法是类的方法，非静态的方法是对象的方法。</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208211748858.png" alt="image-20211208211748858"></p>
-<p>我们的person类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我开动了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>student类继承person类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">student</span> <span class="keyword">extends</span> <span class="title">person</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;学生的事怎么能叫吃呢？&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">learn</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我要学习了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>text类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">texi1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        student  s1=<span class="keyword">new</span> student();</span><br><span class="line">        person s2=<span class="keyword">new</span> student();</span><br><span class="line">s1.eat();</span><br><span class="line">s2.eat();</span><br><span class="line">s1.learn();</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208215628894.png" alt="image-20211208215628894"></p>
-<h2 id="多态（只针对方法）：">多态（只针对方法）：</h2>
-<p>同一方法可以根据发送对象的不同采取多种不同的行为方式，一个对象的实际类型是知道的，但指向对象的引用类型有很多，比如父类的引用指向了子类的对象。</p>
-<p>执行方法先看类里面的静态方法（静态方法属于类的，不属于对象），再看对象实际类型对应的方法。</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208214431807.png" alt="image-20211208214431807"></p>
-<h1>instanceof与类型转换</h1>
-<p>instanceof会判断两个类的继承关系，兄弟关系则会报错。</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209175621741.png" alt="image-20211209175621741"></p>
-<p><em>底类转高类不需要强制转换。</em></p>
-<p><em>高类转底类需要进行强制转换</em></p>
-<p>子类转换为父类可能会丢失一些方法（子类te’you）。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Object s1 = <span class="keyword">new</span> student(); </span><br><span class="line"><span class="comment">//底类转高类不需要强制转换</span></span><br><span class="line">person s2 = (student) s1;          <span class="comment">//高类转底类需要进行强制转换</span></span><br><span class="line">s2.eat();</span><br><span class="line">student s3 = (student) s2;</span><br><span class="line">s3.eat();</span><br><span class="line">s3.learn();</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209182350137.png" alt="image-20211209182350137"></p>
-<blockquote>
-<p>这里插入一个我突然看到的，对于对象和实例区别的一个例子：</p>
-<p>父母口中的女朋友（对象），怀里搂着的她（实例）。</p>
-<p>（精辟无敌）</p>
-</blockquote>
-<h1>抽象类与接口</h1>
-<h2 id="抽象类">抽象类</h2>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209182856546.png" alt="image-20211209182856546"></p>
-<blockquote>
-<p>抽象类：给予类约束，让其他人帮我们实现。继承了抽象类的类必须重写抽象类所有的抽象方法（除非自己也是抽象类）。我们一般把他们叫做资本家与被压榨的苦力。</p>
-</blockquote>
-<p>生成一个抽象类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> 资本家 </span>&#123;</span><br><span class="line">    <span class="comment">//来帮我写个方法,我只给需求，我就不写了</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">ganfan</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>以及一个苦力：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 被压榨的苦力 <span class="keyword">extends</span> 资本家 </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ganfan</span><span class="params">()</span> </span>&#123;</span><br><span class="line">System.out.println(<span class="string">&quot;我为老板冲锋陷阵！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        被压榨的苦力 苦力<span class="number">1</span> = <span class="keyword">new</span> 被压榨的苦力();</span><br><span class="line">        苦力<span class="number">1.</span>ganfan();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209184432977.png" alt="image-20211209184432977"></p>
-<h2 id="接口">接口</h2>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209184503107.png" alt="image-20211209184503107"></p>
-<p>接口全是抽象方法还有静态常量，只有由别人实现。即接口全是要求，资本家自愧不如。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">service</span> </span>&#123;</span><br><span class="line">    <span class="comment">//所有对象皆抽象</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">(<span class="keyword">int</span> speed)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">get</span> </span>&#123;</span><br><span class="line">   <span class="keyword">int</span> age=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fight</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lost</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>一个类实现两个接口：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">serviceimpl</span> <span class="keyword">implements</span> <span class="title">service</span>,<span class="title">get</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(<span class="keyword">int</span> speed)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fight</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lost</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>利用接口实现多继承,接口不能被实例化~接口中没有构造方法。</p>
-<h1>内部类</h1>
-<h2 id="成员内部类">成员内部类</h2>
-<p>定义一个内部类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是外面的&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">in</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是里面的&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>定义一个内部对象：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">run</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        text t1 = <span class="keyword">new</span> text();</span><br><span class="line">        text.in in1 = t1.<span class="function">new <span class="title">in</span><span class="params">()</span></span>;</span><br><span class="line">        t1.out();</span><br><span class="line">        in1.out();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果：</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209190853396.png" alt="image-20211209190853396"></p>
-<p><strong>内部类可以操纵外部类的私有属性，这是它的特点（毕竟是亲生的）。</strong></p>
-<h2 id="静态内部类">静态内部类</h2>
-<p>也就是定义内部类时加上static，需要时注意的是，如果内部类被静态化，那么这个静态内部类也许就不能访问外部类的私有属性了（静态内部类相当于预加载），除非该私有属性也是静态的。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是外面的&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">in</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是里面的&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="局部内部类">局部内部类</h2>
-<p>在方法里定义的类（类如局部变量）。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">in</span></span>&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">            </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这是里面的&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是外面的&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="匿名内部类">匿名内部类</h2>
-<p>new出来直接用，没有名字初始类，不用将实例保存到类。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">run</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> id;</span><br><span class="line">        id=<span class="keyword">new</span> Scanner().nextInt();</span><br><span class="line">        <span class="comment">//没有创建scanner类.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1>异常机制</h1>
-<h2 id="异常">异常</h2>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209193513675.png" alt="image-20211209193513675"></p>
-<p><strong>异常也是一种对象</strong></p>
-<p>当遇到异常或者是错误时，Java会抛出异常对象，可以对其进行捕获处理（尤其是异常）。</p>
-<h2 id="异常处理">异常处理</h2>
-<h3 id="五个关键字">五个关键字</h3>
-<p>try:尝试捕获异常的监控区。</p>
-<p>catch：捕获异常（括号里为想要捕获的异常类型）。</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211210195637949.png" alt="image-20211210195637949"></p>
-<p>finally：无论执不执行最后都要走的（一般用于善后工作）。</p>
-<p>throw：主动抛出异常。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> ArithmeticException();</span><br></pre></td></tr></table></figure>
-<p>throws：方法调用时抛出，</p>
-<p>写个报错程序：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> b=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(b/a);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(ArithmeticException e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;有问题&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">finally</span> &#123;<span class="comment">//善后处理</span></span><br><span class="line">            System.out.println(<span class="string">&quot;程序结束&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>ctrl+alt+t可以快速构造代码块框架，包括try|catch语句。</p>
-</blockquote>
-<p>输出：</p>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211210201559270.png" alt="image-20211210201559270"></p>
-<h2 id="自定义异常">自定义异常</h2>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211210202529797.png" alt="image-20211210202529797"></p>
-<p>比如数字大于10，我们设计的异常：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Myexception</span> <span class="keyword">extends</span> <span class="title">Exception</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> detali;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Myexception</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.detali=a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Myexception&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;detali=&quot;</span> + detali +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试一下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            test(<span class="number">11</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Myexception e) &#123;</span><br><span class="line">        System.out.println(e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span>  <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a)</span> <span class="keyword">throws</span> Myexception </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(a&gt;<span class="number">10</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Myexception(a);</span><br><span class="line">        System.out.println(<span class="string">&quot;正常&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211210203653004.png" alt="image-20211210203653004"></p>
-<h1>结束</h1>
-<p>JavaSE大体部分就到此结束！</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>软件设计</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Express框架</title>
-    <url>/2022/04/18/Express%20%E6%A1%86%E6%9E%B6/</url>
-    <content><![CDATA[<h2 id="Express-简介">Express 简介</h2>
-<p>Express 是一个简洁而灵活的 node.js Web应用框架, 提供了一系列强大特性帮助你创建各种 Web 应用，和丰富的 HTTP 工具。</p>
-<p>使用 Express 可以快速地搭建一个完整功能的网站。</p>
-<p>Express 框架核心特性：</p>
-<ul>
-<li>可以设置中间件来响应 HTTP 请求。</li>
-<li>定义了路由表用于执行不同的 HTTP 请求动作。</li>
-<li>可以通过向模板传递参数来动态渲染 HTML 页面。</li>
-</ul>
-<h2 id="安装-Express">安装 Express</h2>
-<p>安装 Express 并将其保存到依赖列表中：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm install express --save</span><br></pre></td></tr></table></figure>
-<p>以上命令会将 Express 框架安装在当前目录的 <strong>node_modules</strong> 目录中， <strong>node_modules</strong> 目录下会自动创建 express 目录。以下几个重要的模块是需要与 express 框架一起安装的：</p>
-<ul>
-<li><strong>body-parser</strong> - node.js 中间件，用于处理 JSON, Raw, Text 和 URL 编码的数据。</li>
-<li><strong>cookie-parser</strong> - 这就是一个解析Cookie的工具。通过req.cookies可以取到传过来的cookie，并把它们转成对象。</li>
-<li><strong>multer</strong> - node.js 中间件，用于处理 enctype=“multipart/form-data”（设置表单的MIME编码）的表单数据。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm install body-parser --save</span><br><span class="line">$ cnpm install cookie-parser --save</span><br><span class="line">$ cnpm install multer --save</span><br></pre></td></tr></table></figure>
-<p>安装完后，我们可以查看下 express 使用的版本号：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm list express</span><br><span class="line">/data/www/node</span><br><span class="line">└── express@4.15.2  -&gt; /Users/tianqixin/www/node/node_modules/.4.15.2@express</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意以上均是在淘宝镜像上进行加载的，需要提前安装淘宝镜像，如没有安装也无妨，删除cnpm的c即可。</p>
-</blockquote>
-<h2 id="第一个-Express-框架实例">第一个 Express 框架实例</h2>
-<p>接下来我们使用 Express 框架来输出 “Hello World”。</p>
-<p>以下实例中我们引入了 express 模块，并在客户端发起请求后，响应 “Hello World” 字符串。</p>
-<p>创建 express_demo.js 文件，代码如下所示：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//express_demo.js 文件</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"> </span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">   res.send(<span class="string">&#x27;Hello World&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> server = app.listen(<span class="number">8081</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">var</span> host = server.address().address</span><br><span class="line">  <span class="keyword">var</span> port = server.address().port</span><br><span class="line"> </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;应用实例，访问地址为 http://%s:%s&quot;</span>, host, port)</span><br><span class="line"> </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>执行以上代码后，在浏览器中访问 <a href="http://127.0.0.1:8081">http://127.0.0.1:8081</a>，便可得到服务器返回的hello world。</p>
-<h2 id="请求和响应">请求和响应</h2>
-<p>Express 应用使用回调函数的参数： <strong>request</strong> 和 <strong>response</strong> 对象来处理请求和响应的数据。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">app.get(&#x27;/&#x27;, function (req, res) &#123;</span><br><span class="line">   // --</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><strong>request</strong> 和 <strong>response</strong> 对象的具体介绍：</p>
-<p><strong>Request 对象</strong> - request 对象表示 HTTP 请求，包含了请求查询字符串，参数，内容，HTTP 头部等属性。常见属性有：</p>
-<ol>
-<li>req.app：当callback为外部文件时，用req.app访问express的实例</li>
-<li>req.baseUrl：获取路由当前安装的URL路径</li>
-<li>req.body / req.cookies：获得「请求主体」/ Cookies</li>
-<li>req.fresh / req.stale：判断请求是否还「新鲜」</li>
-<li>req.hostname / req.ip：获取主机名和IP地址</li>
-<li>req.originalUrl：获取原始请求URL</li>
-<li>req.params：获取路由的parameters</li>
-<li>req.path：获取请求路径</li>
-<li>req.protocol：获取协议类型</li>
-<li>req.query：获取URL的查询参数串</li>
-<li>req.route：获取当前匹配的路由</li>
-<li>req.subdomains：获取子域名</li>
-<li>req.accepts()：检查可接受的请求的文档类型</li>
-<li>req.acceptsCharsets / req.acceptsEncodings / req.acceptsLanguages：返回指定字符集的第一个可接受字符编码</li>
-<li>req.get()：获取指定的HTTP请求头</li>
-<li><a href="http://req.is">req.is</a>()：判断请求头Content-Type的MIME类型</li>
-</ol>
-<p><strong>Response 对象</strong> - response 对象表示 HTTP 响应，即在接收到请求时向客户端发送的 HTTP 响应数据。常见属性有：</p>
-<ol>
-<li>res.app：同req.app一样</li>
-<li>res.append()：追加指定HTTP头</li>
-<li>res.set()在res.append()后将重置之前设置的头</li>
-<li>res.cookie(name，value [，option])：设置Cookie</li>
-<li>opition: domain / expires / httpOnly / maxAge / path / secure / signed</li>
-<li>res.clearCookie()：清除Cookie</li>
-<li>res.download()：传送指定路径的文件</li>
-<li>res.get()：返回指定的HTTP头</li>
-<li>res.json()：传送JSON响应</li>
-<li>res.jsonp()：传送JSONP响应</li>
-<li>res.location()：只设置响应的Location HTTP头，不设置状态码或者close response</li>
-<li>res.redirect()：设置响应的Location HTTP头，并且设置状态码302</li>
-<li>res.render(view,[locals],callback)：渲染一个view，同时向callback传递渲染后的字符串，如果在渲染过程中有错误发生next(err)将会被自动调用。callback将会被传入一个可能发生的错误以及渲染后的页面，这样就不会自动输出了。</li>
-<li>res.send()：传送HTTP响应</li>
-<li>res.sendFile(path [，options] [，fn])：传送指定路径的文件 -会自动根据文件extension设定Content-Type</li>
-<li>res.set()：设置HTTP头，传入object可以一次设置多个头</li>
-<li>res.status()：设置HTTP状态码</li>
-<li>res.type()：设置Content-Type的MIME类型</li>
-</ol>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>软件设计</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HTML入门</title>
     <url>/2022/01/11/HTML%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<h1>初识HTML</h1>
@@ -2303,6 +2178,131 @@ W3C标准包括<br>
       </categories>
       <tags>
         <tag>前端入门</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaSE的部分要点</title>
+    <url>/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/</url>
+    <content><![CDATA[<h1>scanner</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">scanner.hasnextline()  <span class="comment">//判断是否还有输入</span></span><br></pre></td></tr></table></figure>
+<p>next（）与nextLine（）的区别；</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208161159615.png" alt="image-20211208161159615"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">sacanner.nextLine(); <span class="comment">//可以接受空白，以回车为结束。</span></span><br><span class="line">scanner.close();   <span class="comment">//关闭scanner</span></span><br></pre></td></tr></table></figure>
+<h1>增强for循环</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x:数组名)&#123;</span><br><span class="line">  system.out.println(x);</span><br><span class="line">  <span class="comment">//遍历数组</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>给main函数传递参数</h1>
+<p>找到包的路径下，在命令行中进行编译，运行。</p>
+<h1>可变参数</h1>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208164227825.png" alt="image-20211208164227825"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span>... i)</span></span>&#123;</span><br><span class="line"> system.out.println(i[]);</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">//此时i为可变参数，可输入多个值,i也就可能成为一个数组。</span></span><br></pre></td></tr></table></figure>
+<h1>递归</h1>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208164910624.png" alt="image-20211208164910624"></p>
+<h1>继承和多态</h1>
+<p>静态方法是类的方法，非静态的方法是对象的方法。</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208211748858.png" alt="image-20211208211748858"></p>
+<p>我们的person类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我开动了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>student类继承person类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">student</span> <span class="keyword">extends</span> <span class="title">person</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;学生的事怎么能叫吃呢？&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">learn</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我要学习了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>text类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">texi1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        student  s1=<span class="keyword">new</span> student();</span><br><span class="line">        person s2=<span class="keyword">new</span> student();</span><br><span class="line">s1.eat();</span><br><span class="line">s2.eat();</span><br><span class="line">s1.learn();</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208215628894.png" alt="image-20211208215628894"></p>
+<h2 id="多态（只针对方法）：">多态（只针对方法）：</h2>
+<p>同一方法可以根据发送对象的不同采取多种不同的行为方式，一个对象的实际类型是知道的，但指向对象的引用类型有很多，比如父类的引用指向了子类的对象。</p>
+<p>执行方法先看类里面的静态方法（静态方法属于类的，不属于对象），再看对象实际类型对应的方法。</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211208214431807.png" alt="image-20211208214431807"></p>
+<h1>instanceof与类型转换</h1>
+<p>instanceof会判断两个类的继承关系，兄弟关系则会报错。</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209175621741.png" alt="image-20211209175621741"></p>
+<p><em>底类转高类不需要强制转换。</em></p>
+<p><em>高类转底类需要进行强制转换</em></p>
+<p>子类转换为父类可能会丢失一些方法（子类te’you）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Object s1 = <span class="keyword">new</span> student(); </span><br><span class="line"><span class="comment">//底类转高类不需要强制转换</span></span><br><span class="line">person s2 = (student) s1;          <span class="comment">//高类转底类需要进行强制转换</span></span><br><span class="line">s2.eat();</span><br><span class="line">student s3 = (student) s2;</span><br><span class="line">s3.eat();</span><br><span class="line">s3.learn();</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209182350137.png" alt="image-20211209182350137"></p>
+<blockquote>
+<p>这里插入一个我突然看到的，对于对象和实例区别的一个例子：</p>
+<p>父母口中的女朋友（对象），怀里搂着的她（实例）。</p>
+<p>（精辟无敌）</p>
+</blockquote>
+<h1>抽象类与接口</h1>
+<h2 id="抽象类">抽象类</h2>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209182856546.png" alt="image-20211209182856546"></p>
+<blockquote>
+<p>抽象类：给予类约束，让其他人帮我们实现。继承了抽象类的类必须重写抽象类所有的抽象方法（除非自己也是抽象类）。我们一般把他们叫做资本家与被压榨的苦力。</p>
+</blockquote>
+<p>生成一个抽象类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> 资本家 </span>&#123;</span><br><span class="line">    <span class="comment">//来帮我写个方法,我只给需求，我就不写了</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">ganfan</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>以及一个苦力：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 被压榨的苦力 <span class="keyword">extends</span> 资本家 </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ganfan</span><span class="params">()</span> </span>&#123;</span><br><span class="line">System.out.println(<span class="string">&quot;我为老板冲锋陷阵！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        被压榨的苦力 苦力<span class="number">1</span> = <span class="keyword">new</span> 被压榨的苦力();</span><br><span class="line">        苦力<span class="number">1.</span>ganfan();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209184432977.png" alt="image-20211209184432977"></p>
+<h2 id="接口">接口</h2>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209184503107.png" alt="image-20211209184503107"></p>
+<p>接口全是抽象方法还有静态常量，只有由别人实现。即接口全是要求，资本家自愧不如。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">service</span> </span>&#123;</span><br><span class="line">    <span class="comment">//所有对象皆抽象</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">(<span class="keyword">int</span> speed)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">get</span> </span>&#123;</span><br><span class="line">   <span class="keyword">int</span> age=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fight</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lost</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一个类实现两个接口：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">serviceimpl</span> <span class="keyword">implements</span> <span class="title">service</span>,<span class="title">get</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(<span class="keyword">int</span> speed)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fight</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lost</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>利用接口实现多继承,接口不能被实例化~接口中没有构造方法。</p>
+<h1>内部类</h1>
+<h2 id="成员内部类">成员内部类</h2>
+<p>定义一个内部类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是外面的&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">in</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是里面的&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义一个内部对象：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">run</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        text t1 = <span class="keyword">new</span> text();</span><br><span class="line">        text.in in1 = t1.<span class="function">new <span class="title">in</span><span class="params">()</span></span>;</span><br><span class="line">        t1.out();</span><br><span class="line">        in1.out();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209190853396.png" alt="image-20211209190853396"></p>
+<p><strong>内部类可以操纵外部类的私有属性，这是它的特点（毕竟是亲生的）。</strong></p>
+<h2 id="静态内部类">静态内部类</h2>
+<p>也就是定义内部类时加上static，需要时注意的是，如果内部类被静态化，那么这个静态内部类也许就不能访问外部类的私有属性了（静态内部类相当于预加载），除非该私有属性也是静态的。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是外面的&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">in</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是里面的&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="局部内部类">局部内部类</h2>
+<p>在方法里定义的类（类如局部变量）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">in</span></span>&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function">            </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这是里面的&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是外面的&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="匿名内部类">匿名内部类</h2>
+<p>new出来直接用，没有名字初始类，不用将实例保存到类。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">run</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> id;</span><br><span class="line">        id=<span class="keyword">new</span> Scanner().nextInt();</span><br><span class="line">        <span class="comment">//没有创建scanner类.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1>异常机制</h1>
+<h2 id="异常">异常</h2>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211209193513675.png" alt="image-20211209193513675"></p>
+<p><strong>异常也是一种对象</strong></p>
+<p>当遇到异常或者是错误时，Java会抛出异常对象，可以对其进行捕获处理（尤其是异常）。</p>
+<h2 id="异常处理">异常处理</h2>
+<h3 id="五个关键字">五个关键字</h3>
+<p>try:尝试捕获异常的监控区。</p>
+<p>catch：捕获异常（括号里为想要捕获的异常类型）。</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211210195637949.png" alt="image-20211210195637949"></p>
+<p>finally：无论执不执行最后都要走的（一般用于善后工作）。</p>
+<p>throw：主动抛出异常。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> ArithmeticException();</span><br></pre></td></tr></table></figure>
+<p>throws：方法调用时抛出，</p>
+<p>写个报错程序：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> b=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(b/a);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(ArithmeticException e)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;有问题&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">finally</span> &#123;<span class="comment">//善后处理</span></span><br><span class="line">            System.out.println(<span class="string">&quot;程序结束&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ctrl+alt+t可以快速构造代码块框架，包括try|catch语句。</p>
+</blockquote>
+<p>输出：</p>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211210201559270.png" alt="image-20211210201559270"></p>
+<h2 id="自定义异常">自定义异常</h2>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211210202529797.png" alt="image-20211210202529797"></p>
+<p>比如数字大于10，我们设计的异常：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Myexception</span> <span class="keyword">extends</span> <span class="title">Exception</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> detali;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Myexception</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.detali=a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Myexception&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;detali=&quot;</span> + detali +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试一下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">text</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            test(<span class="number">11</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Myexception e) &#123;</span><br><span class="line">        System.out.println(e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span>  <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a)</span> <span class="keyword">throws</span> Myexception </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(a&gt;<span class="number">10</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Myexception(a);</span><br><span class="line">        System.out.println(<span class="string">&quot;正常&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/12/10/JavaSE%E7%9A%84%E9%83%A8%E5%88%86%E8%A6%81%E7%82%B9/image-20211210203653004.png" alt="image-20211210203653004"></p>
+<h1>结束</h1>
+<p>JavaSE大体部分就到此结束！</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -3086,6 +3086,27 @@ W3C标准包括<br>
       </categories>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NodeJs搭建简易web后端</title>
+    <url>/2022/01/29/NodeJs%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93web%E5%90%8E%E7%AB%AF/</url>
+    <content><![CDATA[<blockquote>
+<p>更新于2022.1.29</p>
+</blockquote>
+<h1>什么是Nodejs？</h1>
+<p>为了让JavaScript代码能够脱离浏览器独立进行运行，NodeJs便由此而生。JavaScript能够运行在浏览器的一大原因是浏览器内置了V8引擎，能够将JavaScript代码转换为机器语言，而NodeJs封装了v8引擎，本身由c++编写。也就可以正常运行。这样，JavaScript在电脑也可以正常运行。</p>
+<p>此次我们要使用NodeJs制作一个简单的Web服务器。</p>
+<h1>安装NodeJs</h1>
+<p>网络下载安装包进行安装，此处不再赘述。</p>
+<h1>认识https请求</h1>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>后端入门</tag>
       </tags>
   </entry>
   <entry>
@@ -4108,27 +4129,6 @@ W3C标准包括<br>
       </tags>
   </entry>
   <entry>
-    <title>NodeJs搭建简易web后端</title>
-    <url>/2022/01/29/NodeJs%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93web%E5%90%8E%E7%AB%AF/</url>
-    <content><![CDATA[<blockquote>
-<p>更新于2022.1.29</p>
-</blockquote>
-<h1>什么是Nodejs？</h1>
-<p>为了让JavaScript代码能够脱离浏览器独立进行运行，NodeJs便由此而生。JavaScript能够运行在浏览器的一大原因是浏览器内置了V8引擎，能够将JavaScript代码转换为机器语言，而NodeJs封装了v8引擎，本身由c++编写。也就可以正常运行。这样，JavaScript在电脑也可以正常运行。</p>
-<p>此次我们要使用NodeJs制作一个简单的Web服务器。</p>
-<h1>安装NodeJs</h1>
-<p>网络下载安装包进行安装，此处不再赘述。</p>
-<h1>认识https请求</h1>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>软件设计</category>
-      </categories>
-      <tags>
-        <tag>后端入门</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python学习</title>
     <url>/2022/04/18/Python-TM%E4%BA%BA%E4%BA%BA%E9%83%BD%E5%9C%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%AF%AD%E8%A8%80/</url>
     <content><![CDATA[<h1>Python-学习过程</h1>
@@ -4172,6 +4172,166 @@ W3C标准包括<br>
       </categories>
       <tags>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TypeScrpt与JS的区别学习</title>
+    <url>/2022/07/30/TypeScrpt%E4%B8%8EJS%E7%9A%84%E5%8C%BA%E5%88%AB%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1>前言</h1>
+<p>刚刚磨完Javascript的我正打算学习Vue时却发现JS已经过时了，现在的前端的逻辑语法（尤其是Vue）已经被一种更加完美的语言所代替了——也就是最新的Typescript，故友说：学习是不能停下来的，对此我表示认同。</p>
+<h1>安装</h1>
+<p>这个不用多说了，npm包安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g typescript</span><br></pre></td></tr></table></figure>
+<p>安装完成后我们可以使用 <strong>tsc</strong> 命令来执行 TypeScript 的相关代码，以下是查看版本号：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ tsc -v</span><br><span class="line">Version 3.2.2</span><br></pre></td></tr></table></figure>
+<p>注意，TS是JS的一个超集，本质上运行还是转换成的JS，这个tsc就是干这个的。</p>
+<h1>基础语法</h1>
+<p>TypeScript 程序由以下几个部分组成：</p>
+<ul>
+<li>模块</li>
+<li>函数</li>
+<li>变量</li>
+<li>语句和表达式</li>
+<li>注释</li>
+</ul>
+<p>举例</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> hello : <span class="built_in">string</span> = <span class="string">&quot;Hello World!&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(hello)</span><br></pre></td></tr></table></figure>
+<p>以上代码首先通过 <strong>tsc</strong> 命令编译：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tsc Runoob.ts</span><br></pre></td></tr></table></figure>
+<p>然后转换成了这样的一种js代码后就可以用nodejs运行：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> hello = <span class="string">&quot;Hello World!&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(hello);</span><br></pre></td></tr></table></figure>
+<p>通过对比我们发现TS与JS在这个程序的区别在于：</p>
+<p>1、JS用的是var属于函数作用域，TS使用的是ES6以来的声明方式。</p>
+<p>2、TS的声明还有一个重要特点就是声明类型，这一点类似于传统编程语言，因为要方便后期开发的话，类型的事先声明是很重要的，这也是TS（type类型）名字的由来，是个重要的改变。</p>
+<p>整个流程如下图所示：</p>
+<p><img src="/2022/07/30/TypeScrpt%E4%B8%8EJS%E7%9A%84%E5%8C%BA%E5%88%AB%E5%AD%A6%E4%B9%A0/image-20220729114117001.png" alt="image-20220729114117001"></p>
+<h3 id="空白和换行">空白和换行</h3>
+<p>TypeScript 会忽略程序中出现的空格、制表符和换行符。</p>
+<p>空格、制表符通常用来缩进代码，使代码易于阅读和理解。</p>
+<h3 id="TypeScript-区分大小写">TypeScript 区分大小写</h3>
+<p>TypeScript 区分大写和小写字符。</p>
+<h3 id="分号是可选的">分号是可选的</h3>
+<p>每行指令都是一段语句，可以使用分号或不使用， 分号在 TypeScript 中是可选的，建议使用。</p>
+<p>以下代码都是合法的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&quot;Runoob&quot;)</span><br><span class="line">console.log(&quot;Google&quot;);</span><br></pre></td></tr></table></figure>
+<p>如果语句写在同一行则一定需要使用分号来分隔，否则会报错，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&quot;Runoob&quot;);console.log(&quot;Google&quot;);</span><br></pre></td></tr></table></figure>
+<h3 id="TypeScript-注释">TypeScript 注释</h3>
+<p>这点与一般编程语言一致：</p>
+<ul>
+<li><strong>单行注释 ( // )</strong> − 在 // 后面的文字都是注释内容。</li>
+<li><strong>多行注释 (/* */)</strong> − 这种注释可以跨越多行。</li>
+</ul>
+<h1>TS基础类型</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">关键字</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">任意类型</td>
+<td style="text-align:left">any</td>
+<td style="text-align:center">声明为 any 的变量可以赋予任意类型的值。</td>
+</tr>
+<tr>
+<td style="text-align:left">数字类型</td>
+<td style="text-align:left">number</td>
+<td style="text-align:center">双精度 64 位浮点值。它可以用来表示整数和分数。</td>
+</tr>
+<tr>
+<td style="text-align:left">字符串类型</td>
+<td style="text-align:left">string</td>
+<td style="text-align:center">一个字符系列，使用单引号（<strong>'</strong>）或双引号（<strong>&quot;</strong>）来表示字符串类型。反引号（<strong>`</strong>）来定义多行文本和内嵌表达式。</td>
+</tr>
+<tr>
+<td style="text-align:left">布尔类型</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:center">表示逻辑值：true 和 false。</td>
+</tr>
+<tr>
+<td style="text-align:left">数组类型</td>
+<td style="text-align:left">无</td>
+<td style="text-align:center">声明变量为数组。<code>// 在元素类型后面加上[] let arr: number[] = [1, 2]; // 或者使用数组泛型 let arr: Array&lt;number&gt; = [1, 2];</code></td>
+</tr>
+<tr>
+<td style="text-align:left">元组</td>
+<td style="text-align:left">无</td>
+<td style="text-align:center">元组类型用来表示已知元素数量和类型的数组，各元素的类型不必相同，对应位置的类型需要相同。<code>let x: [string, number]; x = ['Runoob', 1];    // 运行正常 x = [1, 'Runoob'];    // 报错 console.log(x[0]);    // 输出 Runoob</code></td>
+</tr>
+<tr>
+<td style="text-align:left">枚举</td>
+<td style="text-align:left">enum</td>
+<td style="text-align:center">枚举类型用于定义数值集合。<code>enum Color &#123;Red, Green, Blue&#125;; let c: Color = Color.Blue; console.log(c);    // 输出 2</code></td>
+</tr>
+<tr>
+<td style="text-align:left">void</td>
+<td style="text-align:left">void</td>
+<td style="text-align:center">用于标识方法返回值的类型，表示该方法没有返回值。<code>function hello(): void &#123;    alert(&quot;Hello Runoob&quot;); &#125;</code></td>
+</tr>
+<tr>
+<td style="text-align:left">null</td>
+<td style="text-align:left">null</td>
+<td style="text-align:center">表示对象值缺失。</td>
+</tr>
+<tr>
+<td style="text-align:left">undefined</td>
+<td style="text-align:left">undefined</td>
+<td style="text-align:center">用于初始化变量为一个未定义的值</td>
+</tr>
+<tr>
+<td style="text-align:left">never</td>
+<td style="text-align:left">never</td>
+<td style="text-align:center">never 是其它类型（包括 null 和 undefined）的子类型，代表从不会出现的值。</td>
+</tr>
+</tbody>
+</table>
+<p>**注意：**TypeScript 和 JavaScript 没有整数类型。</p>
+<h1>变量声明</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var [变量名] : [类型] = 值;</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var uname:string = &quot;&quot;;</span><br></pre></td></tr></table></figure>
+<p>声明变量的类型，但没有初始值，变量值会设置为 undefined：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var [变量名] : [类型];</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var uname:string;</span><br></pre></td></tr></table></figure>
+<p>声明变量并初始值，但不设置类型，该变量可以是任意类型：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var [变量名] = 值;</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var uname = &quot;Tosuke&quot;;</span><br></pre></td></tr></table></figure>
+<p>TypeScript 遵循强类型，如果将不同的类型赋值给变量会编译错误，如下实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var num:number = &quot;hello&quot;     // 这个代码会编译错误</span><br></pre></td></tr></table></figure>
+<p>TS的运算符、条件语句、循环与JS基本一致</p>
+<h1>对象类型</h1>
+<p>对象的类型要是定义当然只能让我们自己定义，比如在设置一个对象时,还是与我们之前的定义变量类似，即为“：+类型”，像这样：</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> student:IStudent = &#123;</span><br><span class="line"><span class="attr">ID</span>:<span class="number">1111111</span>,</span><br><span class="line"><span class="attr">name</span>:<span class="string">&quot;Tosuke&quot;</span>,</span><br><span class="line"><span class="attr">sex</span>:<span class="string">&#x27;man&#x27;</span>,</span><br><span class="line"><span class="attr">meta</span>:&#123;</span><br><span class="line"><span class="attr">isHanson</span>:<span class="literal">true</span>,</span><br><span class="line"><span class="attr">isNB</span>:<span class="literal">true</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="attr">age</span>:<span class="number">21</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个IStudent类型TS当然没有，需要我们自己去实现，用interface、键值对的方式定义我们自己的类型，也可以同时进行约束：</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> IStudent&#123;</span><br><span class="line"><span class="keyword">readonly</span> ID:<span class="built_in">number</span>;       <span class="comment">//readonly是将该值设置为只读</span></span><br><span class="line">sex:<span class="string">&#x27;man&#x27;</span>|<span class="string">&#x27;woman&#x27;</span>|<span class="string">&#x27;other&#x27;</span>;</span><br><span class="line">age:<span class="built_in">number</span>;</span><br><span class="line">meta:&#123;</span><br><span class="line"><span class="attr">isHanson</span>:<span class="built_in">boolean</span>;</span><br><span class="line">isNB:<span class="built_in">boolean</span>;</span><br><span class="line">&#125;;</span><br><span class="line">age?:<span class="built_in">number</span>;   <span class="comment">//添加问号是属性可选</span></span><br><span class="line">[key:<span class="built_in">string</span>]:<span class="built_in">any</span>       <span class="comment">//任意属性，相当于想要添加自己另外一些键值对的约束。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>函数</h1>
+<h2 id="函数的类型">函数的类型</h2>
+<p>对于函数，TS当然也有自己的想法（毕竟Type都打在脸上了），还是先来一段JS代码给大伙瞧瞧：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">retrun x+y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在TS有两个点需要声明类型，参数与返回值：</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x:<span class="built_in">number</span>,y:<span class="built_in">number</span></span>):<span class="title">number</span></span>&#123;</span><br><span class="line"><span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者采用当下流行的ES6的箭头函数：</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> add:<span class="function">(<span class="params">x:<span class="built_in">number</span>,y:<span class="built_in">number</span></span>)=&gt;</span><span class="built_in">number</span>=<span class="function">(<span class="params">x+y</span>)=&gt;</span>x+y</span><br></pre></td></tr></table></figure>
+<p>每次这样写一定很麻烦，所以函数也可以使用interface（接口）来定义函数的类型，和对象相差不大：</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> Add&#123;</span><br><span class="line">(x:<span class="built_in">number</span>,<span class="attr">y</span>:<span class="built_in">number</span>):<span class="built_in">number</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就可以像JS一样写代码了，不过多了一步标记函数类型：</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>:<span class="title">Add</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="函数的重载">函数的重载</h2>
+<p>这就是TS规定类型的好处之一了，假设我们有一个grtdate的函数，它的参数为一个type和一个time，type决定了它的返回值的类型，而time可以留空，代表计时的开始，默认为当前时间。我们可以重载函数，依据type的不同严格规定返回值的类型，以避免错误。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function getdate(type:string|date,time?:string):string|date</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
@@ -5213,6 +5373,40 @@ W3C标准包括<br>
       </tags>
   </entry>
   <entry>
+    <title>用logisim实现八位可控加减法器</title>
+    <url>/2021/12/03/%E7%AC%AC%E4%BA%8C/</url>
+    <content><![CDATA[<h1>计算机组成原理实验</h1>
+<p>你好，好久不见！吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼，作为第二篇博客，我决定先从一些简单的实验分享开始啦！（实际因为本人是小菜鸡一只的原因。。）</p>
+<h2 id="用logisim实现八位可控加减法器">用logisim实现八位可控加减法器</h2>
+<h3 id="思路解析：">思路解析：</h3>
+<p>要实现八位可控加减法器，采用并行思路，首先需要八个一位全加器，用分流器可以将八位二进制数分离，使得单独每一位用一位全加器来进行相关的运算，然后并行输出，最后用分流器进行还原。</p>
+<h3 id="实验过程：">实验过程：</h3>
+<p>1、首先进行一位全加器的设置，我们需要准备五个信号量，三个输入，两个输出，其中xi与yi为参加运算的对象，cin代表来自下一位的进位，si代表本位的输出结果，Cout代表向下一位的进位。</p>
+<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%871.png" alt="11"></p>
+<p>2、设计思路为：先用一个异或门判断xi与yi的和的情况，若异或门为1，则xi+yi==1，此时与cin进位再次进行异或门判断，若异或门为仍1，则说明不产生进位，则si可置1。若第一个异或门与cin的与门为1，则说明产生了进位并且si位为0.当xi与yi的与门为1时，cin也应该置1。经过调试判断，最终如图所示。</p>
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片2.png" style="zoom:50%;">
+<p>3、用logisim进行测试，检验是否制作成果，经检验得制作成功。</p>
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片3.png" style="zoom:33%;">
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片4.png" style="zoom:50%;">
+<p>4、制作分流器，准备分流器，数据位宽为8的输入，8个数据位宽为1的隧道，将隧道与分流器相连，分流器与8位位宽的输入相连。</p>
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片6.png" style="zoom:50%;">
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片7.png" style="zoom:50%;">
+<p>5、同理，准备一个y输入与s输出。</p>
+<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%878.png" alt></p>
+<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%879.png" alt></p>
+<p>6、准备8个一位全加器，一个用于表示加减的输入sub，一个用于检测溢出的of（overflow），一个cout表示最高位的进位。<br>
+其基本思路是：利用sub与y输入形成异或门，用于执行加和减时y的不同形态，将异或门的结果与一起并入全加器的两个加位，输出位依次接上s的8个隧道。将8个全加器按照这样的方式链接，最后将一位全加器用进位位连接起来，sub链接至第一个全加器的进位位，这样做的目的是将原本的（x+y）变成（x+y的补码）即为（x+（1+y的反码））。结果连接如下。</p>
+<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片10.png" style="zoom:80%;">
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>硬件设计</category>
+      </categories>
+      <tags>
+        <tag>logisim</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java常用类</title>
     <url>/2021/12/10/%E5%B8%B8%E7%94%A8%E7%B1%BB%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8EIO/</url>
     <content><![CDATA[<h1>object类</h1>
@@ -5495,40 +5689,6 @@ W3C标准包括<br>
       </categories>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>用logisim实现八位可控加减法器</title>
-    <url>/2021/12/03/%E7%AC%AC%E4%BA%8C/</url>
-    <content><![CDATA[<h1>计算机组成原理实验</h1>
-<p>你好，好久不见！吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼，作为第二篇博客，我决定先从一些简单的实验分享开始啦！（实际因为本人是小菜鸡一只的原因。。）</p>
-<h2 id="用logisim实现八位可控加减法器">用logisim实现八位可控加减法器</h2>
-<h3 id="思路解析：">思路解析：</h3>
-<p>要实现八位可控加减法器，采用并行思路，首先需要八个一位全加器，用分流器可以将八位二进制数分离，使得单独每一位用一位全加器来进行相关的运算，然后并行输出，最后用分流器进行还原。</p>
-<h3 id="实验过程：">实验过程：</h3>
-<p>1、首先进行一位全加器的设置，我们需要准备五个信号量，三个输入，两个输出，其中xi与yi为参加运算的对象，cin代表来自下一位的进位，si代表本位的输出结果，Cout代表向下一位的进位。</p>
-<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%871.png" alt="11"></p>
-<p>2、设计思路为：先用一个异或门判断xi与yi的和的情况，若异或门为1，则xi+yi==1，此时与cin进位再次进行异或门判断，若异或门为仍1，则说明不产生进位，则si可置1。若第一个异或门与cin的与门为1，则说明产生了进位并且si位为0.当xi与yi的与门为1时，cin也应该置1。经过调试判断，最终如图所示。</p>
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片2.png" style="zoom:50%;">
-<p>3、用logisim进行测试，检验是否制作成果，经检验得制作成功。</p>
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片3.png" style="zoom:33%;">
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片4.png" style="zoom:50%;">
-<p>4、制作分流器，准备分流器，数据位宽为8的输入，8个数据位宽为1的隧道，将隧道与分流器相连，分流器与8位位宽的输入相连。</p>
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片6.png" style="zoom:50%;">
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片7.png" style="zoom:50%;">
-<p>5、同理，准备一个y输入与s输出。</p>
-<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%878.png" alt></p>
-<p><img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/%E5%9B%BE%E7%89%879.png" alt></p>
-<p>6、准备8个一位全加器，一个用于表示加减的输入sub，一个用于检测溢出的of（overflow），一个cout表示最高位的进位。<br>
-其基本思路是：利用sub与y输入形成异或门，用于执行加和减时y的不同形态，将异或门的结果与一起并入全加器的两个加位，输出位依次接上s的8个隧道。将8个全加器按照这样的方式链接，最后将一位全加器用进位位连接起来，sub链接至第一个全加器的进位位，这样做的目的是将原本的（x+y）变成（x+y的补码）即为（x+（1+y的反码））。结果连接如下。</p>
-<img src="/2021/12/03/%E7%AC%AC%E4%BA%8C/图片10.png" style="zoom:80%;">
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>硬件设计</category>
-      </categories>
-      <tags>
-        <tag>logisim</tag>
       </tags>
   </entry>
   <entry>
