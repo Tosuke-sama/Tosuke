@@ -81,63 +81,6 @@ $$</p>
       </tags>
   </entry>
   <entry>
-    <title>Babel学习</title>
-    <url>/2022/04/26/Babel%E5%B0%8F%E8%AF%86/</url>
-    <content><![CDATA[<h1>Babel 简介</h1>
-<p>Babel 是一个 JavaScript 编译器，Babel 是一个工具链，主要用于将采用 ECMAScript 2015+ 语法编写的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境中。下面列出的是 Babel 能为你做的事情：</p>
-<ul>
-<li>语法转换</li>
-<li>通过 Polyfill 方式在目标环境中添加缺失的特性 （通过引入第三方 polyfill 模块，例如 <a href="https://github.com/zloirock/core-js">core-js</a>）</li>
-<li>源码转换（codemods）</li>
-</ul>
-<p>大概的功能就是帮助我们在旧的浏览器环境中将 <code>ES6+</code> 的代码转换为兼容低版本的 <code>JS</code> 代码。</p>
-<p>让我们从一个案例入手来学习Babel。</p>
-<p>首先从终端来初始化一个项目：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir babel-basic &amp;&amp; cd babel-basic</span><br><span class="line">//创建文件夹并进入</span><br><span class="line">npm init -y</span><br><span class="line">//初始化项目，-y是yes的意思，省略了敲回车的步骤。</span><br><span class="line">mkdir src &amp;&amp; cd src</span><br><span class="line">touch index.js</span><br></pre></td></tr></table></figure>
-<h1>@babel/core</h1>
-<p>学习 Babel，首先要了解一个叫 @babel/core 的东西，它是 Babel 的核心模块，所以首先要安装这个模块。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i --save-dev @babel/core</span><br></pre></td></tr></table></figure>
-<p>安装成功之后就可以在我们的代码中使用了，在js中直接引用：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">&#x27;@babel/core&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<h1>@babel/cli</h1>
-<p>这是一个终端运行工具，内置的插件，运行你从终端使用 babel 的工具。同样也需要安装：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i --save-dev @babel/cli</span><br></pre></td></tr></table></figure>
-<p>接着，在 src/index.js 中写一段简单代码：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = <span class="function">() =&gt;</span> <span class="number">1</span>; <span class="comment">// 箭头函数, 返回值为1</span></span><br><span class="line"><span class="built_in">console</span>.log(fn());</span><br></pre></td></tr></table></figure>
-<p>用法一：命令行的形式：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./node_modules/.bin/babel src --out-dir lib  </span><br></pre></td></tr></table></figure>
-<p>这行代码的意思是：它使用我们设置的<strong>解析方式</strong>来解释 <code>src</code> 目录下的所有 <code>js</code> 文件，并将转换后的每个文件都输出到 <code>lib</code> 目录下。</p>
-<blockquote>
-<p>也可以利用 npm@5.2.0 所自带的 npm 包运行器将 <code>./node_modules/.bin/babel</code> 命令缩短为 <code>npx babel</code></p>
-</blockquote>
-<p>注意，大家在使用命令行时可能会用到“因为在此系统上禁止运行脚本”的错误（如下）</p>
-<p><img src="/2022/04/26/Babel%E5%B0%8F%E8%AF%86/image-20220505160117375.png" alt="image-20220505160117375"></p>
-<p>解决方法如下：</p>
-<ul>
-<li>管理员身份运行 PowerShell</li>
-<li>执行：get-ExecutionPolicy，若显示 Restricted 表示状态是禁止的</li>
-<li>执行：set-ExecutionPolicy，会提示输入参数</li>
-<li>输入 RemoteSigned 会提示进行选择</li>
-<li>输入：Y，回车</li>
-</ul>
-<p><img src="/2022/04/26/Babel%E5%B0%8F%E8%AF%86/image-20220505160227355.png" alt="image-20220505160227355"></p>
-<p>回到正题，我们打开lib文件夹会发现里面的文件与src文件夹里的一模一样，这是因为到目前为止我们并没有设置任何的解析方式，解析最重要的就是<code>--plugins</code> 和 <code>--presets</code> 这两个参数。</p>
-<p>不过在那之前，我们先看看我们上面使用过的–out-dir参数，你可以通过 <code>--help</code> 参数来查看命令行工具所能接受的所有参数列表。</p>
-<p>这里给大家部分列举一下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Options:</span><br><span class="line">  -f, --filename [filename]                   The filename to use when reading from stdin. This will be used in source-maps, errors etc.</span><br><span class="line">  --presets [list]                            A comma-separated list of preset names.</span><br><span class="line">  --plugins [list]                            A comma-separated list of plugin names.</span><br><span class="line">  --config-file [path]                        Path to a .babelrc file to use.  --env-name [name]                           The name of the &#x27;env&#x27; to use when loading configs and plugins. Defaults to the value of BABEL_ENV, or else NODE_ENV, or else &#x27;development&#x27;.</span><br><span class="line">  --root-mode [mode]                          The project-root resolution mode. One of &#x27;root&#x27; (the default), &#x27;upward&#x27;, or &#x27;upward-optional&#x27;.</span><br><span class="line">  --source-type [script|module]</span><br><span class="line">  --no-babelrc                                Whether or not to look up .babelrc and .babelignore files.</span><br><span class="line">  --ignore [list]                             List of glob paths to **not** compile.</span><br><span class="line">  --only [list]                               List of glob paths to **only** </span><br><span class="line">compile.</span><br><span class="line">  --no-highlight-code                         Enable or disable ANSI syntax highlighting of code frames. (on by default)</span><br></pre></td></tr></table></figure>
-<h1>插件（plugins）和预设（preset）</h1>
-<h2 id="piugins">piugins</h2>
-<p><code>plugins</code> 的本质是一个 <code>js</code> 程序，指示着 <code>Babel</code> 如何转换代码，如何解析代码。</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>软件设计</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AJAX</title>
     <url>/2022/05/01/AJAX%E2%80%94%E5%86%AC%E6%97%A5%E9%98%BF%E8%B4%BE%E5%85%8B%E6%96%AF%EF%BC%88%E4%BC%AA%EF%BC%89/</url>
     <content><![CDATA[<h1>AJAX，动态刷新网页</h1>
@@ -277,6 +220,63 @@ $$</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showCustomer</span>(<span class="params">str</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">var</span> xmlhttp;    </span><br><span class="line">  <span class="keyword">if</span> (str==<span class="string">&quot;&quot;</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">&quot;txtHint&quot;</span>).innerHTML=<span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">    xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">    xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  xmlhttp.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">document</span>.getElementById(<span class="string">&quot;txtHint&quot;</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  xmlhttp.open(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;/try/ajax/getcustomer.php?q=&quot;</span>+str,<span class="literal">true</span>);</span><br><span class="line">  xmlhttp.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="/2022/05/01/AJAX%E2%80%94%E5%86%AC%E6%97%A5%E9%98%BF%E8%B4%BE%E5%85%8B%E6%96%AF%EF%BC%88%E4%BC%AA%EF%BC%89/image-20220425235512853.png" alt="image-20220425235512853"></p>
 <p>实例地址：<a href="https://www.runoob.com/try/try.php?filename=tryajax_database">菜鸟教程在线编辑器 (runoob.com)</a></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Babel学习</title>
+    <url>/2022/04/26/Babel%E5%B0%8F%E8%AF%86/</url>
+    <content><![CDATA[<h1>Babel 简介</h1>
+<p>Babel 是一个 JavaScript 编译器，Babel 是一个工具链，主要用于将采用 ECMAScript 2015+ 语法编写的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境中。下面列出的是 Babel 能为你做的事情：</p>
+<ul>
+<li>语法转换</li>
+<li>通过 Polyfill 方式在目标环境中添加缺失的特性 （通过引入第三方 polyfill 模块，例如 <a href="https://github.com/zloirock/core-js">core-js</a>）</li>
+<li>源码转换（codemods）</li>
+</ul>
+<p>大概的功能就是帮助我们在旧的浏览器环境中将 <code>ES6+</code> 的代码转换为兼容低版本的 <code>JS</code> 代码。</p>
+<p>让我们从一个案例入手来学习Babel。</p>
+<p>首先从终端来初始化一个项目：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir babel-basic &amp;&amp; cd babel-basic</span><br><span class="line">//创建文件夹并进入</span><br><span class="line">npm init -y</span><br><span class="line">//初始化项目，-y是yes的意思，省略了敲回车的步骤。</span><br><span class="line">mkdir src &amp;&amp; cd src</span><br><span class="line">touch index.js</span><br></pre></td></tr></table></figure>
+<h1>@babel/core</h1>
+<p>学习 Babel，首先要了解一个叫 @babel/core 的东西，它是 Babel 的核心模块，所以首先要安装这个模块。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i --save-dev @babel/core</span><br></pre></td></tr></table></figure>
+<p>安装成功之后就可以在我们的代码中使用了，在js中直接引用：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">&#x27;@babel/core&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h1>@babel/cli</h1>
+<p>这是一个终端运行工具，内置的插件，运行你从终端使用 babel 的工具。同样也需要安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i --save-dev @babel/cli</span><br></pre></td></tr></table></figure>
+<p>接着，在 src/index.js 中写一段简单代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = <span class="function">() =&gt;</span> <span class="number">1</span>; <span class="comment">// 箭头函数, 返回值为1</span></span><br><span class="line"><span class="built_in">console</span>.log(fn());</span><br></pre></td></tr></table></figure>
+<p>用法一：命令行的形式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./node_modules/.bin/babel src --out-dir lib  </span><br></pre></td></tr></table></figure>
+<p>这行代码的意思是：它使用我们设置的<strong>解析方式</strong>来解释 <code>src</code> 目录下的所有 <code>js</code> 文件，并将转换后的每个文件都输出到 <code>lib</code> 目录下。</p>
+<blockquote>
+<p>也可以利用 npm@5.2.0 所自带的 npm 包运行器将 <code>./node_modules/.bin/babel</code> 命令缩短为 <code>npx babel</code></p>
+</blockquote>
+<p>注意，大家在使用命令行时可能会用到“因为在此系统上禁止运行脚本”的错误（如下）</p>
+<p><img src="/2022/04/26/Babel%E5%B0%8F%E8%AF%86/image-20220505160117375.png" alt="image-20220505160117375"></p>
+<p>解决方法如下：</p>
+<ul>
+<li>管理员身份运行 PowerShell</li>
+<li>执行：get-ExecutionPolicy，若显示 Restricted 表示状态是禁止的</li>
+<li>执行：set-ExecutionPolicy，会提示输入参数</li>
+<li>输入 RemoteSigned 会提示进行选择</li>
+<li>输入：Y，回车</li>
+</ul>
+<p><img src="/2022/04/26/Babel%E5%B0%8F%E8%AF%86/image-20220505160227355.png" alt="image-20220505160227355"></p>
+<p>回到正题，我们打开lib文件夹会发现里面的文件与src文件夹里的一模一样，这是因为到目前为止我们并没有设置任何的解析方式，解析最重要的就是<code>--plugins</code> 和 <code>--presets</code> 这两个参数。</p>
+<p>不过在那之前，我们先看看我们上面使用过的–out-dir参数，你可以通过 <code>--help</code> 参数来查看命令行工具所能接受的所有参数列表。</p>
+<p>这里给大家部分列举一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Options:</span><br><span class="line">  -f, --filename [filename]                   The filename to use when reading from stdin. This will be used in source-maps, errors etc.</span><br><span class="line">  --presets [list]                            A comma-separated list of preset names.</span><br><span class="line">  --plugins [list]                            A comma-separated list of plugin names.</span><br><span class="line">  --config-file [path]                        Path to a .babelrc file to use.  --env-name [name]                           The name of the &#x27;env&#x27; to use when loading configs and plugins. Defaults to the value of BABEL_ENV, or else NODE_ENV, or else &#x27;development&#x27;.</span><br><span class="line">  --root-mode [mode]                          The project-root resolution mode. One of &#x27;root&#x27; (the default), &#x27;upward&#x27;, or &#x27;upward-optional&#x27;.</span><br><span class="line">  --source-type [script|module]</span><br><span class="line">  --no-babelrc                                Whether or not to look up .babelrc and .babelignore files.</span><br><span class="line">  --ignore [list]                             List of glob paths to **not** compile.</span><br><span class="line">  --only [list]                               List of glob paths to **only** </span><br><span class="line">compile.</span><br><span class="line">  --no-highlight-code                         Enable or disable ANSI syntax highlighting of code frames. (on by default)</span><br></pre></td></tr></table></figure>
+<h1>插件（plugins）和预设（preset）</h1>
+<h2 id="piugins">piugins</h2>
+<p><code>plugins</code> 的本质是一个 <code>js</code> 程序，指示着 <code>Babel</code> 如何转换代码，如何解析代码。</p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -747,6 +747,92 @@ square正方形</p>
 <h3 id="返回值">返回值</h3>
 <p>async 函数返回一个 Promise 对象，可以使用 then 方法添加回调函数。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">helloAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;helloAsync&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"><span class="built_in">console</span>.log(helloAsync())  <span class="comment">// Promise &#123;&lt;resolved&gt;: &quot;helloAsync&quot;&#125;</span></span><br><span class="line"> </span><br><span class="line">helloAsync().then(<span class="function"><span class="params">v</span>=&gt;</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(v);         <span class="comment">// helloAsync</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Express框架</title>
+    <url>/2022/04/18/Express%20%E6%A1%86%E6%9E%B6/</url>
+    <content><![CDATA[<h2 id="Express-简介">Express 简介</h2>
+<p>Express 是一个简洁而灵活的 node.js Web应用框架, 提供了一系列强大特性帮助你创建各种 Web 应用，和丰富的 HTTP 工具。</p>
+<p>使用 Express 可以快速地搭建一个完整功能的网站。</p>
+<p>Express 框架核心特性：</p>
+<ul>
+<li>可以设置中间件来响应 HTTP 请求。</li>
+<li>定义了路由表用于执行不同的 HTTP 请求动作。</li>
+<li>可以通过向模板传递参数来动态渲染 HTML 页面。</li>
+</ul>
+<h2 id="安装-Express">安装 Express</h2>
+<p>安装 Express 并将其保存到依赖列表中：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm install express --save</span><br></pre></td></tr></table></figure>
+<p>以上命令会将 Express 框架安装在当前目录的 <strong>node_modules</strong> 目录中， <strong>node_modules</strong> 目录下会自动创建 express 目录。以下几个重要的模块是需要与 express 框架一起安装的：</p>
+<ul>
+<li><strong>body-parser</strong> - node.js 中间件，用于处理 JSON, Raw, Text 和 URL 编码的数据。</li>
+<li><strong>cookie-parser</strong> - 这就是一个解析Cookie的工具。通过req.cookies可以取到传过来的cookie，并把它们转成对象。</li>
+<li><strong>multer</strong> - node.js 中间件，用于处理 enctype=“multipart/form-data”（设置表单的MIME编码）的表单数据。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm install body-parser --save</span><br><span class="line">$ cnpm install cookie-parser --save</span><br><span class="line">$ cnpm install multer --save</span><br></pre></td></tr></table></figure>
+<p>安装完后，我们可以查看下 express 使用的版本号：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm list express</span><br><span class="line">/data/www/node</span><br><span class="line">└── express@4.15.2  -&gt; /Users/tianqixin/www/node/node_modules/.4.15.2@express</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意以上均是在淘宝镜像上进行加载的，需要提前安装淘宝镜像，如没有安装也无妨，删除cnpm的c即可。</p>
+</blockquote>
+<h2 id="第一个-Express-框架实例">第一个 Express 框架实例</h2>
+<p>接下来我们使用 Express 框架来输出 “Hello World”。</p>
+<p>以下实例中我们引入了 express 模块，并在客户端发起请求后，响应 “Hello World” 字符串。</p>
+<p>创建 express_demo.js 文件，代码如下所示：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//express_demo.js 文件</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"> </span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">   res.send(<span class="string">&#x27;Hello World&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> server = app.listen(<span class="number">8081</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">var</span> host = server.address().address</span><br><span class="line">  <span class="keyword">var</span> port = server.address().port</span><br><span class="line"> </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;应用实例，访问地址为 http://%s:%s&quot;</span>, host, port)</span><br><span class="line"> </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>执行以上代码后，在浏览器中访问 <a href="http://127.0.0.1:8081">http://127.0.0.1:8081</a>，便可得到服务器返回的hello world。</p>
+<h2 id="请求和响应">请求和响应</h2>
+<p>Express 应用使用回调函数的参数： <strong>request</strong> 和 <strong>response</strong> 对象来处理请求和响应的数据。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">app.get(&#x27;/&#x27;, function (req, res) &#123;</span><br><span class="line">   // --</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>request</strong> 和 <strong>response</strong> 对象的具体介绍：</p>
+<p><strong>Request 对象</strong> - request 对象表示 HTTP 请求，包含了请求查询字符串，参数，内容，HTTP 头部等属性。常见属性有：</p>
+<ol>
+<li>req.app：当callback为外部文件时，用req.app访问express的实例</li>
+<li>req.baseUrl：获取路由当前安装的URL路径</li>
+<li>req.body / req.cookies：获得「请求主体」/ Cookies</li>
+<li>req.fresh / req.stale：判断请求是否还「新鲜」</li>
+<li>req.hostname / req.ip：获取主机名和IP地址</li>
+<li>req.originalUrl：获取原始请求URL</li>
+<li>req.params：获取路由的parameters</li>
+<li>req.path：获取请求路径</li>
+<li>req.protocol：获取协议类型</li>
+<li>req.query：获取URL的查询参数串</li>
+<li>req.route：获取当前匹配的路由</li>
+<li>req.subdomains：获取子域名</li>
+<li>req.accepts()：检查可接受的请求的文档类型</li>
+<li>req.acceptsCharsets / req.acceptsEncodings / req.acceptsLanguages：返回指定字符集的第一个可接受字符编码</li>
+<li>req.get()：获取指定的HTTP请求头</li>
+<li><a href="http://req.is">req.is</a>()：判断请求头Content-Type的MIME类型</li>
+</ol>
+<p><strong>Response 对象</strong> - response 对象表示 HTTP 响应，即在接收到请求时向客户端发送的 HTTP 响应数据。常见属性有：</p>
+<ol>
+<li>res.app：同req.app一样</li>
+<li>res.append()：追加指定HTTP头</li>
+<li>res.set()在res.append()后将重置之前设置的头</li>
+<li>res.cookie(name，value [，option])：设置Cookie</li>
+<li>opition: domain / expires / httpOnly / maxAge / path / secure / signed</li>
+<li>res.clearCookie()：清除Cookie</li>
+<li>res.download()：传送指定路径的文件</li>
+<li>res.get()：返回指定的HTTP头</li>
+<li>res.json()：传送JSON响应</li>
+<li>res.jsonp()：传送JSONP响应</li>
+<li>res.location()：只设置响应的Location HTTP头，不设置状态码或者close response</li>
+<li>res.redirect()：设置响应的Location HTTP头，并且设置状态码302</li>
+<li>res.render(view,[locals],callback)：渲染一个view，同时向callback传递渲染后的字符串，如果在渲染过程中有错误发生next(err)将会被自动调用。callback将会被传入一个可能发生的错误以及渲染后的页面，这样就不会自动输出了。</li>
+<li>res.send()：传送HTTP响应</li>
+<li>res.sendFile(path [，options] [，fn])：传送指定路径的文件 -会自动根据文件extension设定Content-Type</li>
+<li>res.set()：设置HTTP头，传入object可以一次设置多个头</li>
+<li>res.status()：设置HTTP状态码</li>
+<li>res.type()：设置Content-Type的MIME类型</li>
+</ol>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -1930,92 +2016,6 @@ async 函数返回一个 Promise 对象，可以使用 then 方法添加回调�
       </tags>
   </entry>
   <entry>
-    <title>Express框架</title>
-    <url>/2022/04/18/Express%20%E6%A1%86%E6%9E%B6/</url>
-    <content><![CDATA[<h2 id="Express-简介">Express 简介</h2>
-<p>Express 是一个简洁而灵活的 node.js Web应用框架, 提供了一系列强大特性帮助你创建各种 Web 应用，和丰富的 HTTP 工具。</p>
-<p>使用 Express 可以快速地搭建一个完整功能的网站。</p>
-<p>Express 框架核心特性：</p>
-<ul>
-<li>可以设置中间件来响应 HTTP 请求。</li>
-<li>定义了路由表用于执行不同的 HTTP 请求动作。</li>
-<li>可以通过向模板传递参数来动态渲染 HTML 页面。</li>
-</ul>
-<h2 id="安装-Express">安装 Express</h2>
-<p>安装 Express 并将其保存到依赖列表中：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm install express --save</span><br></pre></td></tr></table></figure>
-<p>以上命令会将 Express 框架安装在当前目录的 <strong>node_modules</strong> 目录中， <strong>node_modules</strong> 目录下会自动创建 express 目录。以下几个重要的模块是需要与 express 框架一起安装的：</p>
-<ul>
-<li><strong>body-parser</strong> - node.js 中间件，用于处理 JSON, Raw, Text 和 URL 编码的数据。</li>
-<li><strong>cookie-parser</strong> - 这就是一个解析Cookie的工具。通过req.cookies可以取到传过来的cookie，并把它们转成对象。</li>
-<li><strong>multer</strong> - node.js 中间件，用于处理 enctype=“multipart/form-data”（设置表单的MIME编码）的表单数据。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm install body-parser --save</span><br><span class="line">$ cnpm install cookie-parser --save</span><br><span class="line">$ cnpm install multer --save</span><br></pre></td></tr></table></figure>
-<p>安装完后，我们可以查看下 express 使用的版本号：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cnpm list express</span><br><span class="line">/data/www/node</span><br><span class="line">└── express@4.15.2  -&gt; /Users/tianqixin/www/node/node_modules/.4.15.2@express</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意以上均是在淘宝镜像上进行加载的，需要提前安装淘宝镜像，如没有安装也无妨，删除cnpm的c即可。</p>
-</blockquote>
-<h2 id="第一个-Express-框架实例">第一个 Express 框架实例</h2>
-<p>接下来我们使用 Express 框架来输出 “Hello World”。</p>
-<p>以下实例中我们引入了 express 模块，并在客户端发起请求后，响应 “Hello World” 字符串。</p>
-<p>创建 express_demo.js 文件，代码如下所示：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//express_demo.js 文件</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"> </span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">   res.send(<span class="string">&#x27;Hello World&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> server = app.listen(<span class="number">8081</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">var</span> host = server.address().address</span><br><span class="line">  <span class="keyword">var</span> port = server.address().port</span><br><span class="line"> </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;应用实例，访问地址为 http://%s:%s&quot;</span>, host, port)</span><br><span class="line"> </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>执行以上代码后，在浏览器中访问 <a href="http://127.0.0.1:8081">http://127.0.0.1:8081</a>，便可得到服务器返回的hello world。</p>
-<h2 id="请求和响应">请求和响应</h2>
-<p>Express 应用使用回调函数的参数： <strong>request</strong> 和 <strong>response</strong> 对象来处理请求和响应的数据。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">app.get(&#x27;/&#x27;, function (req, res) &#123;</span><br><span class="line">   // --</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><strong>request</strong> 和 <strong>response</strong> 对象的具体介绍：</p>
-<p><strong>Request 对象</strong> - request 对象表示 HTTP 请求，包含了请求查询字符串，参数，内容，HTTP 头部等属性。常见属性有：</p>
-<ol>
-<li>req.app：当callback为外部文件时，用req.app访问express的实例</li>
-<li>req.baseUrl：获取路由当前安装的URL路径</li>
-<li>req.body / req.cookies：获得「请求主体」/ Cookies</li>
-<li>req.fresh / req.stale：判断请求是否还「新鲜」</li>
-<li>req.hostname / req.ip：获取主机名和IP地址</li>
-<li>req.originalUrl：获取原始请求URL</li>
-<li>req.params：获取路由的parameters</li>
-<li>req.path：获取请求路径</li>
-<li>req.protocol：获取协议类型</li>
-<li>req.query：获取URL的查询参数串</li>
-<li>req.route：获取当前匹配的路由</li>
-<li>req.subdomains：获取子域名</li>
-<li>req.accepts()：检查可接受的请求的文档类型</li>
-<li>req.acceptsCharsets / req.acceptsEncodings / req.acceptsLanguages：返回指定字符集的第一个可接受字符编码</li>
-<li>req.get()：获取指定的HTTP请求头</li>
-<li><a href="http://req.is">req.is</a>()：判断请求头Content-Type的MIME类型</li>
-</ol>
-<p><strong>Response 对象</strong> - response 对象表示 HTTP 响应，即在接收到请求时向客户端发送的 HTTP 响应数据。常见属性有：</p>
-<ol>
-<li>res.app：同req.app一样</li>
-<li>res.append()：追加指定HTTP头</li>
-<li>res.set()在res.append()后将重置之前设置的头</li>
-<li>res.cookie(name，value [，option])：设置Cookie</li>
-<li>opition: domain / expires / httpOnly / maxAge / path / secure / signed</li>
-<li>res.clearCookie()：清除Cookie</li>
-<li>res.download()：传送指定路径的文件</li>
-<li>res.get()：返回指定的HTTP头</li>
-<li>res.json()：传送JSON响应</li>
-<li>res.jsonp()：传送JSONP响应</li>
-<li>res.location()：只设置响应的Location HTTP头，不设置状态码或者close response</li>
-<li>res.redirect()：设置响应的Location HTTP头，并且设置状态码302</li>
-<li>res.render(view,[locals],callback)：渲染一个view，同时向callback传递渲染后的字符串，如果在渲染过程中有错误发生next(err)将会被自动调用。callback将会被传入一个可能发生的错误以及渲染后的页面，这样就不会自动输出了。</li>
-<li>res.send()：传送HTTP响应</li>
-<li>res.sendFile(path [，options] [，fn])：传送指定路径的文件 -会自动根据文件extension设定Content-Type</li>
-<li>res.set()：设置HTTP头，传入object可以一次设置多个头</li>
-<li>res.status()：设置HTTP状态码</li>
-<li>res.type()：设置Content-Type的MIME类型</li>
-</ol>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>软件设计</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HTML入门</title>
     <url>/2022/01/11/HTML%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<h1>初识HTML</h1>
@@ -2587,158 +2587,6 @@ W3C标准包括<br>
       </tags>
   </entry>
   <entry>
-    <title>JavaScript-Dom</title>
-    <url>/2022/01/27/JavaScript-Dom/</url>
-    <content><![CDATA[<h1>HTML DOM (文档对象模型)</h1>
-<p>当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model）通过 HTML DOM，可访问 JavaScript HTML 文档的所有元素。</p>
-<p>HTML DOM 树的结构示意图（图片来自菜鸟编程）：</p>
-<p><img src="/2022/01/27/JavaScript-Dom/image-20220127233523498.png" alt="image-20220127233523498"></p>
-<p>通过js对dom的掌控，使得这些对象模型可以被动态的展示出来（类似于商品列表，一刷新一换）。</p>
-<h1>查找 HTML 元素</h1>
-<p>通过 JavaScript操作 HTML 元素需要先通过某种方式进行查找从而进行选择。</p>
-<p>有三种方法来做这件事：</p>
-<ul>
-<li>通过 id 找到 HTML 元素</li>
-<li>通过标签名找到 HTML 元素</li>
-<li>通过类名找到 HTML 元素</li>
-</ul>
-<h2 id="通过-id-找到-HTML-元素">通过 id 找到 HTML 元素</h2>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x=<span class="built_in">document</span>.getElementById(<span class="string">&quot;id名&quot;</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="通过标签名找到-HTML-元素">通过标签名找到 HTML 元素</h2>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x=<span class="built_in">document</span>.getElementById(<span class="string">&quot;main&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> y=x.getElementsByTagName(<span class="string">&quot;p&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>本例查找 id=“main” 的元素，然后查找 id=“main” 元素中的所有 <code>&lt;p&gt;</code> 元素</p>
-<h2 id="通过类名找到-HTML-元素">通过类名找到 HTML 元素</h2>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x=<span class="built_in">document</span>.getElementsByClassName(<span class="string">&quot;intro&quot;</span>);</span><br></pre></td></tr></table></figure>
-<h1>改变 HTML 输出流</h1>
-<p>document.write() 可用于直接向 HTML 输出流写内容。</p>
-<p>例如：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.write(<span class="built_in">Date</span>());<span class="comment">//该语句会直接向HTML输出流xie</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>注意：绝对不要在文档(DOM)加载完成之后使用 document.write()。这会覆盖该文档。</strong></p>
-</blockquote>
-<h1>改变 HTML 内容</h1>
-<p>document.getElementById(<em>id</em>).innerHTML=<em>新的改变</em></p>
-<p>使用这个函数可以使得HTML元素的内容发生改变</p>
-<p>例如：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;p1&quot;</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.getElementById(<span class="string">&quot;p1&quot;</span>).innerHTML=<span class="string">&quot;新文本!&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p>这里改变了<code>&lt;p1&gt;</code>的内容。</p>
-<h1>改变 HTML 属性</h1>
-<p>document.getElementById(<em>id</em>).<em>attribute=新属性值</em></p>
-<p>使用此函数改变HTML标签的属性。</p>
-<p>例如改变图片的路径：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;image&quot;</span> <span class="attr">src</span>=<span class="string">&quot;smiley.gif&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.getElementById(<span class="string">&quot;image&quot;</span>).src=<span class="string">&quot;landscape.jpg&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<h1>改变 HTML 样式</h1>
-<p>document.getElementById(<em>id</em>).style.<em>property</em>=<em>新样式</em></p>
-<p>使用此函数改变HTML标签的样式。</p>
-<p>例如：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"> </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;p1&quot;</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;p2&quot;</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.getElementById(<span class="string">&quot;p2&quot;</span>).style.color=<span class="string">&quot;blue&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.getElementById(<span class="string">&quot;p2&quot;</span>).style.fontFamily=<span class="string">&quot;Arial&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.getElementById(<span class="string">&quot;p2&quot;</span>).style.fontSize=<span class="string">&quot;larger&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>666<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"> </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<h1>使用事件</h1>
-<p>HTML DOM 允许我们通过触发事件来执行代码，使 JavaScript 有能力对 HTML 事件做出反应。</p>
-<p>比如以下事件：</p>
-<ul>
-<li>元素被点击。</li>
-<li>页面加载完成。</li>
-<li>输入框被修改。</li>
-<li>当网页已加载时</li>
-<li>当图像已加载时</li>
-<li>当鼠标移动到元素上时</li>
-<li>当输入字段被改变时</li>
-<li>当提交 HTML 表单时</li>
-<li>当用户触发按键时</li>
-<li>……</li>
-</ul>
-<p>例如点击事件（onclick）调用一个js函数：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="function"><span class="keyword">function</span> <span class="title">changetext</span>(<span class="params">id</span>)</span></span></span></span><br><span class="line"><span class="function"><span class="javascript"><span class="xml"></span>&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    id.innerHTML=<span class="string">&quot;Ooops!&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">onclick</span>=<span class="string">&quot;changetext(this)&quot;</span>&gt;</span>点击我!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p>changetext将会在标题被点击时运行。</p>
-<p><strong>onload 和 onunload 事件</strong></p>
-<p>onload 和 onunload 事件会在用户进入或离开页面时被触发。</p>
-<p>onload 事件可用于检测访问者的浏览器类型和浏览器版本，并基于这些信息来加载网页的正确版本。</p>
-<p>onload 和 onunload 事件可用于处理 cookie。</p>
-<p><strong>onchange 事件</strong></p>
-<p>onchange 事件常结合对输入字段的验证来使用，在字段被改变时调用。</p>
-<p><strong>onmouseover 和 onmouseout 事件</strong></p>
-<p>onmouseover 和 onmouseout 事件可用于在用户的鼠标移至 HTML 元素上方或移出元素时触发函数。</p>
-<p><strong>onmousedown、onmouseup 以及 onclick 事件</strong></p>
-<p>onmousedown, onmouseup 以及 onclick 构成了鼠标点击事件的所有部分。首先当点击鼠标按钮时，会触发 onmousedown 事件，当释放鼠标按钮时，会触发 onmouseup 事件，最后，当完成鼠标点击时，会触发 onclick 事件。</p>
-<h1>EventListener（事件监听）</h1>
-<p>用于捕获事件，当某事件触发后执行某函数。</p>
-<p><em>element</em>.addEventListener(<em>event, function, useCapture</em>);</p>
-<p>第一个参数是事件的类型 (如 “click” 或 “mousedown”).</p>
-<p>第二个参数是事件触发后调用的函数。</p>
-<p>第三个参数是个布尔值用于描述事件是冒泡还是捕获。该参数是可选的。</p>
-<blockquote>
-<p>注意:不要使用 “on” 前缀。 例如，使用 “click” ,而不是使用 “onclick”。</p>
-</blockquote>
-<p>addEventListener() 方法允许向同一个元素添加多个事件，且不会覆盖已存在的事件</p>
-<h2 id="关于传递参数">关于传递参数</h2>
-<p>当传递参数值时，使用&quot;匿名函数&quot;调用带参数的函数，例如：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">element.addEventListener(<span class="string">&quot;click&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; myFunction(p1, p2); &#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="事件冒泡与事件捕获">事件冒泡与事件捕获</h2>
-<p>事件传递有两种方式：冒泡与捕获。</p>
-<p>事件传递定义了元素事件触发的顺序。 如果你将 </p><p> 元素插入到 <div> 元素中，用户点击 <p> 元素, 哪个元素的 “click” 事件先被触发呢？</p>
-<p>在 <em>冒泡</em> 中，内部元素的事件会先被触发，然后再触发外部元素，即： </p><p> 元素的点击事件先触发，然后会触发 <div> 元素的点击事件。</div></p>
-<p>在 <em>捕获</em> 中，外部元素的事件会先被触发，然后才会触发内部元素的事件，即： <div> 元素的点击事件先触发 ，然后再触发 <p> 元素的点击事件。</p>
-<p>addEventListener() 方法可以指定 “useCapture” 参数来设置传递类型：</p>
-<h2 id="removeEventListener-方法">removeEventListener() 方法</h2>
-<p>removeEventListener() 方法移除由 addEventListener() 方法添加的事件句柄。</p>
-<h1>DOM 元素 (节点)</h1>
-<p><strong>要创建新的 HTML 元素 (节点)需要先创建一个元素，然后在已存在的元素中添加它。</strong></p>
-<p>以下代码是用于创建 </p><p> 元素:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> para = <span class="built_in">document</span>.createElement(<span class="string">&quot;p&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>为 </p><p> 元素创建一个新的文本节点：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> node = <span class="built_in">document</span>.createTextNode(<span class="string">&quot;这是一个新的段落。&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>将文本节点添加到 </p><p> 元素中：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">para.appendChild(node);<span class="comment">//insertBefore() 方法可以将新元素添加到开始位置。</span></span><br></pre></td></tr></table></figure>
-<p>最后，在一个已存在的元素中添加 p 元素。</p>
-<p>查找已存在的元素：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> element = <span class="built_in">document</span>.getElementById(<span class="string">&quot;div1&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>添加到已存在的元素中:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">element.appendChild(para);<span class="comment">////insertBefore() 方法可以将新元素添加到开始位置。</span></span><br></pre></td></tr></table></figure>
-<h2 id="移除已存在的元素">移除已存在的元素</h2>
-<p>在父元素中使用node.remove() 方法，parent.removeChild(child);。</p>
-<h2 id="替换-HTML-元素">替换 HTML 元素</h2>
-<p>我们可以使用 replaceChild() 方法来替换 HTML DOM 中的元素。</p>
-<h1>HTMLCollection 对象</h1>
-<p>getElementsByTagName() 方法返回 <code>HTMLCollection</code> 对象。</p>
-<p>HTMLCollection 对象类似包含 HTML 元素的一个数组。</p>
-<p>例如访问所以p元素</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;p&quot;</span>);</span><br><span class="line">y = x[<span class="number">1</span>];<span class="comment">//用类似与数组的方式访问</span></span><br></pre></td></tr></table></figure>
-<p>HTMLCollection 对象的 length 属性定义了集合中元素的数量。</p>
-<h1>DOM 节点列表</h1>
-<p><strong>NodeList</strong> 对象是一个从文档中获取的节点列表 (集合) 。</p>
-<p>NodeList 对象类似HTMLCollection 对象。</p>
-<p>一些旧版本浏览器中的方法（如：<strong>getElementsByClassName()</strong>）返回的是 NodeList 对象，而不是 HTMLCollection 对象。</p>
-<p>所有浏览器的 <strong>childNodes</strong> 属性返回的是 NodeList 对象。</p>
-<p>大部分浏览器的 <strong>querySelectorAll()</strong> 返回 NodeList 对象。</p>
-<p>同样是访问所有p元素：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> myNodeList = <span class="built_in">document</span>.querySelectorAll(<span class="string">&quot;p&quot;</span>);</span><br><span class="line">y = myNodeList[<span class="number">1</span>];<span class="comment">//同样通过下标访问</span></span><br></pre></td></tr></table></figure>
-<h2 id="NodeList-对象-length-属性">NodeList 对象 length 属性</h2>
-<p>NodeList 对象 length 属性定义了节点列表中元素的数量。</p>
-<h2 id="HTMLCollection-与-NodeList-的区别">HTMLCollection 与 NodeList 的区别</h2>
-<p>HTMLCollection是 HTML 元素的集合。</p>
-<p>NodeList 是一个文档节点的集合。</p>
-<p>NodeList 与 HTMLCollection 有很多类似的地方。</p>
-<p>NodeList 与 HTMLCollection 都与数组对象有点类似，可以使用索引 (0, 1, 2, 3, 4, …) 来获取元素。</p>
-<p>NodeList 与 HTMLCollection 都有 length 属性。</p>
-<p>HTMLCollection 元素可以通过 name，id 或索引来获取。</p>
-<p>NodeList 只能通过索引来获取。</p>
-<p>只有 NodeList 对象有包含属性节点和文本节点。</p>
-<blockquote>
-<p><strong>节点列表不是一个数组！</strong></p>
-<p>节点列表看起来可能是一个数组，但其实不是。</p>
-<p>你可以像数组一样，使用索引来获取元素。</p>
-<p>节点列表无法使用数组的方法： valueOf(), pop(), push(), 或 join() 。</p>
-</blockquote>
-</div></p></div></p>]]></content>
-      <categories>
-        <category>学习</category>
-        <category>软件设计</category>
-      </categories>
-      <tags>
-        <tag>前端入门</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JavaScript入门小识</title>
     <url>/2022/01/20/JavaScript%E5%85%A5%E9%97%A8%E5%B0%8F%E8%AF%86/</url>
     <content><![CDATA[<h1>什么是JavaScript？</h1>
@@ -3068,23 +2916,155 @@ W3C标准包括<br>
       </tags>
   </entry>
   <entry>
-    <title>Java泛型</title>
-    <url>/2021/12/21/Java%E6%B3%9B%E5%9E%8B/</url>
-    <content><![CDATA[<h1>泛型的概念</h1>
-<h1>泛型的好处</h1>
-<h2 id="类型安全">类型安全</h2>
-<h2 id="消除强制转换类型">消除强制转换类型</h2>
-<h1>泛型的作用</h1>
-<h2 id="编译期间检查">编译期间检查</h2>
-<h1>泛型类</h1>
-<p><img src="/2021/12/21/Java%E6%B3%9B%E5%9E%8B/image-20211221125349265.png" alt="image-20211221125349265"></p>
-]]></content>
+    <title>JavaScript-Dom</title>
+    <url>/2022/01/27/JavaScript-Dom/</url>
+    <content><![CDATA[<h1>HTML DOM (文档对象模型)</h1>
+<p>当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model）通过 HTML DOM，可访问 JavaScript HTML 文档的所有元素。</p>
+<p>HTML DOM 树的结构示意图（图片来自菜鸟编程）：</p>
+<p><img src="/2022/01/27/JavaScript-Dom/image-20220127233523498.png" alt="image-20220127233523498"></p>
+<p>通过js对dom的掌控，使得这些对象模型可以被动态的展示出来（类似于商品列表，一刷新一换）。</p>
+<h1>查找 HTML 元素</h1>
+<p>通过 JavaScript操作 HTML 元素需要先通过某种方式进行查找从而进行选择。</p>
+<p>有三种方法来做这件事：</p>
+<ul>
+<li>通过 id 找到 HTML 元素</li>
+<li>通过标签名找到 HTML 元素</li>
+<li>通过类名找到 HTML 元素</li>
+</ul>
+<h2 id="通过-id-找到-HTML-元素">通过 id 找到 HTML 元素</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x=<span class="built_in">document</span>.getElementById(<span class="string">&quot;id名&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="通过标签名找到-HTML-元素">通过标签名找到 HTML 元素</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x=<span class="built_in">document</span>.getElementById(<span class="string">&quot;main&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> y=x.getElementsByTagName(<span class="string">&quot;p&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>本例查找 id=“main” 的元素，然后查找 id=“main” 元素中的所有 <code>&lt;p&gt;</code> 元素</p>
+<h2 id="通过类名找到-HTML-元素">通过类名找到 HTML 元素</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x=<span class="built_in">document</span>.getElementsByClassName(<span class="string">&quot;intro&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h1>改变 HTML 输出流</h1>
+<p>document.write() 可用于直接向 HTML 输出流写内容。</p>
+<p>例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.write(<span class="built_in">Date</span>());<span class="comment">//该语句会直接向HTML输出流xie</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：绝对不要在文档(DOM)加载完成之后使用 document.write()。这会覆盖该文档。</strong></p>
+</blockquote>
+<h1>改变 HTML 内容</h1>
+<p>document.getElementById(<em>id</em>).innerHTML=<em>新的改变</em></p>
+<p>使用这个函数可以使得HTML元素的内容发生改变</p>
+<p>例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;p1&quot;</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.getElementById(<span class="string">&quot;p1&quot;</span>).innerHTML=<span class="string">&quot;新文本!&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>这里改变了<code>&lt;p1&gt;</code>的内容。</p>
+<h1>改变 HTML 属性</h1>
+<p>document.getElementById(<em>id</em>).<em>attribute=新属性值</em></p>
+<p>使用此函数改变HTML标签的属性。</p>
+<p>例如改变图片的路径：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;image&quot;</span> <span class="attr">src</span>=<span class="string">&quot;smiley.gif&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.getElementById(<span class="string">&quot;image&quot;</span>).src=<span class="string">&quot;landscape.jpg&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h1>改变 HTML 样式</h1>
+<p>document.getElementById(<em>id</em>).style.<em>property</em>=<em>新样式</em></p>
+<p>使用此函数改变HTML标签的样式。</p>
+<p>例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"> </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;p1&quot;</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;p2&quot;</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.getElementById(<span class="string">&quot;p2&quot;</span>).style.color=<span class="string">&quot;blue&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.getElementById(<span class="string">&quot;p2&quot;</span>).style.fontFamily=<span class="string">&quot;Arial&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="built_in">document</span>.getElementById(<span class="string">&quot;p2&quot;</span>).style.fontSize=<span class="string">&quot;larger&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>666<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"> </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h1>使用事件</h1>
+<p>HTML DOM 允许我们通过触发事件来执行代码，使 JavaScript 有能力对 HTML 事件做出反应。</p>
+<p>比如以下事件：</p>
+<ul>
+<li>元素被点击。</li>
+<li>页面加载完成。</li>
+<li>输入框被修改。</li>
+<li>当网页已加载时</li>
+<li>当图像已加载时</li>
+<li>当鼠标移动到元素上时</li>
+<li>当输入字段被改变时</li>
+<li>当提交 HTML 表单时</li>
+<li>当用户触发按键时</li>
+<li>……</li>
+</ul>
+<p>例如点击事件（onclick）调用一个js函数：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="function"><span class="keyword">function</span> <span class="title">changetext</span>(<span class="params">id</span>)</span></span></span></span><br><span class="line"><span class="function"><span class="javascript"><span class="xml"></span>&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    id.innerHTML=<span class="string">&quot;Ooops!&quot;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">onclick</span>=<span class="string">&quot;changetext(this)&quot;</span>&gt;</span>点击我!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>changetext将会在标题被点击时运行。</p>
+<p><strong>onload 和 onunload 事件</strong></p>
+<p>onload 和 onunload 事件会在用户进入或离开页面时被触发。</p>
+<p>onload 事件可用于检测访问者的浏览器类型和浏览器版本，并基于这些信息来加载网页的正确版本。</p>
+<p>onload 和 onunload 事件可用于处理 cookie。</p>
+<p><strong>onchange 事件</strong></p>
+<p>onchange 事件常结合对输入字段的验证来使用，在字段被改变时调用。</p>
+<p><strong>onmouseover 和 onmouseout 事件</strong></p>
+<p>onmouseover 和 onmouseout 事件可用于在用户的鼠标移至 HTML 元素上方或移出元素时触发函数。</p>
+<p><strong>onmousedown、onmouseup 以及 onclick 事件</strong></p>
+<p>onmousedown, onmouseup 以及 onclick 构成了鼠标点击事件的所有部分。首先当点击鼠标按钮时，会触发 onmousedown 事件，当释放鼠标按钮时，会触发 onmouseup 事件，最后，当完成鼠标点击时，会触发 onclick 事件。</p>
+<h1>EventListener（事件监听）</h1>
+<p>用于捕获事件，当某事件触发后执行某函数。</p>
+<p><em>element</em>.addEventListener(<em>event, function, useCapture</em>);</p>
+<p>第一个参数是事件的类型 (如 “click” 或 “mousedown”).</p>
+<p>第二个参数是事件触发后调用的函数。</p>
+<p>第三个参数是个布尔值用于描述事件是冒泡还是捕获。该参数是可选的。</p>
+<blockquote>
+<p>注意:不要使用 “on” 前缀。 例如，使用 “click” ,而不是使用 “onclick”。</p>
+</blockquote>
+<p>addEventListener() 方法允许向同一个元素添加多个事件，且不会覆盖已存在的事件</p>
+<h2 id="关于传递参数">关于传递参数</h2>
+<p>当传递参数值时，使用&quot;匿名函数&quot;调用带参数的函数，例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">element.addEventListener(<span class="string">&quot;click&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; myFunction(p1, p2); &#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="事件冒泡与事件捕获">事件冒泡与事件捕获</h2>
+<p>事件传递有两种方式：冒泡与捕获。</p>
+<p>事件传递定义了元素事件触发的顺序。 如果你将 </p><p> 元素插入到 <div> 元素中，用户点击 <p> 元素, 哪个元素的 “click” 事件先被触发呢？</p>
+<p>在 <em>冒泡</em> 中，内部元素的事件会先被触发，然后再触发外部元素，即： </p><p> 元素的点击事件先触发，然后会触发 <div> 元素的点击事件。</div></p>
+<p>在 <em>捕获</em> 中，外部元素的事件会先被触发，然后才会触发内部元素的事件，即： <div> 元素的点击事件先触发 ，然后再触发 <p> 元素的点击事件。</p>
+<p>addEventListener() 方法可以指定 “useCapture” 参数来设置传递类型：</p>
+<h2 id="removeEventListener-方法">removeEventListener() 方法</h2>
+<p>removeEventListener() 方法移除由 addEventListener() 方法添加的事件句柄。</p>
+<h1>DOM 元素 (节点)</h1>
+<p><strong>要创建新的 HTML 元素 (节点)需要先创建一个元素，然后在已存在的元素中添加它。</strong></p>
+<p>以下代码是用于创建 </p><p> 元素:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> para = <span class="built_in">document</span>.createElement(<span class="string">&quot;p&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>为 </p><p> 元素创建一个新的文本节点：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> node = <span class="built_in">document</span>.createTextNode(<span class="string">&quot;这是一个新的段落。&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>将文本节点添加到 </p><p> 元素中：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">para.appendChild(node);<span class="comment">//insertBefore() 方法可以将新元素添加到开始位置。</span></span><br></pre></td></tr></table></figure>
+<p>最后，在一个已存在的元素中添加 p 元素。</p>
+<p>查找已存在的元素：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> element = <span class="built_in">document</span>.getElementById(<span class="string">&quot;div1&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>添加到已存在的元素中:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">element.appendChild(para);<span class="comment">////insertBefore() 方法可以将新元素添加到开始位置。</span></span><br></pre></td></tr></table></figure>
+<h2 id="移除已存在的元素">移除已存在的元素</h2>
+<p>在父元素中使用node.remove() 方法，parent.removeChild(child);。</p>
+<h2 id="替换-HTML-元素">替换 HTML 元素</h2>
+<p>我们可以使用 replaceChild() 方法来替换 HTML DOM 中的元素。</p>
+<h1>HTMLCollection 对象</h1>
+<p>getElementsByTagName() 方法返回 <code>HTMLCollection</code> 对象。</p>
+<p>HTMLCollection 对象类似包含 HTML 元素的一个数组。</p>
+<p>例如访问所以p元素</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;p&quot;</span>);</span><br><span class="line">y = x[<span class="number">1</span>];<span class="comment">//用类似与数组的方式访问</span></span><br></pre></td></tr></table></figure>
+<p>HTMLCollection 对象的 length 属性定义了集合中元素的数量。</p>
+<h1>DOM 节点列表</h1>
+<p><strong>NodeList</strong> 对象是一个从文档中获取的节点列表 (集合) 。</p>
+<p>NodeList 对象类似HTMLCollection 对象。</p>
+<p>一些旧版本浏览器中的方法（如：<strong>getElementsByClassName()</strong>）返回的是 NodeList 对象，而不是 HTMLCollection 对象。</p>
+<p>所有浏览器的 <strong>childNodes</strong> 属性返回的是 NodeList 对象。</p>
+<p>大部分浏览器的 <strong>querySelectorAll()</strong> 返回 NodeList 对象。</p>
+<p>同样是访问所有p元素：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> myNodeList = <span class="built_in">document</span>.querySelectorAll(<span class="string">&quot;p&quot;</span>);</span><br><span class="line">y = myNodeList[<span class="number">1</span>];<span class="comment">//同样通过下标访问</span></span><br></pre></td></tr></table></figure>
+<h2 id="NodeList-对象-length-属性">NodeList 对象 length 属性</h2>
+<p>NodeList 对象 length 属性定义了节点列表中元素的数量。</p>
+<h2 id="HTMLCollection-与-NodeList-的区别">HTMLCollection 与 NodeList 的区别</h2>
+<p>HTMLCollection是 HTML 元素的集合。</p>
+<p>NodeList 是一个文档节点的集合。</p>
+<p>NodeList 与 HTMLCollection 有很多类似的地方。</p>
+<p>NodeList 与 HTMLCollection 都与数组对象有点类似，可以使用索引 (0, 1, 2, 3, 4, …) 来获取元素。</p>
+<p>NodeList 与 HTMLCollection 都有 length 属性。</p>
+<p>HTMLCollection 元素可以通过 name，id 或索引来获取。</p>
+<p>NodeList 只能通过索引来获取。</p>
+<p>只有 NodeList 对象有包含属性节点和文本节点。</p>
+<blockquote>
+<p><strong>节点列表不是一个数组！</strong></p>
+<p>节点列表看起来可能是一个数组，但其实不是。</p>
+<p>你可以像数组一样，使用索引来获取元素。</p>
+<p>节点列表无法使用数组的方法： valueOf(), pop(), push(), 或 join() 。</p>
+</blockquote>
+</div></p></div></p>]]></content>
       <categories>
         <category>学习</category>
         <category>软件设计</category>
       </categories>
       <tags>
-        <tag>Java</tag>
+        <tag>前端入门</tag>
       </tags>
   </entry>
   <entry>
@@ -3173,6 +3153,47 @@ W3C标准包括<br>
 <p><img src="/2021/12/15/Java%E7%9A%84I-O%E6%B5%81/image-20211219162107314.png" alt="一串熟悉的ascii码"></p>
 <p>一串熟悉的ascii码。</p>
 <p>在读取数据这一步时，其实是f2自己的缓冲区在进行读取，效率就高了许多。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NodeJs搭建简易web后端</title>
+    <url>/2022/01/29/NodeJs%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93web%E5%90%8E%E7%AB%AF/</url>
+    <content><![CDATA[<blockquote>
+<p>更新于2022.1.29</p>
+</blockquote>
+<h1>什么是Nodejs？</h1>
+<p>为了让JavaScript代码能够脱离浏览器独立进行运行，NodeJs便由此而生。JavaScript能够运行在浏览器的一大原因是浏览器内置了V8引擎，能够将JavaScript代码转换为机器语言，而NodeJs封装了v8引擎，本身由c++编写。也就可以正常运行。这样，JavaScript在电脑也可以正常运行。</p>
+<p>此次我们要使用NodeJs制作一个简单的Web服务器。</p>
+<h1>安装NodeJs</h1>
+<p>网络下载安装包进行安装，此处不再赘述。</p>
+<h1>认识https请求</h1>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>软件设计</category>
+      </categories>
+      <tags>
+        <tag>后端入门</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java泛型</title>
+    <url>/2021/12/21/Java%E6%B3%9B%E5%9E%8B/</url>
+    <content><![CDATA[<h1>泛型的概念</h1>
+<h1>泛型的好处</h1>
+<h2 id="类型安全">类型安全</h2>
+<h2 id="消除强制转换类型">消除强制转换类型</h2>
+<h1>泛型的作用</h1>
+<h2 id="编译期间检查">编译期间检查</h2>
+<h1>泛型类</h1>
+<p><img src="/2021/12/21/Java%E6%B3%9B%E5%9E%8B/image-20211221125349265.png" alt="image-20211221125349265"></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -4202,27 +4223,6 @@ W3C标准包括<br>
       </tags>
   </entry>
   <entry>
-    <title>NodeJs搭建简易web后端</title>
-    <url>/2022/01/29/NodeJs%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93web%E5%90%8E%E7%AB%AF/</url>
-    <content><![CDATA[<blockquote>
-<p>更新于2022.1.29</p>
-</blockquote>
-<h1>什么是Nodejs？</h1>
-<p>为了让JavaScript代码能够脱离浏览器独立进行运行，NodeJs便由此而生。JavaScript能够运行在浏览器的一大原因是浏览器内置了V8引擎，能够将JavaScript代码转换为机器语言，而NodeJs封装了v8引擎，本身由c++编写。也就可以正常运行。这样，JavaScript在电脑也可以正常运行。</p>
-<p>此次我们要使用NodeJs制作一个简单的Web服务器。</p>
-<h1>安装NodeJs</h1>
-<p>网络下载安装包进行安装，此处不再赘述。</p>
-<h1>认识https请求</h1>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>软件设计</category>
-      </categories>
-      <tags>
-        <tag>后端入门</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python学习</title>
     <url>/2022/04/18/Python-TM%E4%BA%BA%E4%BA%BA%E9%83%BD%E5%9C%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%AF%AD%E8%A8%80/</url>
     <content><![CDATA[<h1>Python-学习过程</h1>
@@ -4444,23 +4444,23 @@ W3C标准包括<br>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vue init webpack-simple tosuketest1</span><br></pre></td></tr></table></figure>
 <p>tosuketest1是这个项目的名称，注意，项目名称只能使用英文。</p>
 <p>接着是一串信息确认，直接回车或者填入相关信息后我们就创建好了我们的第一个Vue项目：</p>
-<p><img src="/2022/05/15/Vue2.x/image-20220512104041803.png" alt="image-20220512104041803"></p>
+<p><img src="/2022/05/15/Vue2.x/blog/img/image-20220512104041803.png" alt="image-20220512104041803"></p>
 <p>这时系统创建了一个以我们项目名字的文件夹，根据Vue的提示，我们需要进入到我们项目名字的文件夹，由于是在当前文件夹下创建的项目文件夹，所以我们直接用cd+文件夹名称的指令进入即可。</p>
 <p>成功进入到项目文件夹后我们还要安装Vue的全部依赖，运行：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
 <p>安装好后我们的项目文件夹就是这样的：</p>
-<p><img src="/2022/05/15/Vue2.x/blog/source/image-20220512104936884.png" alt="image-20220512104936884"></p>
+<p><img src="/2022/05/15/Vue2.x/image-20220512104936884.png" alt="image-20220512104936884"></p>
 <p>观察一下，不仅有模块文件夹、源文件夹、html、包说明json，还有我们才学习过的babel以及webpack。</p>
 <p>运行：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
 <p>即可在浏览器中看见我们的Vue初始化页面：</p>
-<p><img src="/2022/05/15/Vue2.x/image-20220512105353041.png" alt="image-20220512105353041"></p>
+<p><img src="/2022/05/15/Vue2.x/blog/img/image-20220512105353041.png" alt="image-20220512105353041"></p>
 <h1>Vue 项目打包</h1>
 <p>打包 Vue 项目使用以下命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
 <p>执行完成后，会在 Vue 项目下生成一个 <strong>dist</strong> 目录，一般包含 index.html 文件及 static 目录，static 目录包含了静态文件 js、css 以及图片目录 images。</p>
 <h1>Vue项目结构</h1>
-<p><img src="/2022/05/15/Vue2.x/image-20220512110528960.png" alt="image-20220512110528960"></p>
+<p><img src="/2022/05/15/Vue2.x/blog/img/image-20220512110528960.png" alt="image-20220512110528960"></p>
 <table>
 <thead>
 <tr>
@@ -4517,11 +4517,11 @@ W3C标准包括<br>
 <p>那知道是这样排布的之后，我们就可以来分析一下这个代码了。</p>
 <p>首先，template里面的内容很容易分析，先是一个div容器，里面依次是logo图片、msg的标题、Essential Links的标题，接着就是一堆链接。</p>
 <p>script里导出了一个返回msg的函数，供上面的标题使用，所以我们要是修改一下这个msg的内容：</p>
-<p><img src="/2022/05/15/Vue2.x/image-20220512112309682.png" alt="image-20220512112309682"></p>
+<p><img src="/2022/05/15/Vue2.x/blog/img/image-20220512112309682.png" alt="image-20220512112309682"></p>
 <p>然后我们运行：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
 <p>我们会发现页面也就发生改变了：</p>
-<p><img src="/2022/05/15/Vue2.x/image-20220512112411633.png" alt="image-20220512112411633"></p>
+<p><img src="/2022/05/15/Vue2.x/blog/img/image-20220512112411633.png" alt="image-20220512112411633"></p>
 <p>接着分析，style里有一些对app这个div的一些样式修改。</p>
 <p>这就是这个最基本的vue文件。</p>
 <h1>Vue模板语法</h1>
@@ -4534,20 +4534,21 @@ W3C标准包括<br>
 <p>接下来我们看看如何定义数据对象。</p>
 <p><strong>data</strong> 用于定义属性，实例中有三个属性分别为：site、url、alexa，当然你可以在添加一些自己要用的属性。</p>
 <p><strong>methods</strong> 用于定义的函数，可以通过 return 来返回函数值。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;&#125;&#125;</span><br></pre></td></tr></table></figure>
-<p>用于输出对象属性和函数返回值，也就是文本插值。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123; &#125;&#125;用于输出对象属性和函数返回值，也就是文本插值。</span><br></pre></td></tr></table></figure>
 <p>当一个 Vue 实例被创建时，它向 Vue 的响应式系统中加入了其 data 对象中能找到的所有的属性。当这些属性的值发生改变时，html 视图将也会产生相应的变化。</p>
 <p>这样的话，我们的网页就可以做到实时动态的内容刷新了。</p>
 <p>除了数据属性，Vue 实例还提供了一些有用的实例属性与方法。它们都有前缀 $，以便与用户定义的属性区分开来。</p>
 <h2 id="插值">插值</h2>
 <h3 id="文本">文本</h3>
-<p>数据绑定最常见的形式就是使用 （双大括号）的文本插值：</p>
+<p>数据绑定最常见的形式就是使用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;...&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>（双大括号）的文本插值：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="Html">Html</h3>
 <p>使用 <strong>v-html</strong> 指令用于输出 html 代码：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-html=&quot;message&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">    </span><br><span class="line">&lt;script&gt;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &#x27;#app&#x27;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: &#x27;&lt;h1&gt;京介的正牌博客&lt;/h1&gt;&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>就是将你的文本值用HTML的格式来作对应的解析，例如上面的代码：</p>
-<p><img src="/2022/05/15/Vue2.x/image-20220512171825902.png" alt="image-20220512171825902"></p>
+<p><img src="/2022/05/15/Vue2.x/blog/img/image-20220512171825902.png" alt="image-20220512171825902"></p>
 <p>很显然我这行代码已经被解释为了HTML的标题，字体有明显的加粗，<strong>v-html</strong> 指令本质上是js，只能在标签的属性里用。</p>
 <h3 id="属性">属性</h3>
 <p>HTML 属性绑定应使用 v-bind 指令。</p>
@@ -4562,10 +4563,10 @@ W3C标准包括<br>
 <p>最后再实例化绑定一个vue实例：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> vm= <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    <span class="attr">el</span>:‘.box‘,</span><br><span class="line">    <span class="attr">data</span>:&#123;</span><br><span class="line">        <span class="attr">isColor</span>:<span class="literal">true</span>,</span><br><span class="line">        <span class="attr">isSize</span>:<span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>结果是：</p>
-<p><img src="/2022/05/15/Vue2.x/image-20220513111003797.png" alt="image-20220513111003797"></p>
+<p><img src="/2022/05/15/Vue2.x/blog/img/image-20220513111003797.png" alt="image-20220513111003797"></p>
 <p>这是因为，我们将textcolor和textsize的属性绑定到了box的上面，并且通过vue里的data来确认是否使用，像是上面的那个例子里我们将isColor和isSize都设置为了true，如果我们设置为false，则效果也会随之改变。</p>
 <p>例如我们将isColor设置为false，结果为：</p>
-<p><img src="/2022/05/15/Vue2.x/image-20220513111707054.png" alt="image-20220513111707054"></p>
+<p><img src="/2022/05/15/Vue2.x/blog/img/image-20220513111707054.png" alt="image-20220513111707054"></p>
 <p>而且你会看到，你对代码的更改将会实时的响应到网页中。</p>
 <p><strong>v-build也可以直接绑定数据里的一个对象</strong></p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span> <span class="attr">v-bind:class</span>=<span class="string">&quot;&#123;classobject&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>就是第一<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>这是第二<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -4586,10 +4587,10 @@ W3C标准包括<br>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click</span>=<span class="string">&quot;doSomething&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="参数">参数</h3>
 <p>参数在指令后以冒号指明。例如， v-bind 指令被用来响应地更新 HTML 属性：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:href</span>=<span class="string">&quot;url&quot;</span>&gt;</span>智能物联协会<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">    </span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="keyword">new</span> Vue(&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">  <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">  <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="attr">url</span>: <span class="string">&#x27;tocode.cc&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">  &#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">&#125;)</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:href</span>=<span class="string">&quot;url&quot;</span>&gt;</span>智能物联协会<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">    </span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="keyword">new</span> Vue(&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">  <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">  <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="attr">url</span>: <span class="string">&#x27;tocode.store&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">  &#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">&#125;)</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>这样，我们智能物联协会官网的链接tocode.cc就作为参数href绑定在了标签上，有同学可能会有这样的疑问：我们是傻*吗？明明是a标签，还需要用v-bind来绑定个屁啊，我直接：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;url&quot;</span>&gt;</span>智能物联协会<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>当然这样写直接就404了，在这里说明的是，我们使用v-bind是为了使url可变，使用了v-bind是为了绑定这个属性从而使得从js中返回我们的url。</p>
+<p>当然这样写直接就404了，在这里需要说明的是，我们使用v-bind是为了使url可变，使用了v-bind是为了绑定这个属性从而使得从js中返回我们的url。</p>
 <h3 id="修饰符">修饰符</h3>
 <p>修饰符是以半角句号 <strong>.</strong> 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。例如，<strong>.prevent</strong> 修饰符告诉 <strong>v-on</strong> 指令对于触发的事件调用 <strong>event.preventDefault()</strong>：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>=<span class="string">&quot;onSubmit&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -4600,7 +4601,83 @@ W3C标准包括<br>
 <p>按钮的事件我们可以使用 v-on 监听事件，并对用户的输入进行响应。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">&quot;message&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    </span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="keyword">new</span> Vue(&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">  <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">  <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="attr">message</span>: <span class="string">&#x27;京介的正牌博客&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">  &#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">&#125;)</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>上面的例子是说，message默认是京介的正牌博客，但是一旦用户进行输入数值，message就会随时进行更改绑定：</p>
-<p><img src="/2022/05/15/Vue2.x/image-20220514214429865.png" alt="image-20220514214429865"></p>
+<p><img src="/2022/05/15/Vue2.x/blog/img/image-20220514214429865.png" alt="image-20220514214429865"></p>
+<p>这里你会发现，message的展示是动态的，我们的每一次更改都会瞬间同步，如果我们想要等我们输入完，即鼠标离开输入框后文字消息才更新的话就需要用到我们刚才所说的指令修饰符，.lazy：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model.lazy</span>=<span class="string">&quot;message&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样的话，文字就不会动态更新，会在我们输入完内容后才更新。</p>
+<p><strong>v-model</strong> 指令用来在 input、select、textarea、checkbox、radio 等表单控件元素上创建双向数据绑定，根据表单上的值，自动更新绑定的元素的值。</p>
+<p>我们可以也可以使用 v-on 监听事件，并对用户的输入进行响应。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">&quot;reverseMessage&quot;</span>&gt;</span>反转字符串<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript"><span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">  <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span><br><span class="line"><span class="javascript">  <span class="attr">data</span>: &#123;</span></span><br><span class="line"><span class="javascript">    <span class="attr">message</span>: <span class="string">&#x27;ABCDEF&#x27;</span></span></span><br><span class="line"><span class="javascript">  &#125;,</span></span><br><span class="line"><span class="javascript">  <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="javascript">    <span class="attr">reverseMessage</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.message = <span class="built_in">this</span>.message.split(<span class="string">&#x27;&#x27;</span>).reverse().join(<span class="string">&#x27;&#x27;</span>)</span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript">  &#125;</span></span><br><span class="line"><span class="javascript">&#125;)</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>一旦监听到按钮被点击，便会执行reverseMessage函数使得字符串反转。</p>
+<blockquote>
+<p>顺便来观察一下字符串的反转，复习一下JS的知识，使用split分割函数分割字符串为数组，然后使用reverse函数反转数组，最后使用join函数使得数组合成字符串。</p>
+</blockquote>
+<h2 id="过滤器（filter）">过滤器（filter）</h2>
+<p>Vue.js 允许你自定义过滤器，被用作一些常见的文本格式化。由&quot;管道符&quot;指示, 只能用在以下两个地方如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在两个大括号中 --&gt;</span></span><br><span class="line">&#123;&#123; message | capitalize &#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 在 v-bind 指令中 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:id</span>=<span class="string">&quot;rawId | formatId&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>过滤器既可以筛选，又可以对筛选出来的进行加工。即以一种特殊形式来输出内容，完整的例子如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &#123;&#123; message | capitalize &#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">    </span><br><span class="line">&lt;script&gt;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &#x27;#app&#x27;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: &#x27;tosuke&#x27;</span><br><span class="line">  &#125;,</span><br><span class="line">  filters: &#123;</span><br><span class="line">    capitalize: function (value) &#123;</span><br><span class="line">      if (!value) return &#x27;&#x27;</span><br><span class="line">      value = value.toString()</span><br><span class="line">      return value.charAt(0).toUpperCase() + value.slice(1)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>filters中的capitalize即为对message的一种过滤和加工，也就是“该如何展现message”。</p>
+<p>这里是将message转换为字符串，并将首字母大写拼上除剩余的字符串。</p>
+<h2 id="缩写">缩写</h2>
+<h3 id="v-bind-缩写">v-bind 缩写</h3>
+<p>Vue.js 为两个最为常用的指令提供了特别的缩写：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- 完整语法 --&gt;</span><br><span class="line">&lt;a v-bind:href=&quot;url&quot;&gt;&lt;/a&gt;</span><br><span class="line">&lt;!-- 缩写 --&gt;</span><br><span class="line">&lt;a :href=&quot;url&quot;&gt;&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="v-on-缩写">v-on 缩写</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- 完整语法 --&gt;</span><br><span class="line">&lt;a v-on:click=&quot;doSomething&quot;&gt;&lt;/a&gt;</span><br><span class="line">&lt;!-- 缩写 --&gt;</span><br><span class="line">&lt;a @click=&quot;doSomething&quot;&gt;&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<h1>Vue.js 条件语句</h1>
+<h2 id="条件判断">条件判断</h2>
+<h3 id="v-if">v-if</h3>
+<p>条件判断使用我们之前提到过的 v-if 指令，我们再来看看：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;p v-if=&quot;seen&quot;&gt;现在你看到我了&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &#x27;#app&#x27;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    seen: false,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这里， v-if 指令将根据表达式 seen 的值(true 或 false )来决定是否插入 p 元素。</p>
+<h3 id="v-else">v-else</h3>
+<p>可以用 v-else 指令给 v-if 添加一个 “else” 块。</p>
+<p>随机生成一个数字，判断是否大于0.5，然后输出对应信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-if=&quot;Math.random() &gt; 0.5&quot;&gt;</span><br><span class="line">      Sorry</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div v-else&gt;</span><br><span class="line">      Not sorry</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">    </span><br><span class="line">&lt;script&gt;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &#x27;#app&#x27;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="v-else-if">v-else-if</h3>
+<p>v-else-if 在 2.1.0 新增，顾名思义，用作 v-if 的 else-if 块。可以链式的多次使用，与我们熟悉的语法无异，这里不再赘述。</p>
+<blockquote>
+<p><em>v-else 、v-else-if 必须跟在 v-if 或者 v-else-if之后。</em></p>
+</blockquote>
+<h3 id="v-show">v-show</h3>
+<p>我们也可以使用 v-show 指令来根据条件展示元素：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;h1 v-show=&quot;ok&quot;&gt;Hello!&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<p>效果与v-if相同，不过v-if只有在判断为true的时候才会对数据进行渲染，false的时候把包含的代码进行删除。除非再次进行数据渲染，v-if才会重新判断。可以说是用法比较倾向于对数据一次操作。</p>
+<p>v-show是无论判断是什么都会先对数据进行渲染，只是false的时候对节点进行display:none;的操作。所以再不重新渲染数据的情况下，改变数据的值可以使数据展示或隐藏。</p>
+<p><strong>用法推荐：</strong></p>
+<p>v-if更适合于带有权限的操作，渲染时判断权限数据，有则展示该功能，没有则删除。</p>
+<p>v-show更适合于日常使用，可以减少数据的渲染，减少不必要的操作。</p>
+<p>综上，v-if 有更高的切换消耗，而 v-show 有更高的初始渲染消耗。因此，如果需要频繁切换 v-show 较好，如果在运行时条件不大可能改变，更倾向功能权限性的话 v-if 较好。</p>
+<h1>Vue.js 循环语句</h1>
+<p>循环使用 v-for 指令。</p>
+<p>v-for 指令需要以 <strong>site in sites</strong> 形式的特殊语法（学习过python的同学应该很熟悉）， sites 是源数据数组并且 site 是数组元素迭代的别名。</p>
+<p>v-for 可以绑定数据到数组来渲染一个列表：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;ol&gt;</span><br><span class="line">    &lt;li v-for=&quot;site in sites&quot;&gt;</span><br><span class="line">      &#123;&#123; site.name &#125;&#125;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">  &lt;/ol&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script&gt;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &#x27;#app&#x27;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    sites: [</span><br><span class="line">      &#123; name: &#x27;Runoob&#x27; &#125;,</span><br><span class="line">      &#123; name: &#x27;Google&#x27; &#125;,</span><br><span class="line">      &#123; name: &#x27;Taobao&#x27; &#125;,</span><br><span class="line">	  &#123; name: &#x27;Tosuke&#x27; &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>展示为：</p>
+<p><img src="/2022/05/15/Vue2.x/blog/img/image-20220516105449581.png" alt="image-20220516105449581"></p>
+<h3 id="v-for-迭代对象">v-for 迭代对象</h3>
+<p>v-for 可以通过一个对象的属性来迭代数据，即可以对一个对象进行迭代操作。</p>
+<p>可以将上面的代码变更为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;ol&gt;</span><br><span class="line">    &lt;li v-for=&quot;value in object&quot;&gt;</span><br><span class="line">    &#123;&#123; value &#125;&#125;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">  &lt;/ol&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &#x27;#app&#x27;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    object: &#123;</span><br><span class="line">      name1: &#x27;Runoob&#x27;,</span><br><span class="line">      name2: &#x27;Google&#x27;,</span><br><span class="line">      name3: &#x27;Taobao&#x27;,</span><br><span class="line">	  name4: &#x27;Tosuke&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>也是一样的效果，但这次我们从对象中而不是数组中提取的数据。</p>
+<p><strong>v-for</strong> 可以提供第二个（key）或者第三个参数（索引）为键名：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li v-for=&quot;(value, key) in object&quot;&gt;</span><br><span class="line">    &#123;&#123; key &#125;&#125; : &#123;&#123; value &#125;&#125;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">==========================================</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li v-for=&quot;(value, key, index) in object&quot;&gt;</span><br><span class="line">     &#123;&#123; index &#125;&#125;. &#123;&#123; key &#125;&#125; : &#123;&#123; value &#125;&#125;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="v-for-迭代整数">v-for 迭代整数</h3>
+<p>v-for 也可以循环整数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li v-for=&quot;n in 10&quot;&gt;</span><br><span class="line">     &#123;&#123; n &#125;&#125;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h1>Vue.js 计算属性</h1>
+<p>我们先提出一个例子来说明，也是我们之前用过的反转字符串：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  &lt;p&gt;原始字符串: &#123;&#123; message &#125;&#125;&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;计算后反转字符串: &#123;&#123; reversedMessage &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script&gt;</span><br><span class="line">var vm = new Vue(&#123;</span><br><span class="line">  el: &#x27;#app&#x27;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: &#x27;Runoob!&#x27;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    // 计算属性的 getter</span><br><span class="line">    reversedMessage: function () &#123;</span><br><span class="line">      // `this` 指向 vm 实例</span><br><span class="line">      return this.message.split(&#x27;&#x27;).reverse().join(&#x27;&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>实例中声明了一个计算属性 reversedMessage 。</p>
+<p>提供的函数将用作属性 vm.reversedMessage 的 getter 。</p>
+<p>vm.reversedMessage 依赖于 vm.message，在 vm.message 发生改变时，vm.reversedMessage 也会更新。</p>
+<p>怎么样，是不是感觉就是一个计算函数而已？似乎与methods没有什么区别，嘛，实际上区别也不大，可以用methods来代替computed，只是 computed 是基于它的依赖缓存，只有相关依赖发生改变时才会重新取值。而使用 methods ，在重新渲染的时候，函数总会重新调用执行，可以说使用 computed 性能会更好，但是如果你不希望缓存，你可以使用 methods 属性。</p>
+<h2 id="computed-setter">computed setter</h2>
+<p>computed 属性默认只有 getter ，即直接返回一个计算后的值，不过在需要时你也可以提供一个 setter，这样的话就可以更加轻松的设置数据的改变：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var vm = new Vue(&#123;</span><br><span class="line">  el: &#x27;#app&#x27;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    name: &#x27;Google&#x27;,</span><br><span class="line">    url: &#x27;http://www.google.com&#x27;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    site: &#123;</span><br><span class="line">      // getter</span><br><span class="line">      get: function () &#123;</span><br><span class="line">        return this.name + &#x27; &#x27; + this.url</span><br><span class="line">      &#125;,</span><br><span class="line">      // setter</span><br><span class="line">      set: function (newValue) &#123;</span><br><span class="line">        var names = newValue.split(&#x27; &#x27;)</span><br><span class="line">        this.name = names[0]</span><br><span class="line">        this.url = names[names.length - 1]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">// 调用 setter， vm.name 和 vm.url 也会被对应更新</span><br><span class="line">vm.site = &#x27;京介的正牌博客 https://tosuke.gitee.io&#x27;;</span><br><span class="line">document.write(&#x27;name: &#x27; + vm.name);</span><br><span class="line">document.write(&#x27;&lt;br&gt;&#x27;);</span><br><span class="line">document.write(&#x27;url: &#x27; + vm.url);</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<p><img src="/2022/05/15/Vue2.x/blog/img/image-20220516112637894.png" alt="image-20220516112637894"></p>
 ]]></content>
       <categories>
         <category>学习</category>
