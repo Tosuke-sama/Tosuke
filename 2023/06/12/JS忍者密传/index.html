@@ -1,0 +1,362 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>JS忍者密传 | 京介的正牌博客</title><meta name="keywords" content="前端"><meta name="author" content="Tosuke"><meta name="copyright" content="Tosuke"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="看清破绽，一击必杀">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS忍者密传">
+<meta property="og:url" content="http://tosuke.gitee.io/2023/06/12/JS%E5%BF%8D%E8%80%85%E5%AF%86%E4%BC%A0/index.html">
+<meta property="og:site_name" content="京介的正牌博客">
+<meta property="og:description" content="看清破绽，一击必杀">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2023/06/12/a69ebf2991164207.jpg">
+<meta property="article:published_time" content="2023-06-12T15:21:37.000Z">
+<meta property="article:modified_time" content="2023-06-12T15:33:24.429Z">
+<meta property="article:author" content="Tosuke">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2023/06/12/a69ebf2991164207.jpg"><link rel="shortcut icon" href="/img/5.jpg"><link rel="canonical" href="http://tosuke.gitee.io/2023/06/12/JS%E5%BF%8D%E8%80%85%E5%AF%86%E4%BC%A0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?https://hm.baidu.com/hm.js?630b13955374eacfad7d551e707d4250";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="/%E4%BA%AC%E4%BB%8B" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JS忍者密传',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-06-12 23:33:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><div class="aplayer" data-id="8259771218" data-server="tencent" data-type="playlist" data-fixed="true" data-listFolded="false" data-order="random" data-preload="none"></div><link rel="stylesheet" href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css"><script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="baidu-site-verification" content="code-Z2QEOewjp2" /><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/7.jpg" onerror="onerror=null;src='/img/1.jpg'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s3.bmp.ovh/imgs/2023/06/12/a69ebf2991164207.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">京介的正牌博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JS忍者密传</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-06-12T15:21:37.000Z" title="发表于 2023-06-12 23:21:37">2023-06-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-06-12T15:33:24.429Z" title="更新于 2023-06-12 23:33:24">2023-06-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/">软件设计</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JS忍者密传"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>看清破绽，一击即杀。这是JavaScript的忍者秘籍。</p>
+<h1>热身</h1>
+<p>看到本章的标题兴奋起来了吗？欢迎和我一起作为一个学徒开始准备迈出第一步。</p>
+<p><strong>JavaScript与其他语言的不同之处：</strong></p>
+<ol>
+<li>函数是一等公民。在JavaScript中，函数与对象平起平坐，并且能像使用对象那样使用函数，包括创建方式，函数也有两种创建方式字面量或者是赋值给常量。</li>
+<li>函数闭包，这个详细内容以后再说</li>
+<li>作用域，不像其他语言，JS目前只有全局变量或者是函数级变量。</li>
+<li>基于原型的面向对象，而不是基于类。</li>
+</ol>
+<p><strong>充分理解浏览器</strong>：</p>
+<p>托各种框架的福，尽管JS现在能在许多环境上运行，但是我们还是得将目光放回它最初始的地方，浏览器。</p>
+<p>浏览器提供了多种API供我们使用，包括:</p>
+<ol>
+<li>文档对象结构（DOM）</li>
+<li>事件（例如点击）</li>
+<li>浏览器API（获取设备信息之类的）</li>
+</ol>
+<p><strong>性能分析：</strong></p>
+<p>毕竟我们没有理由写一堆粗糙低效的代码出来，学会使用计时器来判断我们的代码的优劣：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.time(&quot;计时器1&quot;)</span><br><span class="line">/*</span><br><span class="line">for(let i = 0;i &lt; max;i++)&#123;</span><br><span class="line">    working……</span><br><span class="line">&#125;   </span><br><span class="line">*/</span><br><span class="line">console.timeEnd(&quot;计时器1&quot;)</span><br></pre></td></tr></table></figure>
+<p>使用for循环是为了能够测量到可以测量的时间。</p>
+<h2 id="运行时页面构建过程">运行时页面构建过程</h2>
+<p>当用户点击一个链接，服务器返回资源以后开始我们的流程：</p>
+<ol>
+<li>构建页面——创建用户界面</li>
+<li>事件处理——进入循环——等待事件</li>
+<li>用户关闭页面</li>
+</ol>
+<h2 id="事件处理器">事件处理器</h2>
+<p>JS里的事件都是异步进行的，在一个事件中可能会有其他的类型的事发生，在某个事件发生时我们希望执行我们的函数时就需要注册事件，而在web应用中有两种方式来注册：</p>
+<p>1.把函数赋值给某个特殊属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.onload = function()&#123;</span><br><span class="line">// 这是窗口加载时加载的函数，即注册到了load事件上</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>京介杂谈：这种方式虽然简单，但是并不推荐，因为也许会一不小心把上一个结果给改掉。</p>
+</blockquote>
+<p>2.通过内置的addEventListener方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">document.body.addEventListener(&quot;onload&quot;,function()&#123;</span><br><span class="line">// 这是窗口加载时加载的函数，即注册到了load事件上</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>当DOM构建好之后，JS会不停的搜寻事件队列的队头是否有用户触发的事件，进而按照队列的顺序来依次执行对应的事件处理函数。</p>
+<h1>悟·函数</h1>
+<p>现在你将领悟Javascript中最重要的基础概念：函数（不是对象），我们将解答Javascript语言之谜。</p>
+<h2 id="定义与参数">定义与参数</h2>
+<p>像忍者一样编写JS代码的最大区别就是：你是否将JS当作函数式语言（functional language）来理解。</p>
+<p>函数及函数式语言之所以如此重要其原因之一是因为函数是程序执行过程中的主要模块，得益于强大的构造器，我们最频繁使用的函数拥有与对象相同的属性。</p>
+<p>让我们先回忆一下对象的常用功能：</p>
+<ol>
+<li>对象可以通过字面量来创建：{}</li>
+<li>对象可以赋值给变量或者其他对象的一个属性。</li>
+<li>对象可以作为参数</li>
+<li>对象可以作为函数的返回值</li>
+<li>对象能动态的创建和分配属性</li>
+</ol>
+<p>函数与对象都是一等公民，这意味着对象的这些所有功能函数都能使用，函数怎能不伟大？</p>
+<h2 id="回调函数">回调函数</h2>
+<p>回调函数是个伟大的发明，回调函数意味着我们能够更加“自定义”的操纵各种操作，以往我们进行一个操作时参数往往只能是几个简单的变量，但是回调函数告诉我们可以将函数作为参数，使得函数介入到调节这个操作的过程中，我们的手无形中有利了许多。</p>
+<p>比如使用JS的数组排序器sort：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var values = [0,5,3,2,2,1,5,7,6];</span><br><span class="line">values.sort((x,y)=&gt;&#123;</span><br><span class="line">    return x-y</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>使用函数来告诉排序器我们要怎样排序，这样的话，能说的实在太多了。</p>
+<h2 id="箭头函数">箭头函数</h2>
+<p>详见ES6相关</p>
+<h2 id="this参数-函数上下文">this参数-函数上下文</h2>
+<p>影响this的原因：</p>
+<p>1、定义函数的方法</p>
+<p>2、定义函数的位置</p>
+<p>3、函数的调用方式</p>
+<p>方式有四，忍者切记</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">doTheThing()//直接调用</span><br><span class="line">ninjia.doTheThing()//对象上调用</span><br><span class="line">new ninjia()//实例化一个新的对象</span><br><span class="line">doTheThing.call(ninja)//使用call方法或者apply方法</span><br></pre></td></tr></table></figure>
+<p>**直接调用：**this在严格模式下为undefined，非严格模式下为windows对象</p>
+<p>**对象的方法调用：**this指向该对象</p>
+<p>**作为构造函数调用：**当使用new操作实例化对象时，new会首先创建一个空对象，然后将这个空对象赋值给函数的this，等函数操作完后再返回这个对象。但是有特殊情况，当函数返回一个对象时（返回非对象会被直接忽略），new所传递的this将会被丢弃（导致函数this失效），函数返回的对象将最终成为new的结果。</p>
+<blockquote>
+<p>所以对于构造函数来说，如果被当成函数表达式直接赋值，this的操作不当会造成错误，所以人们将构造函数以大写字母开头，例如：Ninja.Person。方法则使用小驼峰式：doThing、makeDecision</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Tosuke</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://tosuke.gitee.io/2023/06/12/JS%E5%BF%8D%E8%80%85%E5%AF%86%E4%BC%A0/">http://tosuke.gitee.io/2023/06/12/JS%E5%BF%8D%E8%80%85%E5%AF%86%E4%BC%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://tosuke.gitee.io" target="_blank">京介的正牌博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a></div><div class="post_share"><div class="social-share" data-image="https://s3.bmp.ovh/imgs/2023/06/12/a69ebf2991164207.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/06/12/ES6%E6%96%B0%E6%A0%87%E5%87%86/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s3.bmp.ovh/imgs/2022/02/b88dd45ff5d08444.jpg" onerror="onerror=null;src='/img/4.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ES6新标准</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/04/26/Babel%E5%B0%8F%E8%AF%86/" title="Babel学习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://api.vvhan.com/api/acgimg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-26</div><div class="title">Babel学习</div></div></a></div><div><a href="/2022/08/06/CSS%E5%B8%83%E5%B1%80/" title="CSS布局解析"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic.imgdb.cn/item/62f5c71716f2c2beb11893dd.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-06</div><div class="title">CSS布局解析</div></div></a></div><div><a href="/2022/05/01/AJAX%E2%80%94%E5%86%AC%E6%97%A5%E9%98%BF%E8%B4%BE%E5%85%8B%E6%96%AF%EF%BC%88%E4%BC%AA%EF%BC%89/" title="AJAX"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://imgapi.xl0408.top/index.php" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-01</div><div class="title">AJAX</div></div></a></div><div><a href="/2023/06/12/ES6%E6%96%B0%E6%A0%87%E5%87%86/" title="ES6新标准"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s3.bmp.ovh/imgs/2022/02/b88dd45ff5d08444.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-12</div><div class="title">ES6新标准</div></div></a></div><div><a href="/2022/04/18/Express%20%E6%A1%86%E6%9E%B6/" title="Express框架"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://imgapi.xl0408.top/index.php" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-18</div><div class="title">Express框架</div></div></a></div><div><a href="/2022/05/15/Node.js%E2%80%94%E6%94%B9%E5%8F%98JavaScript%E7%9A%84%E5%91%BD%E8%BF%90/" title="Nodejs学习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://www.dmoe.cc/random.php" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-15</div><div class="title">Nodejs学习</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/7.jpg" onerror="this.onerror=null;this.src='/img/1.jpg'" alt="avatar"/></div><div class="author-info__name">Tosuke</div><div class="author-info__description">ToCode Team</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Tosuke-sama"><i class="fab fa-github"></i><span>关注</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎大家的到来！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">热身</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E9%A1%B5%E9%9D%A2%E6%9E%84%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">运行时页面构建过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">事件处理器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">悟·函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%8F%82%E6%95%B0"><span class="toc-number">2.1.</span> <span class="toc-text">定义与参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="toc-number">2.2.</span> <span class="toc-text">回调函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">箭头函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this%E5%8F%82%E6%95%B0-%E5%87%BD%E6%95%B0%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-number">2.4.</span> <span class="toc-text">this参数-函数上下文</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/06/12/JS%E5%BF%8D%E8%80%85%E5%AF%86%E4%BC%A0/" title="JS忍者密传"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s3.bmp.ovh/imgs/2023/06/12/a69ebf2991164207.jpg" onerror="this.onerror=null;this.src='/img/4.jpg'" alt="JS忍者密传"/></a><div class="content"><a class="title" href="/2023/06/12/JS%E5%BF%8D%E8%80%85%E5%AF%86%E4%BC%A0/" title="JS忍者密传">JS忍者密传</a><time datetime="2023-06-12T15:21:37.000Z" title="发表于 2023-06-12 23:21:37">2023-06-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/12/ES6%E6%96%B0%E6%A0%87%E5%87%86/" title="ES6新标准"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s3.bmp.ovh/imgs/2022/02/b88dd45ff5d08444.jpg" onerror="this.onerror=null;this.src='/img/4.jpg'" alt="ES6新标准"/></a><div class="content"><a class="title" href="/2023/06/12/ES6%E6%96%B0%E6%A0%87%E5%87%86/" title="ES6新标准">ES6新标准</a><time datetime="2023-06-12T15:15:26.000Z" title="发表于 2023-06-12 23:15:26">2023-06-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/12/Vue%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E4%B8%8E%E6%80%9D%E8%80%83/" title="Vue的设计与实现与思考"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s3.bmp.ovh/imgs/2023/06/12/a69ebf2991164207.jpg" onerror="this.onerror=null;this.src='/img/4.jpg'" alt="Vue的设计与实现与思考"/></a><div class="content"><a class="title" href="/2023/02/12/Vue%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E4%B8%8E%E6%80%9D%E8%80%83/" title="Vue的设计与实现与思考">Vue的设计与实现与思考</a><time datetime="2023-02-12T07:03:08.000Z" title="发表于 2023-02-12 15:03:08">2023-02-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/10/HTTP%E8%A6%81%E7%82%B9%E8%A7%A3%E8%AF%BB/" title="HTTP完全解读"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tosuke-1311390847.cos.ap-chengdu.myqcloud.com/%E7%84%A6%E8%8C%B6%E4%BD%9C%E5%93%81%20(103).jpg" onerror="this.onerror=null;this.src='/img/4.jpg'" alt="HTTP完全解读"/></a><div class="content"><a class="title" href="/2022/12/10/HTTP%E8%A6%81%E7%82%B9%E8%A7%A3%E8%AF%BB/" title="HTTP完全解读">HTTP完全解读</a><time datetime="2022-12-10T12:45:36.000Z" title="发表于 2022-12-10 20:45:36">2022-12-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/28/%E8%AE%A1%E7%BD%91%E5%86%8D%E6%95%99%E8%82%B2/" title="接受计网再教育（真）"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tosuke-1311390847.cos.ap-chengdu.myqcloud.com/IMG_38974874_3%20(2).jpg" onerror="this.onerror=null;this.src='/img/4.jpg'" alt="接受计网再教育（真）"/></a><div class="content"><a class="title" href="/2022/11/28/%E8%AE%A1%E7%BD%91%E5%86%8D%E6%95%99%E8%82%B2/" title="接受计网再教育（真）">接受计网再教育（真）</a><time datetime="2022-11-28T12:45:36.000Z" title="发表于 2022-11-28 20:45:36">2022-11-28</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://s3.bmp.ovh/imgs/2023/06/12/a69ebf2991164207.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Tosuke</div><div class="footer_custom_text">人们望着我的名字，却叫不出口来。</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '5bwqBH3Me4gXY9utghuqIPwx-gzGzoHsz',
+      appKey: 'qqsqG7HFuJY5tlSSpTgMlIhu',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="京介的,正牌,博客" data-fontsize="15px" data-random="false" async="async"></script><script src="//code.tidio.co/z0gzmawwr8ternicqp3vc4ufdydycclh.js" async="async"></script><div class="aplayer" data-id="8259771218" data-server="tencent" data-type="playlist" data-fixed="true" data-listFolded="false" data-order="random" data-preload="none"></div><link rel="stylesheet" href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css"><script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><script src="/true"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
